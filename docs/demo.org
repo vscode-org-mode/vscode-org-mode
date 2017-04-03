@@ -1,6 +1,5 @@
 #+TITLE: Org Mode Demonstration
 * The Hero's Journey
-Source: [[https://en.wikipedia.org/wiki/Hero%2527s_journey][Hero's Journey]]
 ** Departure 
 1. The Call to Adventure
 2. Refusal of the Call
@@ -8,31 +7,34 @@ Source: [[https://en.wikipedia.org/wiki/Hero%2527s_journey][Hero's Journey]]
 4. Crossing the Threshold
 5. Belly of the Whale
 ** Initiation
-1. The Road of Trials
-2. The Meeting with the Goddess
-3. Woman as Temptress
-4. Atonement with the Father
-5. Apotheosis
-6. The Ultimate Boon
+- The Road of Trials
+- The Meeting with the Goddess
+- Woman as Temptress
+- Atonement with the Father
+- Apotheosis
+- The Ultimate Boon
 ** Return
-1. Refusal of the Return
-2. The Magic Flight
-3. Rescue from Without
-4. The Crossing of the Return Threshold
+1. Refusal of the *Return*
+2. The Magic /Flight/
+3. Rescue from _Without_
+4. ~The Crossing of the Return Threshold~
 5. Master of Two Worlds
 6. Freedom to Live
+** Source
+Source: [[https://en.wikipedia.org/wiki/Hero%2527s_journey][Hero's Journey]]
 * If You Give a Mouse a Cookie
 Inspired by: [[https://en.wikipedia.org/wiki/If_You_Give_a_Mouse_a_Cookie][Laura Numeroff]]
-** Receive cookie
-** Ask for a glass of milk
-** Ask for a straw
-** Ask for a napkin
-** Look in mirror
+** DONE Receive cookie
+Completed on [2017-04-02 SUN]
+** TODO Ask for a glass of milk
+** TODO Ask for a straw
+** TODO Ask for a napkin
+** TODO Look in mirror
 Check for milk mustache
-** Trim hair
+** TODO Trim hair
 *** Request nail scissors
-** Sweep up hair
+** TODO Sweep up hair
 *** Request broom
-** Sweep other rooms
-** Wash floors
-** Nap
+** TODO Sweep other rooms
+** TODO Wash floors
+** TODO Nap

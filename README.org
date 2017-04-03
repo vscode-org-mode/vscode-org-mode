@@ -1,7 +1,10 @@
 #+TITLE: VS Code Org Mode
-VS Code Org Mode (~vscode-org-mode~) is an extension for Visual Studio Code that allows users to read and write ~.org~ files.
 * About
+VS Code Org Mode (~vscode-org-mode~) is an extension for Visual Studio Code that allows users to read and write ~.org~ files.
+
+The extension is currently in development. The development docs are available [[file:docs/README.org][here]].
 * Contributing
+Guidelines for contributing are coming soon.
 * Conventions
 ** Naming
 The full name of this project is ~VS Code Org Mode~. It is abbreviated ~vscode-org-mode~. In the VS Code Marketplace, it is listed as ~Org Mode~.
@@ -10,7 +13,9 @@ Actions are prefixed with ~org-~.
 
 When referring to the original Org mode, we capitalize the "O" and leave the "m" lower case. This is in keeping with the original teams usage on [[http://orgmode.org/][orgmode.org]].
 ** Style
+TS Lint
 ** Git
+Guidelines for Git are coming soon.
 * Gratitude
 The original Org mode was written for Emacs by Carsten Dominik, with the help and support of [[http://orgmode.org/org.html#History-and-Acknowledgments][an impressive list of geniuses]]. Our work is inspired by though not associated with their original masterpiece.
 * License
