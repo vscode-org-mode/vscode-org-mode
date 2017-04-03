@@ -1,0 +1,30 @@
+#+TITLE: Feature Implementation Cue
+The following is a rough list of features that may be implemented. It is meant as a general guide during development, but should not be taken as a strict plan. This document is meant to change dramatically during development.
+* Syntax Highlighting
+** Todo keywords
+** Date
+** Span highlighting
+**** Bold
+**** Italic
+**** Fixed width
+** Embedded images
+* Actions
+** Folding
+** Promotion / demotion
+- I think I actually want to remove this
+- Or maybe consider subtree
+** Date insertion
+** Insert sibling
+- Or just insert
+  - Sibling
+  - Child
+  - Parent
+** Follow link
+** Todo cycling
+** Data manipulation
+** Smart reorder
+** Insert today's date
+** Insert date
+* Settings
+** Folded or unfolded by default
+** Custom TODO keywords
