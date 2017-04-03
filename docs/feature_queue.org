@@ -9,7 +9,7 @@ The following is a rough list of features that may be implemented. It is meant a
 **** Fixed width
 ** Embedded images
 * Actions
-** Folding
+** Folding [tabled until later date: VS Code only supports folding by indentation]
 ** Promotion / demotion
 - I think I actually want to remove this
 - Or maybe consider subtree
