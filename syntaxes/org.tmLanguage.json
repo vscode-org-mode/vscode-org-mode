@@ -1,0 +1,23 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Org Markup",
+    "patterns": [
+        {
+            "name": "entity.name.function.org",
+            "match": "^\\s*[*]{1} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "entity.name.type.org",
+            "match": "^\\s*[*]{2} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "markup.heading.org",
+            "match": "^\\s*[*]{3} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "entity.other.attribute-name.org",
+            "match": "^\\s*[*]{4} [^\\[\\]:\\n]*"
+        }
+    ],
+    "scopeName": "source.org"
+}

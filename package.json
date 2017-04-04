@@ -1,7 +1,7 @@
 {
     "name": "org-mode",
-    "displayName": "org-mode",
-    "description": "Port of Emacs Org mode",
+    "displayName": "Org Mode",
+    "description": "Port of Emacs Org Mode",
     "version": "0.0.1",
     "publisher": "tootone",
     "engines": {
@@ -15,26 +15,13 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            { 
-                "command": "extension.testLog",
-                "title": "Test Extension Log"
-            }
-        ],
         "languages": [
             {
                 "id": "org",
                 "aliases": [
+                    "Org Markup",
                     "org",
-                    "Org",
-                    "orgmode",
-                    "org-mode",
-                    "Orgmode",
-                    "OrgMode",
-                    "Org mode",
-                    "Org Mode",
-                    "Org-mode",
-                    "Org-Mode"
+                    "org-mode"
                 ],
                 "extensions": [
                     ".org"
@@ -45,8 +32,8 @@
         "grammars": [
             {
                 "language": "org",
-                "scopeName": "text.orgmode",
-                "path": "./syntaxes/org.tmLanguage"
+                "scopeName": "source.org",
+                "path": "./syntaxes/org.tmLanguage.json"
             }
         ]
     },
