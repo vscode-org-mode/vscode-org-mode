@@ -11,14 +11,44 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onLanguage:org"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "commands": [
+            { 
+                "command": "extension.testLog",
+                "title": "Test Extension Log"
+            }
+        ],
+        "languages": [
+            {
+                "id": "org",
+                "aliases": [
+                    "org",
+                    "Org",
+                    "orgmode",
+                    "org-mode",
+                    "Orgmode",
+                    "OrgMode",
+                    "Org mode",
+                    "Org Mode",
+                    "Org-mode",
+                    "Org-Mode"
+                ],
+                "extensions": [
+                    ".org"
+                ],
+                "configuration": "./org.configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "org",
+                "scopeName": "text.orgmode",
+                "path": "./syntaxes/org.tmLanguage"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
