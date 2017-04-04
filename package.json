@@ -20,7 +20,7 @@
         "commands": [
             { 
                 "command": "extension.insertSibling",
-                "title": "Org-mode: Insert Sibling"
+                "title": "Org-mode: org-insert-heading-respect-content"
             },
             { 
                 "command": "extension.insertChild",
