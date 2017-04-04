@@ -45,7 +45,7 @@
         "grammars": [
             {
                 "language": "org",
-                "scopeName": "text.orgmode",
+                "scopeName": "source.org",
                 "path": "./syntaxes/org.tmLanguage"
             }
         ]
