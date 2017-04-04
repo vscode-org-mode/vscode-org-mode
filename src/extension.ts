@@ -4,7 +4,7 @@ import * as Utils from './utils';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', (textEditor, edit) => {
-        let cursorPos = getCursorPosition();
+        Utils.insertText(edit);
         vscode.window.showInformationMessage('Inserting Sibling');
     });
 

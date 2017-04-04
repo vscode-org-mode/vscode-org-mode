@@ -5,6 +5,7 @@ export function getCursorPosition() {
     return curEditor.selection.active;
 }
 
-export function insertText() {
-    
+export function insertText(edit: vscode.TextEditorEdit) {
+    let cursorPos = getCursorPosition();
+    edit.insert(cursorPos, "--asdf--");
 }
