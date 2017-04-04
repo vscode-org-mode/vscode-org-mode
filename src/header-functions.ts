@@ -7,7 +7,7 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
         const curLine = Utils.getLine(document, cursorPos);
         const endOfLine = curLine.length;
         const insertPos = new vscode.Position(cursorPos.line, endOfLine);
-        
+
         let sibling;
         let headerMatch = Utils.getHeaderPrefix(curLine);
 
