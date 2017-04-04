@@ -12,11 +12,23 @@ Note that titles of different levels are different colors
 - [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
 - Description
   - Insert a new heading/item with the same level as the one at point.
-- Notes
-  - If the command is used at the beginning of a line, and if there is a heading or a plain list item (see Plain lists) at point, the new heading/item is created before the current line. When used at the beginning of a regular line of text, turn that line into a heading.
+- Environment
+  - If the cursor is on a header
+    - If the cursor is at the end of a header, it inserts a new sibling header below
+    - If the cursor is in the middle of a header, it breaks the header at the cursor and inserts a new header below with the text from after the cursor
+  - If the cursor is on a line of plain text
+    - If the cursor is at the beginning of a line of plain text, it converts that line into a header
+    - If the cursor is in the middle or at the end of a line of plain text, it breaks the line at the cursor and inserts a new header below with the text from after the cursor
 *** ~org-insert-heading-respect-content~
 - [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
 - Insert a new heading at the end of the current subtree.
+- Environment (differences from ~org-insert-heading~ highlighted in *bold*)
+  - If the cursor is on a header
+    - If the cursor is at the end of a header, it inserts a new sibling header below
+    - If the cursor is in the middle of a header, *it inserts a new sibling header below*
+  - If the cursor is on a line of plain text
+    - If the cursor is at the beginning of a line of plain text, it *inserts a new header below*
+    - If the cursor is in the middle or at the end of a line of plain text, it *inserts a new header below*
 *** ~org-do-promote~
 - [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
 - Promote current heading by one level. 
