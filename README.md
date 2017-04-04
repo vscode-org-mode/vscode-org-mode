@@ -1,65 +1,60 @@
-# org-mode README
+# VS Code Org Mode
 
-This is the README for your extension "org-mode". After writing up a brief description, we recommend including the following sections.
+VS Code Org Mode (`vscode-org-mode`) is an extension for Visual Studio Code that allows users to read and write `.org` files.
+
+The extension is currently in development and has not yet been released to the VS Code Marketplace. The development docs are available [here](docs/README.org).
+
+Initial release is estimated for `[2017-04-10 Mon]`. For updates, star this repo.
+
+## Contributing
+
+Guidelines for contributing are coming soon. Also, see Git conventions below.
+
+## Conventions
+
+### Naming
+
+The full name of this project is `VS Code Org Mode`. It is abbreviated `vscode-org-mode`. In the VS Code Marketplace, it is listed as `Org Mode`.
+
+Actions are prefixed with `org-`.
+
+Filenames use kebab case.
+
+When referring to the original Org mode, we capitalize the "O" and leave the "m" lower case. This is in keeping with the original teams usage on [orgmode.org](http://orgmode.org/).
+
+### Code
+
+Use TSLint with default settings.
+
+### Git
+
+- `master` is used for production deploys.
+- `develop` is the main branch into which new features are merged. It is protected from direct pushes, so all changes come from pull requests.
+- Features: For all new additions, create a new feature branch. When complete, create a pull request into `develop` for that branch. Optionally, prefix feature branch names with `feature/`.
+
+## Gratitude
+
+The original Org mode was written for Emacs by Carsten Dominik, with the help and support of [an impressive list of geniuses](http://orgmode.org/org.html#History-and-Acknowledgments). Our work is inspired by though not associated with their original masterpiece.
+
+## License
+This work is available under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Features description coming soon.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Requirements description coming soon.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Settings description coming soon.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Description of known issues coming soon. Feel free to call out issues using the `Issues` tab above.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Release notes coming soon.
