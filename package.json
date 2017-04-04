@@ -15,6 +15,16 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
+        "commands": [
+            { 
+                "command": "extension.insertSibling",
+                "title": "Org-mode: org-insert-heading-respect-content"
+            },
+            { 
+                "command": "extension.insertChild",
+                "title": "Org-mode: Insert Child"
+            }
+        ],
         "languages": [
             {
                 "id": "org",
