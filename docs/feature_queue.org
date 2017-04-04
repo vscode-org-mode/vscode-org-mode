@@ -45,11 +45,12 @@ Note that titles of different levels are different colors
 ** Highlighting
 - [[http://orgmode.org/manual/Timestamps.html#Timestamps][org docs]]
 *** Date
-: [2006-11-01]
+{year}-{month}-{day}
+: [2006-11-30]
 *** Date with day of the week
-: [2006-11-01 Wed]
+: [2006-11-30 Wed]
 *** Date with day of the week and time
-: [2006-11-01 Wed 19:15]
+: [2006-11-30 Wed 19:15]
 *** Note
 - Original org also allows for 'active' time stamps, which show up in the agenda, but since we have not implemented the agenda let's start with inactive stamps
 ** Screenshots
