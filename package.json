@@ -15,6 +15,19 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
+<<<<<<< develop
+=======
+        "commands": [
+            { 
+                "command": "extension.insertSibling",
+                "title": "Org-mode: Insert Sibling"
+            },
+            { 
+                "command": "extension.insertChild",
+                "title": "Org-mode: Insert Child"
+            }
+        ],
+>>>>>>> Set up for inserting sibling
         "languages": [
             {
                 "id": "org",

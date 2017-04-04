@@ -3,12 +3,17 @@ import * as vscode from 'vscode';
 import * as Utils from './utils';
 
 export function activate(context: vscode.ExtensionContext) {
-
-    let disposable = vscode.commands.registerCommand('extension.testLog', () => {
-        vscode.window.showInformationMessage('Command Works');
+    let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', (textEditor, edit) => {
+        let cursorPos = getCursorPosition();
+        vscode.window.showInformationMessage('Inserting Sibling');
     });
 
-    context.subscriptions.push(disposable);
+    let insertChildCmd = vscode.commands.registerTextEditorCommand('extension.insertChild', (textEditor, edit) => {
+        vscode.window.showInformationMessage('Inserting Child');
+    });
+
+    context.subscriptions.push(insertSiblingCmd);
+    context.subscriptions.push(insertChildCmd);
 }
 
 export function deactivate() {

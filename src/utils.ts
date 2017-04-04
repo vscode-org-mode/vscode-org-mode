@@ -5,3 +5,6 @@ export function getCursorPosition() {
     return curEditor.selection.active;
 }
 
+export function insertText() {
+    
+}
