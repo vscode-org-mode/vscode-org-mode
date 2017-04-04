@@ -63,10 +63,10 @@ Calendar minibuffer:
 - [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
 - Prompt for a date and insert a corresponding timestamp. When the cursor is at an existing timestamp in the buffer, the command is used to modify this timestamp instead of inserting a new one.
 - In our MVP, it might make most sense to default to inserting today's date
-*** ~org-timestamp-down-day~
+*** ~org-timestamp-day-down~
 - [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
 - Change date at cursor by one day.
-*** ~org-timestamp-down-up~
+*** ~org-timestamp-day-up~
 - [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
 - Change date at cursor by one day.
 * Todos
@@ -113,7 +113,7 @@ Priorities
 - =/italic/=
 - =_underlined_=
 - =~code~=
-- ==verbatim==
+- = verbatim =
 - : literal
 ** Screenshot
 [[file:img/span_styling_2.png]]
