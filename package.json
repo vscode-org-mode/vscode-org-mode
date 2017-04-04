@@ -29,6 +29,7 @@
             {
                 "id": "org",
                 "aliases": [
+                    "Org",
                     "Org Markup",
                     "org",
                     "org-mode"
