@@ -2,16 +2,17 @@ import * as vscode from 'vscode';
 import * as Datetime from './simple-datetime';
 import * as Util from './utils';
 
+// Any potential data labels should go here (eg TODO)
 export const DATE = "DATE";
 
-export function getCursorContext(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+export default function getCursorContext(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = Util.getActiveTextEditorEdit();
     const cursorPos = Util.getCursorPosition();
     const curLine = Util.getLine(document, cursorPos);
     const line = cursorPos.line;
 
     const contextData = {
-        dataType: undefined,
+        dataLabel: undefined,
         data: undefined,
         line: undefined,
         range: undefined
@@ -27,13 +28,15 @@ export function getCursorContext(textEditor: vscode.TextEditor, edit: vscode.Tex
         const range = new vscode.Range(startPos, endPos);
         if (range.contains(cursorPos)) {
             // We've found our match
-            contextData.dataType = DATE;
+            contextData.dataLabel = DATE;
             contextData.data = match[0];
             contextData.line = line;
             contextData.range = range;
             return contextData;
         }
     }
+
+    // Any different matches or catch-all matches should go here
 
     return undefined;
 }
