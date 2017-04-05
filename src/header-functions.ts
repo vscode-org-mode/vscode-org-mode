@@ -36,6 +36,7 @@ export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEdit
 
     if(headerPrefix) {
         edit.insert(insertPos, "\n" + headerPrefix.trim() + "* ");
+        Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
     }
 }
 
