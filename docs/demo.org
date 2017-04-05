@@ -1,6 +1,6 @@
 #+TITLE: Org Mode Demonstration
 * The Hero's Journey
-** Departure 
+** Departure
 1. The Call to Adventure
 2. Refusal of the Call
 3. Supernatural Aid

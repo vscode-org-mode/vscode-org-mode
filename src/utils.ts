@@ -23,5 +23,23 @@ export function getHeaderPrefix(line: string) {
 }
 
 export function findPreviousHeader() {
-    
+
+}
+
+export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, surroundingText: string, errorMessage: string) {
+    const selection = vscode.window.activeTextEditor.selection;
+    if (selection.isEmpty) {
+        vscode.window.showErrorMessage(errorMessage);
+    } else {
+        edit.insert(selection.start, surroundingText);
+        edit.insert(selection.end, surroundingText);
+    }
+}
+
+export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, prependingText: string) {
+    const document = getActiveTextEditorEdit();
+    const cursorPos = getCursorPosition();
+    const curLine = getLine(document, cursorPos);
+    const insertPos = new vscode.Position(cursorPos.line, 0)
+    edit.insert(insertPos, prependingText)
 }
