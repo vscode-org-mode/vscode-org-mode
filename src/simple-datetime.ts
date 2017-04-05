@@ -68,22 +68,12 @@ export function modifyDate(dateString: string, action: string): string {
     const oldDate = parseDate(dateString);
     let dateObject = new Date(oldDate.date);
 
-    switch (action) {
-        case "UP":
-            // By all accounts, this shouldn't work
-            dateObject.setDate(dateObject.getDate() + 2);
-            break;
-        case "DOWN":
-            // Or this
-            // dateObject.setDate(dateObject.getDate());
-            break;
-        default:
-            vscode.window.showErrorMessage(`No such action: ${action}`);
+    // Someone please explain why this works.
+    if (action === "UP") {
+        dateObject.setDate(dateObject.getDate() + 2);
     }
 
     const newDate = dateToSimpleDate(dateObject);
 
     return buildDateString(newDate);
 }
-
-console.log(currentDatetime());
