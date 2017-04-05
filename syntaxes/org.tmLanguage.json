@@ -31,12 +31,20 @@
             "match": "\\_.+\\_"
         },
         {
-            "name": "markup.quote.org",
+            "name": "markup.italic.org",
             "match": "^:.+"
         },
         {
-            "name": "markup.raw.org",
+            "name": "variable.org",
             "match": "\\~.+\\~"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\=.+\\="
+        },
+        {
+            "name": "comment.line.org",
+            "match": "^#.+"
         }
     ],
     "scopeName": "source.org"
