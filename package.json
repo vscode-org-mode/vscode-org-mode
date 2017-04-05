@@ -16,17 +16,41 @@
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
-            { 
+            {
                 "command": "extension.insertSibling",
                 "title": "Org-mode: org-insert-heading-respect-content"
             },
-            { 
+            {
                 "command": "extension.insertChild",
                 "title": "Org-mode: Insert Child"
             },
             {
                 "command": "extension.insertTimestamp",
                 "title": "Org-mode: Timestamp"
+            },
+            {
+                "command": "extension.bold",
+                "title": "Org: Bold"
+            },
+            {
+                "command": "extension.italic",
+                "title": "Org: Italic"
+            },
+            {
+                "command": "extension.underline",
+                "title": "Org: Underline"
+            },
+            {
+                "command": "extension.code",
+                "title": "Org: Code"
+            },
+            {
+                "command": "extension.verbose",
+                "title": "Org: Verbose"
+            },
+            {
+                "command": "extension.literal",
+                "title": "Org: Literal"
             }
         ],
         "languages": [
