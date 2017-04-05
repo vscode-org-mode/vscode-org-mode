@@ -29,6 +29,10 @@
                 "title": "Org-mode: org-do-demote"
             },
             {
+                "command": "extension.promoteLine",
+                "title": "Org-mode: org-do-promote"
+            },
+            {
                 "command": "extension.insertTimestamp",
                 "title": "Org: Timestamp"
             },
