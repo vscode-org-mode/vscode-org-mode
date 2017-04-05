@@ -23,3 +23,16 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
         if(sibling)
             edit.insert(insertPos, sibling);
 }
+
+export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+    const document = textEditor.document;
+    const cursorPos = Utils.getCursorPosition();
+    const curLine = Utils.getLine(textEditor.document, cursorPos);
+    const endOfLine = curLine.length;
+    let headerPrefix = Utils.getHeaderPrefix(curLine);
+    let insertPos = new vscode.Position(cursorPos.line, endOfLine);
+
+    if(headerPrefix) {
+        edit.insert(insertPos, "\n" + headerPrefix.trim() + "* ");
+    }
+}
