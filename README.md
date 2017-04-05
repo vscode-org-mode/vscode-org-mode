@@ -53,7 +53,21 @@ Settings description coming soon.
 
 ## Known Issues
 
-Description of known issues coming soon. Feel free to call out issues using the `Issues` tab above.
+### Folding
+
+VS Code's folding strategy is based on indentation. There is no indentation in Org. There are a number of feature requests to allow for header-level folding:
+- [language-aware folding #3422](https://github.com/Microsoft/vscode/issues/3422)
+- [Add code folding for markdown based on heading level #3347](https://github.com/Microsoft/vscode/issues/3347)
+
+Until Microsoft addresses those issues, it appears to be impossible to implement folding in Org.
+
+### Colorization
+
+Colorization, bolding, italicization, and other modes of highlighting are handled differently by different themes. We have prioritized supporting the default VS Code themes (Dark+ and Light+). This prioritization means that some colors may not appear as expected in other themes, or that opportunities for more variance have been missed.
+
+### Additional
+
+Feel free to call out issues using the `Issues` tab above.
 
 ## Release Notes
 
