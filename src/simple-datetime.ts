@@ -1,24 +1,28 @@
+import * as vscode from 'vscode';
+
+const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export interface ISimpleDate {
     date: string;
-    day: string;
+    weekday: string;
 }
 
-export function parseDate(dateStr: string): ISimpleDate {
+export function parseDate(dateString: string): ISimpleDate {
     const dateReg = /\d{4}-\d{1,2}-\d{1,2}/;
-    const dateResult = dateReg.exec(dateStr);
+    const dateResult = dateReg.exec(dateString);
     let date;
     if (dateResult) {
         date = dateResult[0];
     }
 
-    const dayReg = /[A-Za-z]{3}/;
-    const dayResult = dayReg.exec(dateStr);
-    let day;
-    if (dayResult) {
-        day = dayResult[0];
+    const weekdayReg = /[A-Za-z]{3}/;
+    const weekdayResult = weekdayReg.exec(dateString);
+    let weekday;
+    if (weekdayResult) {
+        weekday = weekdayResult[0];
     }
 
-    return { date, day };
+    return { date, weekday };
 };
 
 export function isValidSimpleDate(datetime: ISimpleDate): boolean {
@@ -26,12 +30,12 @@ export function isValidSimpleDate(datetime: ISimpleDate): boolean {
 }
 
 export function buildDateString(datetime: ISimpleDate): string {
-    const { date, day } = datetime;
+    const { date, weekday } = datetime;
 
     let dateString = `${date}`;
 
-    if (day) {
-        dateString = `${dateString} ${day}`;
+    if (weekday) {
+        dateString = `${dateString} ${weekday}`;
     }
 
     return `[${dateString}]`
@@ -41,20 +45,45 @@ function padVal(str: string): string {
     return str.length === 1 ? `0${str}` : str;
 }
 
-export function currentDatetime(): ISimpleDate {
-    const currentDate = new Date();
-    const dayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+export function dateToSimpleDate(dateObject: Date): ISimpleDate {
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1; // Why, Javascript, why!?
+    const day = dateObject.getDate();
 
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; // Why, Javascript, why!?
-    const date = currentDate.getDate();
-
-    const day = dayArray[currentDate.getDay()];
+    const weekday = weekdayArray[dateObject.getDay()];
 
     return {
-        date: `${year}-${padVal(month.toString())}-${padVal(date.toString())}`,
-        day
+        date: `${year}-${padVal(month.toString())}-${padVal(day.toString())}`,
+        weekday
     }
+}
+
+export function currentDatetime(): ISimpleDate {
+    const currentDate = new Date();
+
+    return dateToSimpleDate(new Date());
+}
+
+export function modifyDate(dateString: string, action: string): string {
+    const oldDate = parseDate(dateString);
+    let dateObject = new Date(oldDate.date);
+
+    switch (action) {
+        case "UP":
+            // By all accounts, this shouldn't work
+            dateObject.setDate(dateObject.getDate() + 2);
+            break;
+        case "DOWN":
+            // Or this
+            // dateObject.setDate(dateObject.getDate());
+            break;
+        default:
+            vscode.window.showErrorMessage(`No such action: ${action}`);
+    }
+
+    const newDate = dateToSimpleDate(dateObject);
+
+    return buildDateString(newDate);
 }
 
 console.log(currentDatetime());

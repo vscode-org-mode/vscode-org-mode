@@ -37,8 +37,12 @@
                 "title": "Org: Timestamp"
             },
             {
-                "command": "extension.getContext",
-                "title": "Org: Get Context"
+                "command": "extension.incrementContext",
+                "title": "Org: Increment Context"
+            },
+            {
+                "command": "extension.decrementContext",
+                "title": "Org: Decrement Context"
             },
             {
                 "command": "extension.bold",
