@@ -13,6 +13,7 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
 
         if(headerMatch) {
             sibling = "\n" + headerMatch + " ";
+            insertPos = Utils.findEndOfSection(document, cursorPos, sibling);
         } else {
             let parentHeader = Utils.findParentPrefix(document, cursorPos);
             sibling = "\n" + parentHeader + " ";
@@ -23,6 +24,7 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
         if(sibling) {
             edit.insert(insertPos, sibling);
             Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
+            // textEditor.revealRange()
         }
 }
 

@@ -51,25 +51,30 @@ export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Posi
 
 export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
     let matchSym;
-    if(levelSym.match(/\d+./)) {
+    if(levelSym.match(/\d+./)) {    //starting on numeric line
         matchSym = /\d+./;
     }
-    else if(levelSym === "") {
+    else if(levelSym === "") {      //starting on other non-header text line
         matchSym = /^$/;
     }
-    else {
-        matchSym = levelSym;
+    else {                          //starting on header line
+        let starMatch = levelSym.match(/\*+/);
+        let numStars;
+        if(starMatch) {
+            numStars = starMatch[0].length + 1;
+        }
+        matchSym = new RegExp(`\\*{${numStars},}`);
     }
     let curLine = pos.line;
     let curPos = new vscode.Position(pos.line, 0);      //set to line: curLine and character: <end of line>
     let curLinePrefix = levelSym;
 
-    while(curLine <= document.lineCount && curLinePrefix.match(matchSym)) {
+    do {
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         let curLineContent = getLine(document, curPos);
         curLinePrefix = getPrefix(curLineContent);
-    }
+    } while(curLine < document.lineCount - 1 && ( (curLinePrefix.match(matchSym)) || curLinePrefix === "- " || !curLinePrefix || curLinePrefix.match(/\d+\./)))
 
 
     curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
