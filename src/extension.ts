@@ -6,7 +6,6 @@ import * as MarkupFunctions from './markup-functions';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', HeaderFunctions.insertSibling);
-
     let insertChildCmd = vscode.commands.registerTextEditorCommand('extension.insertChild', (textEditor, edit) => {
         vscode.window.showInformationMessage('Inserting Child');
     });

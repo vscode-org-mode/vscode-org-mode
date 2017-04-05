@@ -2,19 +2,24 @@ import * as vscode from 'vscode';
 import * as Utils from './utils';
 
 export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-        const document = Utils.getActiveTextEditorEdit();
+        const document = textEditor.document;
         const cursorPos = Utils.getCursorPosition();
         const curLine = Utils.getLine(document, cursorPos);
         const endOfLine = curLine.length;
-        const insertPos = new vscode.Position(cursorPos.line, endOfLine);
+        let insertPos = new vscode.Position(cursorPos.line, endOfLine);
 
         let sibling;
         let headerMatch = Utils.getHeaderPrefix(curLine);
 
         if(headerMatch) {
-            sibling = "\n" + headerMatch[0] + " ";
+            sibling = "\n" + headerMatch + " ";
+        } else {
+            let parentHeader = Utils.findParentPrefix(document, cursorPos);
+            sibling = "\n" + parentHeader + " ";
+
+            insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
 
         if(sibling)
-            Utils.insertText(edit, insertPos, sibling);
+            edit.insert(insertPos, sibling);
 }
