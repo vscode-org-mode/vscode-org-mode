@@ -96,6 +96,7 @@ export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.Te
     const document = getActiveTextEditorEdit();
     const cursorPos = getCursorPosition();
     const curLine = getLine(document, cursorPos);
+
     const insertPos = new vscode.Position(cursorPos.line, 0);
     edit.insert(insertPos, prependingText);
 }
