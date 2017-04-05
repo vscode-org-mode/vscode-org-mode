@@ -18,15 +18,15 @@
         "commands": [
             {
                 "command": "extension.insertSibling",
-                "title": "Org-mode: org-insert-heading-respect-content"
+                "title": "Org: Insert Sibling"
             },
             {
                 "command": "extension.insertChild",
-                "title": "Org-mode: Insert Child"
+                "title": "Org: Insert Child"
             },
             {
                 "command": "extension.insertTimestamp",
-                "title": "Org-mode: Timestamp"
+                "title": "Org: Timestamp"
             },
             {
                 "command": "extension.bold",
