@@ -24,7 +24,7 @@ export function getHeaderPrefix(line: string) {
 
 
 export function getPrefix(line: string) {
-    const prefix = line.match(/^[(\*)(-)(\d+.)]+/);
+    const prefix = line.match(/^\*+|^[-]\s|^\d+\./);
     if(prefix)
         return prefix[0];
     else
@@ -47,11 +47,18 @@ export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Posi
 }
 
 export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+    let matchSym;
+    if(levelSym.match(/\d+./))
+        matchSym = /\d+./;
+    else if(levelSym === "")
+        matchSym = /^$/;
+    else
+        matchSym = levelSym;
     let curLine = pos.line;
     let curPos = new vscode.Position(pos.line, 0);      //set to line: curLine and character: <end of line>
     let curLinePrefix = levelSym;
 
-    while(curLine <= document.lineCount && curLinePrefix == levelSym) {
+    while(curLine <= document.lineCount && curLinePrefix.match(matchSym)) {
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         let curLineContent = getLine(document, curPos);
