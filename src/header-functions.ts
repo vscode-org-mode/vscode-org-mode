@@ -14,11 +14,9 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
         if(headerMatch) {
             sibling = "\n" + headerMatch + " ";
         } else {
-            //find the previous header
             let parentHeader = Utils.findParentPrefix(document, cursorPos);
             sibling = "\n" + parentHeader + " ";
 
-            //update insertPos
             insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
 
