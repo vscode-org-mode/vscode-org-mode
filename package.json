@@ -25,6 +25,10 @@
                 "title": "Org: Insert Child"
             },
             {
+                "command": "extension.demoteLine",
+                "title": "Org-mode: org-do-demote"
+            },
+            {
                 "command": "extension.insertTimestamp",
                 "title": "Org: Timestamp"
             },
