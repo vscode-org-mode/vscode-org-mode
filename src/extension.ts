@@ -1,6 +1,5 @@
 'use strict';
 import * as vscode from 'vscode';
-import * as Util from './utils';
 import * as HeaderFunctions from './header-functions';
 import * as DatetimeFunctions from './datetime-functions';
 
