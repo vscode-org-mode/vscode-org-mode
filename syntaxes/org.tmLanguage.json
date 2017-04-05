@@ -17,6 +17,26 @@
         {
             "name": "entity.other.attribute-name.org",
             "match": "^\\s*[*]{4} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "markup.bold.org",
+            "match": "\\*.+\\*"
+        },
+        {
+            "name": "markup.italic.org",
+            "match": "\/.+\/"
+        },
+        {
+            "name": "markup.underline.org",
+            "match": "\\_.+\\_"
+        },
+        {
+            "name": "markup.quote.org",
+            "match": "^:.+"
+        },
+        {
+            "name": "markup.raw.org",
+            "match": "\\~.+\\~"
         }
     ],
     "scopeName": "source.org"
