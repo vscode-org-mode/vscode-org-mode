@@ -7,6 +7,7 @@ import * as MarkupFunctions from './markup-functions';
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', HeaderFunctions.insertSibling);
     let insertChildCmd = vscode.commands.registerTextEditorCommand('extension.insertChild', HeaderFunctions.insertChild);
+    let demoteLineCmd = vscode.commands.registerTextEditorCommand('extension.demoteLine', HeaderFunctions.demoteLine);
 
     let insertTimestampCmd = vscode.commands.registerTextEditorCommand('extension.insertTimestamp', (textEditor, edit) => {
       vscode.window.showInformationMessage('Inserting Date');
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(insertSiblingCmd);
     context.subscriptions.push(insertChildCmd);
+    context.subscriptions.push(demoteLineCmd);
     context.subscriptions.push(insertTimestampCmd);
     context.subscriptions.push(boldCmd);
     context.subscriptions.push(italicCmd);

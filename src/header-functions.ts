@@ -36,3 +36,13 @@ export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEdit
         edit.insert(insertPos, "\n" + headerPrefix.trim() + "* ");
     }
 }
+
+export function demoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+    const document = textEditor.document;
+    const cursorPos = Utils.getCursorPosition();
+    const curLine = Utils.getLine(textEditor.document, cursorPos);
+    let headerPrefix = Utils.getHeaderPrefix(curLine);
+    let insertPos = new vscode.Position(cursorPos.line, 0);
+
+    edit.insert(insertPos, "*");
+}
