@@ -13,6 +13,7 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
 
         if(headerMatch) {
             sibling = "\n" + headerMatch + " ";
+            insertPos = Utils.findEndOfSection(document, cursorPos, sibling);
         } else {
             let parentHeader = Utils.findParentPrefix(document, cursorPos);
             sibling = "\n" + parentHeader + " ";
@@ -20,8 +21,11 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
             insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
 
-        if(sibling)
+        if(sibling) {
             edit.insert(insertPos, sibling);
+            Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
+            textEditor.revealRange(new vscode.Range(insertPos, insertPos));     //jump screen so cursor is in view
+        }
 }
 
 export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
@@ -34,6 +38,8 @@ export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEdit
 
     if(headerPrefix) {
         edit.insert(insertPos, "\n" + headerPrefix.trim() + "* ");
+        Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
+        textEditor.revealRange(new vscode.Range(insertPos, insertPos));     //jump screen so cursor is in view
     }
 }
 
