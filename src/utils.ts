@@ -24,7 +24,6 @@ export function getHeaderPrefix(line: string) {
     }
 }
 
-
 export function getPrefix(line: string) {
     const prefix = line.match(/^\*+|^[-]\s|^\d+\./);
     if(prefix) {
@@ -78,10 +77,6 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
     return curPos;
 }
 
-export function findPreviousHeader() {
-
-}
-
 export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, surroundingText: string, errorMessage: string) {
     const selection = vscode.window.activeTextEditor.selection;
     if (selection.isEmpty) {
@@ -98,4 +93,12 @@ export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.Te
     const curLine = getLine(document, cursorPos);
     const insertPos = new vscode.Position(cursorPos.line, 0);
     edit.insert(insertPos, prependingText);
+}
+
+//pos is a position anywhere on the target line
+export function moveToEndOfLine(editor: vscode.TextEditor, pos: vscode.Position) {
+    const curLine = getLine(editor.document, pos);
+    const endOfLine = curLine.length;
+    const endOfLinePos = new vscode.Position(pos.line, endOfLine);
+    editor.selections = [new vscode.Selection(endOfLinePos, endOfLinePos)];
 }

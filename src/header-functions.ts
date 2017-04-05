@@ -20,8 +20,10 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
             insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
 
-        if(sibling)
+        if(sibling) {
             edit.insert(insertPos, sibling);
+            Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
+        }
 }
 
 export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
