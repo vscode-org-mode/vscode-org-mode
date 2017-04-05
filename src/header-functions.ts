@@ -43,6 +43,7 @@ export function demoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEdito
     const curLine = Utils.getLine(textEditor.document, cursorPos);
     let headerPrefix = Utils.getHeaderPrefix(curLine);
     let insertPos = new vscode.Position(cursorPos.line, 0);
-
-    edit.insert(insertPos, "*");
+    if(headerPrefix) {
+        edit.insert(insertPos, "*");
+    }
 }
