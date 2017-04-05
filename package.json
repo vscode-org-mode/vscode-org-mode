@@ -37,6 +37,10 @@
                 "title": "Org: Timestamp"
             },
             {
+                "command": "extension.getContext",
+                "title": "Org: Get Context"
+            },
+            {
                 "command": "extension.bold",
                 "title": "Org: Bold"
             },

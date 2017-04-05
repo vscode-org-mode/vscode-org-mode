@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import * as HeaderFunctions from './header-functions';
 import * as TimestampFunctions from './timestamp-functions';
 import * as MarkupFunctions from './markup-functions';
+import * as CursorContext from './cursor-context';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', HeaderFunctions.insertSibling);
@@ -14,6 +15,8 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage('Inserting Date');
       TimestampFunctions.insertTimestamp(textEditor, edit);
     });
+
+    let getContextCmd = vscode.commands.registerTextEditorCommand('extension.getContext', () => { });
 
     const boldCmd = vscode.commands.registerTextEditorCommand('extension.bold', MarkupFunctions.bold);
     const italicCmd = vscode.commands.registerTextEditorCommand('extension.italic', MarkupFunctions.italic);
@@ -27,6 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(demoteLineCmd);
     context.subscriptions.push(promoteLineCmd);
     context.subscriptions.push(insertTimestampCmd);
+    context.subscriptions.push(getContextCmd);
     context.subscriptions.push(boldCmd);
     context.subscriptions.push(italicCmd);
     context.subscriptions.push(underlineCmd);
