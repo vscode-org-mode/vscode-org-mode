@@ -25,8 +25,8 @@
                 "title": "Org-mode: Insert Child"
             },
             {
-                "command": "extension.insertDate",
-                "title": "Org-mode: Insert Date"
+                "command": "extension.insertTimestamp",
+                "title": "Org-mode: Timestamp"
             }
         ],
         "languages": [
