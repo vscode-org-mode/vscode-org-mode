@@ -18,19 +18,19 @@
         "commands": [
             {
                 "command": "extension.insertSibling",
-                "title": "Org: Insert Sibling"
+                "title": "Org: Insert Heading Respect Content"
             },
             {
                 "command": "extension.insertChild",
-                "title": "Org: Insert Child"
+                "title": "Org: Insert Subheading"
             },
             {
                 "command": "extension.demoteLine",
-                "title": "Org-mode: org-do-demote"
+                "title": "Org-mode: Do Demote"
             },
             {
                 "command": "extension.promoteLine",
-                "title": "Org-mode: org-do-promote"
+                "title": "Org-mode: Do Promote"
             },
             {
                 "command": "extension.insertTimestamp",
