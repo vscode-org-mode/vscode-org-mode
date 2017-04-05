@@ -74,6 +74,9 @@ export function modifyDate(dateString: string, action: string): string {
     }
 
     const newDate = dateToSimpleDate(dateObject);
+    if (!oldDate.weekday) {
+        newDate.weekday = undefined;
+    }
 
     return buildDateString(newDate);
 }
