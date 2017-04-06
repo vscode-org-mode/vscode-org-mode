@@ -6,6 +6,66 @@ The extension is currently in development and has not yet been released to the V
 
 Initial release is estimated for `[2017-04-10 Mon]`. For updates, star this repo.
 
+## How to
+
+The extension can be activated in two ways:
+1. Save a file with the extension `.org`
+2. Change the language mode to `Org` by either
+    - Click in the lower right corner to the left of the smiley face
+    - Type `change language mode` into the command palette
+    - Using the default shortcut <kbd>cmd</kbd>+<kbd>k</kbd> <kbd>m</kbd>
+
+### Keybindings
+
+We recommend the following keybindings. To set them, add them to your `keybindings.json` file.
+
+```json
+[
+    {
+        "key": "shift+right",
+        "command": "org.incrementContext",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "shift+left",
+        "command": "org.decrementContext",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+enter",
+        "command": "org.insertHeadingRespectContent",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c shift+1",
+        "command": "extension.insertTimestamp",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c b",
+        "command": "org.bold",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c i",
+        "command": "org.italic",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c u",
+        "command": "org.underline",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c c",
+        "command": "org.code",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c v",
+        "command": "org.verbose",
+        "when": "editorLangId == 'org'"
+    },{
+        "key": "ctrl+c l",
+        "command": "org.literal",
+        "when": "editorLangId == 'org'"
+    }
+]
+```
+
+
 ## Contributing
 
 Guidelines for contributing are coming soon. Also, see Git conventions below.
@@ -16,7 +76,7 @@ Guidelines for contributing are coming soon. Also, see Git conventions below.
 
 The full name of this project is `VS Code Org Mode`. It is abbreviated `vscode-org-mode`. In the VS Code Marketplace, it is listed as `Org Mode`.
 
-Actions are prefixed with `org-`.
+Commands are prefixed with `org.` and followed by camel case, eg `org.insertHeadingRespectContent`. Command titles are prefixed with `Org: ` and followed by capitalized words separated by spaces, eg `Org: Insert Heading Respect Content`.
 
 Filenames use kebab case.
 
