@@ -11,10 +11,10 @@ import {
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertSibling);
     let insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
-    let demoteLineCmd = vscode.commands.registerTextEditorCommand('org.demoteLine', HeaderFunctions.demoteLine);
-    let promoteLineCmd = vscode.commands.registerTextEditorCommand('org.promoteLine', HeaderFunctions.promoteLine);
+    let demoteLineCmd = vscode.commands.registerTextEditorCommand('org.doDemote', HeaderFunctions.demoteLine);
+    let promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
 
-    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.insertTimestamp', (textEditor, edit) => {
+    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', (textEditor, edit) => {
       vscode.window.showInformationMessage('Inserting Date');
       TimestampFunctions.insertTimestamp(textEditor, edit);
     });

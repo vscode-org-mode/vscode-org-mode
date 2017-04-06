@@ -25,15 +25,15 @@
                 "title": "Org: Insert Subheading"
             },
             {
-                "command": "org.demoteLine",
+                "command": "org.doDemote",
                 "title": "Org: Do Demote"
             },
             {
-                "command": "org.promoteLine",
+                "command": "org.doPromote",
                 "title": "Org: Do Promote"
             },
             {
-                "command": "org.insertTimestamp",
+                "command": "org.timestamp",
                 "title": "Org: Timestamp"
             },
             {
