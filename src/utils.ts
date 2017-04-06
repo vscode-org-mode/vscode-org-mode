@@ -57,6 +57,9 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
     else if(levelSym === "") {      //starting on other non-header text line
         matchSym = /^$/;
     }
+    else if(levelSym === "- ") {
+        matchSym = /^-\s$/;
+    }
     else {                          //starting on header line
         let starMatch = levelSym.match(/\*+/);
         let numStars;
