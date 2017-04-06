@@ -3,7 +3,8 @@ import {
     TextEditor,
     TextEditorEdit,
     Position,
-    Range
+    Range,
+    workspace
 } from "vscode";
 import * as Datetime from './simple-datetime';
 import * as Util from './utils';
@@ -35,8 +36,10 @@ export default function getCursorContext(textEditor: TextEditor, edit: TextEdito
     }
 
     // Match for TODO (or absence)
-    const todoWords = "TODO|DONE";
-    const todoHeaderRegexp = new RegExp(`^(\*+ )(${todoWords}|)\b`);
+    const settings = workspace.getConfiguration("org");
+    const todoKeywords = settings.get<string[]>("todoKeywords").join("|");
+    // const todoWords = "TODO|DONE";
+    const todoHeaderRegexp = new RegExp(`^(\\*+ )(${todoKeywords}|)\\b`);
     match = todoHeaderRegexp.exec(curLine);
     if (match) {
         // We've found our match
@@ -78,7 +81,7 @@ function getTodoContext(match: RegExpExecArray, cursorPos: Position): IContextDa
     const range = new Range(startPos, endPos);
 
     return {
-        dataLabel: "Todo",
+        dataLabel: TODO,
         data: todoWord,
         line: line,
         range: range

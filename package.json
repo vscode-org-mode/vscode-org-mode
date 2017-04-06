@@ -90,7 +90,18 @@
                 "scopeName": "source.org",
                 "path": "./syntaxes/org.tmLanguage.json"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Org Mode configuration",
+            "properties": {
+                "org.todoKeywords": {
+                    "type": "array",
+                    "default": ["TODO", "DONE"],
+                    "description": "Specifies the types of TODO statuses available (for switching)."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
