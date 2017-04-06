@@ -17,63 +17,55 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.insertSibling",
+                "command": "org.insertHeadingRespectContent",
                 "title": "Org: Insert Heading Respect Content"
             },
             {
-                "command": "extension.insertChild",
+                "command": "org.insertSubheading",
                 "title": "Org: Insert Subheading"
             },
             {
-                "command": "extension.demoteLine",
-                "title": "Org-mode: Do Demote"
+                "command": "org.doDemote",
+                "title": "Org: Do Demote"
             },
             {
-                "command": "extension.promoteLine",
-                "title": "Org-mode: Do Promote"
+                "command": "org.doPromote",
+                "title": "Org: Do Promote"
             },
             {
-                "command": "extension.insertTimestamp",
+                "command": "org.timestamp",
                 "title": "Org: Timestamp"
             },
             {
-                "command": "extension.incrementContext",
+                "command": "org.incrementContext",
                 "title": "Org: Increment Context"
             },
             {
-                "command": "extension.decrementContext",
+                "command": "org.decrementContext",
                 "title": "Org: Decrement Context"
             },
             {
-                "command": "extension.incrementContext",
-                "title": "Org: Increment Context"
-            },
-            {
-                "command": "extension.decrementContext",
-                "title": "Org: Decrement Context"
-            },
-            {
-                "command": "extension.bold",
+                "command": "org.bold",
                 "title": "Org: Bold"
             },
             {
-                "command": "extension.italic",
+                "command": "org.italic",
                 "title": "Org: Italic"
             },
             {
-                "command": "extension.underline",
+                "command": "org.underline",
                 "title": "Org: Underline"
             },
             {
-                "command": "extension.code",
+                "command": "org.code",
                 "title": "Org: Code"
             },
             {
-                "command": "extension.verbose",
+                "command": "org.verbose",
                 "title": "Org: Verbose"
             },
             {
-                "command": "extension.literal",
+                "command": "org.literal",
                 "title": "Org: Literal"
             }
         ],

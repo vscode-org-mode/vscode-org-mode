@@ -9,26 +9,26 @@ import {
 } from './modify-context';
 
 export function activate(context: vscode.ExtensionContext) {
-    let insertSiblingCmd = vscode.commands.registerTextEditorCommand('extension.insertSibling', HeaderFunctions.insertSibling);
-    let insertChildCmd = vscode.commands.registerTextEditorCommand('extension.insertChild', HeaderFunctions.insertChild);
-    let demoteLineCmd = vscode.commands.registerTextEditorCommand('extension.demoteLine', HeaderFunctions.demoteLine);
-    let promoteLineCmd = vscode.commands.registerTextEditorCommand('extension.promoteLine', HeaderFunctions.promoteLine);
+    let insertSiblingCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertSibling);
+    let insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
+    let demoteLineCmd = vscode.commands.registerTextEditorCommand('org.doDemote', HeaderFunctions.demoteLine);
+    let promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
 
-    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('extension.insertTimestamp', (textEditor, edit) => {
+    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', (textEditor, edit) => {
       vscode.window.showInformationMessage('Inserting Date');
       TimestampFunctions.insertTimestamp(textEditor, edit);
     });
 
-    let incrementContextCmd = vscode.commands.registerTextEditorCommand('extension.incrementContext', incrementContext);
+    let incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
 
-    let decrementContextCmd = vscode.commands.registerTextEditorCommand('extension.decrementContext', decrementContext);
+    let decrementContextCmd = vscode.commands.registerTextEditorCommand('org.decrementContext', decrementContext);
 
-    const boldCmd = vscode.commands.registerTextEditorCommand('extension.bold', MarkupFunctions.bold);
-    const italicCmd = vscode.commands.registerTextEditorCommand('extension.italic', MarkupFunctions.italic);
-    const underlineCmd = vscode.commands.registerTextEditorCommand('extension.underline', MarkupFunctions.underline);
-    const codeCmd = vscode.commands.registerTextEditorCommand('extension.code', MarkupFunctions.code);
-    const verboseCmd = vscode.commands.registerTextEditorCommand('extension.verbose', MarkupFunctions.verbose);
-    const literalCmd = vscode.commands.registerTextEditorCommand('extension.literal', MarkupFunctions.literal);
+    const boldCmd = vscode.commands.registerTextEditorCommand('org.bold', MarkupFunctions.bold);
+    const italicCmd = vscode.commands.registerTextEditorCommand('org.italic', MarkupFunctions.italic);
+    const underlineCmd = vscode.commands.registerTextEditorCommand('org.underline', MarkupFunctions.underline);
+    const codeCmd = vscode.commands.registerTextEditorCommand('org.code', MarkupFunctions.code);
+    const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
+    const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
 
     context.subscriptions.push(insertSiblingCmd);
     context.subscriptions.push(insertChildCmd);
