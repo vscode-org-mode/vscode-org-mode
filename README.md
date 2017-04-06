@@ -1,5 +1,7 @@
 # VS Code Org Mode
 
+![unicorn logo](docs/img/logo.png)
+
 VS Code Org Mode (`vscode-org-mode`) is an extension for Visual Studio Code that allows users to read and write `.org` files.
 
 The extension is currently in development and has not yet been released to the VS Code Marketplace. The development docs are available [here](docs/README.org).
@@ -36,7 +38,10 @@ Use TSLint with default settings.
 
 The original Org mode was written for Emacs by Carsten Dominik, with the help and support of [an impressive list of geniuses](http://orgmode.org/org.html#History-and-Acknowledgments). Our work is inspired by though not associated with their original masterpiece.
 
+Our unicorn icon is based on an image by [M. Turan Ercan](https://thenounproject.com/mte/) for [the Noun Project](https://thenounproject.com/). We're grateful to them for making the image available under the Creative Commons license.
+
 ## License
+
 This work is available under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ## Features
