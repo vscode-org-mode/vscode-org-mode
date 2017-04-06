@@ -45,14 +45,6 @@
                 "title": "Org: Decrement Context"
             },
             {
-                "command": "org.incrementContext",
-                "title": "Org: Increment Context"
-            },
-            {
-                "command": "org.decrementContext",
-                "title": "Org: Decrement Context"
-            },
-            {
                 "command": "org.bold",
                 "title": "Org: Bold"
             },
