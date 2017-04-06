@@ -49,6 +49,10 @@
         {
             "name": "variable.org",
             "match": "\\[\\d{4}-\\d{1,2}-\\d{1,2}(?: \\w{3})?\\]"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\[\\[[^\\[\\]]+\\](\\[[^\\[]+\\])?\\]"
         }
     ],
     "scopeName": "source.org"
