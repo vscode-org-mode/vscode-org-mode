@@ -2,8 +2,12 @@ import * as vscode from 'vscode';
 import * as Datetime from './simple-datetime';
 import * as Util from './utils';
 
-// Any potential data labels should go here (eg TODO)
+const Position = vscode.Position;
+const Range = vscode.Range;
+
+// Any potential data labels should go here
 export const DATE = "DATE";
+export const TODO = "TODO";
 
 export default function getCursorContext(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = Util.getActiveTextEditorEdit();
@@ -19,13 +23,12 @@ export default function getCursorContext(textEditor: vscode.TextEditor, edit: vs
     }
 
     // Match for timestamp
-    // const timestampRegexp = /2/g
-    const timestampRegexp = /\[\d{4}-\d{1,2}-\d{1,2}(?: \w{3})?\]/g
+    const timestampRegexp = /\[\d{4}-\d{1,2}-\d{1,2}(?: \w{3})?\]/g;
     let match;
     while ((match = timestampRegexp.exec(curLine)) != null) {
-        const startPos = new vscode.Position(line, match.index);
-        const endPos = new vscode.Position(line, match.index + match[0].length);
-        const range = new vscode.Range(startPos, endPos);
+        const startPos = new Position(line, match.index);
+        const endPos = new Position(line, match.index + match[0].length);
+        const range = new Range(startPos, endPos);
         if (range.contains(cursorPos)) {
             // We've found our match
             contextData.dataLabel = DATE;
@@ -36,7 +39,26 @@ export default function getCursorContext(textEditor: vscode.TextEditor, edit: vs
         }
     }
 
-    // Any different matches or catch-all matches should go here
+    // Match for TODO (or absence)
+    const todoWords = "TODO|DONE";
+    const todoHeaderRegexp = new RegExp(`^(\*+ )(${todoWords}|)\b`);
+    match = todoHeaderRegexp.exec(curLine);
+    if (match) {
+        // We've found our match
+        const prefix = match[1];
+        const todoWord = match[2];
+        const start = match.index + match[1].length;
+        const startPos = new Position(line, start);
+        const end = start + todoWord.length;
+        const endPos = new Position(line, end);
+        const range = new Range(startPos, endPos);
+
+        contextData.dataLabel = "Todo";
+        contextData.data = todoWord;
+        contextData.line = line;
+        contextData.range = range;
+        return contextData;
+    }
 
     return undefined;
 }
