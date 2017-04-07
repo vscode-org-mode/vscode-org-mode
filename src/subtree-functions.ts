@@ -4,12 +4,20 @@ import * as Utils from './utils';
 export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = textEditor.document;
     const cursorPos = Utils.getCursorPosition();
-    const curLine = Utils.getLine(textEditor.document, cursorPos);
-    let prefix = Utils.getPrefix(curLine);
+    let curLine = Utils.getLine(textEditor.document, cursorPos);
+    let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-    let beginningOfSection = Utils.findBeginningOfSection(document, cursorPos, prefix);
-    let endOfSection = Utils.findEndOfSection(document, cursorPos, prefix);
+    let endOfSection = Utils.findEndOfSection(document, cursorPos, headerPrefix);
 
-    //if on header
-    //if not on header
+    if(headerPrefix) {
+        for(let i = cursorPos.line; i < endOfSection.line; ++i) {
+            let curlineStart = new vscode.Position(i, 0);
+            let lineHeaderPrefix = Utils.getHeaderPrefix(Utils.getLine(document, curlineStart))
+            if(lineHeaderPrefix) {
+                if(Utils.getStarPrefixCount(lineHeaderPrefix) > 1) {
+                    edit.delete(new vscode.Range(curlineStart, new vscode.Position(i, 1)));
+                }
+            }
+        }
+    }
 }
