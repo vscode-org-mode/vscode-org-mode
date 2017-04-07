@@ -9,22 +9,21 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
         let insertPos = new vscode.Position(cursorPos.line, endOfLine);
 
         let sibling;
-        let headerMatch = Utils.getHeaderPrefix(curLine);
+        let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-        if(headerMatch) {
-            sibling = "\n" + headerMatch + " ";
+        if(headerPrefix) {
+            sibling = headerPrefix;
             insertPos = Utils.findEndOfSection(document, cursorPos, sibling);
         } else {
             let parentHeader = Utils.findParentPrefix(document, cursorPos);
-            sibling = "\n" + parentHeader + " ";
-
+            sibling = parentHeader;
             insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
 
         if(sibling) {
-            edit.insert(insertPos, sibling);
+            edit.insert(insertPos, "\n" + sibling + " ");
             Utils.moveToEndOfLine(textEditor, new vscode.Position(insertPos.line, 0));
-            textEditor.revealRange(new vscode.Range(insertPos, insertPos));     //jump screen so cursor is in view
+            textEditor.revealRange(new vscode.Range(new vscode.Position(insertPos.line, 0), insertPos));     //jump screen so cursor is in view
         }
 }
 
@@ -61,8 +60,27 @@ export function promoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEdit
     let headerPrefix = Utils.getHeaderPrefix(curLine);
     let insertPos = new vscode.Position(cursorPos.line, 0);
 
-    if(headerPrefix) {
+    if(headerPrefix && headerPrefix !== "* ") {
         let deleteRange = new vscode.Range(insertPos, new vscode.Position(insertPos.line, 1));
         edit.delete(deleteRange);
     }
+}
+
+export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+    const document = textEditor.document;
+    const cursorPos = Utils.getCursorPosition();
+    const curLine = Utils.getLine(textEditor.document, cursorPos);
+    const endOfLine = curLine.length;
+    let headerPrefix = Utils.getHeaderPrefix(curLine);
+    let endOfSection = cursorPos;
+
+    let beginningOfSection = Utils.findBeginningOfSection(document, cursorPos, headerPrefix);
+    vscode.window.showInformationMessage(document.lineAt(beginningOfSection.line).text);
+    // if(headerPrefix) {
+    //     endOfSection = Utils.findEndOfSection(document, cursorPos);
+    // } else {
+
+    // }
+    //from beginning of section to end of section
+    //if already a header, promote
 }
