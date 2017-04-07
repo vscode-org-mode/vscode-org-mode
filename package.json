@@ -4,6 +4,7 @@
     "description": "Port of Emacs Org Mode",
     "version": "0.0.1",
     "publisher": "tootone",
+    "icon": "images/logo.png",
     "engines": {
         "vscode": "^1.10.0"
     },
@@ -94,7 +95,18 @@
                 "scopeName": "source.org",
                 "path": "./syntaxes/org.tmLanguage.json"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Org Mode configuration",
+            "properties": {
+                "org.todoKeywords": {
+                    "type": "array",
+                    "default": ["TODO", "DONE"],
+                    "description": "Specifies the types of TODO statuses available (for switching)."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

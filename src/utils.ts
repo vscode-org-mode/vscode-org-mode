@@ -154,3 +154,25 @@ export function moveToEndOfLine(editor: vscode.TextEditor, pos: vscode.Position)
     const endOfLinePos = new vscode.Position(pos.line, endOfLine);
     editor.selections = [new vscode.Selection(endOfLinePos, endOfLinePos)];
 }
+
+export function getKeywords() {
+    const settings = vscode.workspace.getConfiguration("org");
+    let todoKeywords = settings.get<string[]>("todoKeywords");
+    todoKeywords.push(""); // Since 'nothing' can be a TODO
+    return todoKeywords;
+}
+
+export function getUniq(arr: string[]): string[] {
+    // Must also preserve order
+    let map = {};
+    let uniq = [];
+
+    arr.forEach(el => {
+        if (!map[el]) {
+            uniq.push(el);
+        }
+        map[el] = true;
+    });
+
+    return uniq;
+}
