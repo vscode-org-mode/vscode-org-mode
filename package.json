@@ -4,6 +4,7 @@
     "description": "Port of Emacs Org Mode",
     "version": "0.0.1",
     "publisher": "tootone",
+    "icon": "images/logo.png",
     "engines": {
         "vscode": "^1.10.0"
     },
