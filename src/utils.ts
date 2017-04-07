@@ -92,6 +92,7 @@ export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.Tex
     }
 }
 
+// TODO: Pass in line as an argument
 export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, prependingText: string) {
     const document = getActiveTextEditorEdit();
     const cursorPos = getCursorPosition();
@@ -99,6 +100,21 @@ export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.Te
 
     const insertPos = new vscode.Position(cursorPos.line, 0);
     edit.insert(insertPos, prependingText);
+}
+
+// TODO: Replace line above
+export function prependTextToSpecifiedLine(lineNum: number, text: string, edit: vscode.TextEditorEdit) {
+    const document = getActiveTextEditorEdit();
+    const insertPos = new vscode.Position(lineNum, 0)
+    edit.insert(insertPos, text)
+}
+
+export function trimSpecifiedLine(lineNum: number, edit: vscode.TextEditorEdit) {
+    const document = getActiveTextEditorEdit();
+    const removePosStart = new vscode.Position(lineNum, 0)
+    const removePosEnd = new vscode.Position(lineNum, 2);
+    const removeRange = new vscode.Range(removePosStart, removePosEnd);
+    edit.delete(removeRange);
 }
 
 //pos is a position anywhere on the target line

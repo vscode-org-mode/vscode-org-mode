@@ -7,6 +7,7 @@ import {
     incrementContext,
     decrementContext
 } from './modify-context';
+import * as FoldingFunctions from './folding-functions';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertSiblingCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertSibling);
@@ -30,6 +31,9 @@ export function activate(context: vscode.ExtensionContext) {
     const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
 
+    const fold = vscode.commands.registerTextEditorCommand('org.fold', FoldingFunctions.fold);
+    const unfold = vscode.commands.registerTextEditorCommand('org.unfold', FoldingFunctions.unfold);
+
     context.subscriptions.push(insertSiblingCmd);
     context.subscriptions.push(insertChildCmd);
 
@@ -46,6 +50,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(codeCmd);
     context.subscriptions.push(verboseCmd);
     context.subscriptions.push(literalCmd);
+
+    context.subscriptions.push(fold);
+    context.subscriptions.push(unfold);
 }
 
 export function deactivate() {

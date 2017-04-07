@@ -67,6 +67,14 @@
             {
                 "command": "org.literal",
                 "title": "Org: Literal"
+            },
+            {
+                "command": "org.fold",
+                "title": "Org: Fold"
+            },
+            {
+                "command": "org.unfold",
+                "title": "Org: Unfold"
             }
         ],
         "languages": [
