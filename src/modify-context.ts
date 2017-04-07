@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import getCursorContext, { DATE, TODO } from './cursor-context';
 import * as Datetime from './simple-datetime';
+import nextTodo from './todo-switch';
 
 export const UP = "UP";
 export const DOWN = "DOWN";
@@ -20,7 +21,14 @@ function modifyContext(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdi
             edit.replace(ctx.range, newDateString);
             break;
         case TODO:
-            const newTodoString = "BEEP";
+            const newTodoString = nextTodo(ctx.data, action);
+            if (newTodoString === "") {
+                // Must remove extra space
+                const oldEnd = ctx.range.end
+                const newEnd = oldEnd.with({ character: oldEnd.character + 1 });
+                const oldRange = ctx.range;
+                ctx.range = oldRange.with({ end: newEnd });
+            }
             edit.replace(ctx.range, newTodoString);
             break;
     }
