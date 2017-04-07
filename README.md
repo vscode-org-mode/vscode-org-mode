@@ -1,8 +1,6 @@
 # VS Code Org Mode
 
-![unicorn logo](img/logo.png)
-
-**VS Code Org Mode** is an extension for Visual Studio Code inspired by the venerable [Org mode for Emacs](http://orgmode.org/).
+**VS Code Org Mode** is an extension for [Visual Studio Code](https://code.visualstudio.com/) inspired by the venerable [Org mode for Emacs](http://orgmode.org/).
 
 Org lets you keep notes, maintain TODO lists, and author documents, all in plain text.
 
