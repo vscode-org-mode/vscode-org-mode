@@ -65,22 +65,3 @@ export function promoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEdit
         edit.delete(deleteRange);
     }
 }
-
-export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    const document = textEditor.document;
-    const cursorPos = Utils.getCursorPosition();
-    const curLine = Utils.getLine(textEditor.document, cursorPos);
-    const endOfLine = curLine.length;
-    let headerPrefix = Utils.getHeaderPrefix(curLine);
-    let endOfSection = cursorPos;
-
-    let beginningOfSection = Utils.findBeginningOfSection(document, cursorPos, headerPrefix);
-    vscode.window.showInformationMessage(document.lineAt(beginningOfSection.line).text);
-    // if(headerPrefix) {
-    //     endOfSection = Utils.findEndOfSection(document, cursorPos);
-    // } else {
-
-    // }
-    //from beginning of section to end of section
-    //if already a header, promote
-}
