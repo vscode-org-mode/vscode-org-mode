@@ -17,7 +17,7 @@ export function getLine(document: vscode.TextDocument, lineNum: vscode.Position)
 export function getHeaderPrefix(line: string) {
     const prefix = line.match(/^\*+\s/);
     if(prefix) {
-        return prefix[0];
+        return prefix[0].trim();
     }
     else {
         return "";
@@ -27,7 +27,7 @@ export function getHeaderPrefix(line: string) {
 export function getPrefix(line: string) {
     const prefix = line.match(/^\*+|^-\s|^\d+\./);
     if(prefix) {
-        return prefix[0];
+        return prefix[0].trim();
     }
     else {
         return "";
@@ -84,19 +84,19 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
-    } while(curLine < document.lineCount && inSubsection(curLinePrefix, sectionRegex))
+    } while(curLine < document.lineCount-1 && inSubsection(curLinePrefix, sectionRegex))
 
-    if(curPos.line < document.lineCount) {
+    // if(curPos.line < document.lineCount) {
+    // } else {
+    //     curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
+    // }
         curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
-    } else {
-        curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
-    }
 
     return curPos;
 }
 
 export function inSubsection(linePrefix: string, sectionRegex: RegExp) {
-    return (linePrefix.match(sectionRegex)) || linePrefix === "- " || !linePrefix || linePrefix.match(/\d+\./);
+    return (linePrefix.match(sectionRegex)) || linePrefix === "-" || !linePrefix || linePrefix.match(/\d+\./);
 }
 
 //returns regex that will match a subsection and facilitate respecting section content
@@ -108,7 +108,7 @@ export function getSectionRegex(prefix: string) {
     else if(prefix === "") {      //starting on other non-header text line
         regex = /^$/;
     }
-    else if(prefix === "- ") {
+    else if(prefix === "-") {
         regex = /^-\s$/;
     }
     else if(prefix.startsWith("*")) {                          //starting on header line

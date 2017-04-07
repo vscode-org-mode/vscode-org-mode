@@ -34,8 +34,8 @@
                 "title": "Org: Do Promote"
             },
             {
-                "command": "org.doPromoteSubtree",
-                "title": "Org: Do Promote Subtree"
+                "command": "org.promoteSubtree",
+                "title": "Org: Promote Subtree"
             },
             {
                 "command": "org.timestamp",
