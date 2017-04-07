@@ -1,0 +1,113 @@
+#+TITLE: Visual Studio Code Org Mode Development
+* About
+VS Code Org Mode (~vscode-org-mode~) is an extension for Visual Studio Code that allows users to read and write ~.org~ files.
+
+Visual Studio Code is a text editor made my Microsoft. It has gained quite a following, in part because it allows developers to build extensions simply and quickly.
+
+Org mode is an organizational tool originally built for Emacs. It consists of a markup and actions. It has a dedicated following, but has never been ported to VS Code. In some ways it is similar to [[https://daringfireball.net/projects/markdown/syntax][Markdown]], in that it offers a set of markup characters that allow for syntax highlighting in plain text editing. For example, lines starting with asterisks are treated as headers, similarly to lines starting with octothorps in Markdown. GitHub renders Org mode files in HTML in much the same way that it does for Markdown. In fact, this README is an Org file.
+
+The main difference between Org mode and Markdown is that Org mode allows a series of actions for interacting with a document. For example, using Org actions, which can be invoked via a command palette or keyboard shortcuts, users can insert a todo item, toggle the status of that todo item, insert today's date, fold and unfold text, and do much more.
+
+Our goal is to bring the key functionality of Org mode to VS Code with a look and feel that is faithful to the Emacs original. We believe that such an extension could generate significant interest, since Org mode is well loved in the Emacs community and [[https://github.com/Microsoft/vscode/issues/14733][appears to be missed]] among the VS Code community.
+* Functionality & MVP
+The following features will comprise the minimum viable product.
+1. Syntax Highlighting
+   - Certain character combinations will be highlighted in display.
+   - For example, lines beginning with asterisks (headers) will be colored.
+   - Strictly speaking, the MVP feature will be considered complete when the extension allows for any keywords or markup to be highlighted, since this is the foundation necessary for adding new syntax highlighting. Broadly speaking, the goal will be to implement a number of keywords and markup for highlighting.
+   - See wireframes below for examples. See [[file:feature_queue.org][feature_queue.org]] for keywords and markup under consideration for development, time permitting.
+2. Actions
+   - Users will be able to invoke actions from the command palette.
+   - One example action, ~org-insert-sibling~ will insert a second item of the same type as the current. When the cursor is on a header, it will insert a second header of the same level. When the cursor is on a bulleted list, it will insert another bullet point of the same level.
+   - Strictly speaking, the MVP feature will be considered complete when the extension allows for any actions to be invoked via the command palette, since this is the foundation necessary for adding new actions. Broadly speaking, the goal will be to implement a number of actions.
+   - See [[file:feature_queue.org][feature_queue.org]] for further examples of actions under consideration for development, time permitting.
+3. Customizations
+   - Users will be able to specify custom settings as part of the VS Code user settings JSON file.
+   - For instance, users will be able to specify their own TODO keywords (such as ~WAIT~) beyond the default (~TODO~, ~DONE~).
+   - Strictly speaking, the MVP feature will be considered complete when the extension allows for any settings to be customized by users, since this is the foundation necessary for adding further customizations. Broadly speaking, the goal will be to implement a number of customizations.
+   - See [[file:feature_queue.org][feature_queue.org]] for further examples of settings under consideration for development, time permitting.
+4. Available on Visual Studio Marketplace
+   - Users will be able to install the extension via the Visual Studio Code Marketplace
+5. Documentation
+   - Users will be able to discover the extension's features via a documentation page.
+6. Example site
+   - Potential users will be able to discover the functionality of the extension on an example site, which will feature written explanations of key features and gifs demonstrating those features.
+* Wireframes
+Since the extension is based on the functionality of Org mode in Emacs, the development wireframes are in fact screenshots of original features in Emacs. We will strive to duplicate the look and feel of the Emacs original.
+** Folded headers
+[[file:img/folded_headers.png]]
+** Ordered lists
+[[file:img/ordered_lists.png]]
+** Unordered lists
+[[file:img/unordered_lists.png]]
+** Span styling
+[[file:img/span_styling.png]]
+** Links
+[[file:img/links.png]]
+** ~TODO~ keyword
+[[file:img/todo_keyword.png]]
+** ~DONE~ keyword
+[[file:img/done_keyword.png]]
+** Dates
+[[file:img/dates.png]]
+* Technologies
+The extension will be written in [[https://www.typescriptlang.org/][TypeScript]], a superset of JavaScript defined by Microsoft. It is supports all of the ES6 features of JS, while adding a few of its own, including type checking. It is the preferred language for writing extensions to VS Code.
+
+We will use Node.js to manage additional packages that we make use of, such as Lodash.
+
+We will use Microsoft's [[https://code.visualstudio.com/docs/extensions/yocode][Yo Code]] to generate the file structure for the extension (similar to the commands offered by the ~rails~ prefix such as the ~rails g~ command).
+
+Finally, Microsoft's [[https://code.visualstudio.com/docs/extensions/publish-extension][vsce]] command line tool will allow us to publish our extension to the VS Code marketplace.
+* Division of Labor
+The group consists of three members: Jason Reeder, Amos Too, and Gilbert Schmitt.
+
+While the project is in its first phase, different team members will own different aspects of the setup process. After the foundation has been laid, team members will switch to focusing on implementing new features.
+
+- During setup, each team member owns a different vertical:
+  - Gilbert establishes the project's presence on the VS Code Marketplace.
+  - Amos begins the first feature, ~headers~. See Timeline below for more details.
+  - Jason provides detailed documentation.
+  
+- After setup, team members start owning the implementation of individual features. For each feature, the team member:
+  - Adds the associated action (eg ~insert-todo~).
+  - Adds the associated syntax highlighting (eg the letters ~TODO~ are highlighted in red).
+  - Adds the associated customizations (eg users can add custom TODO keywords).
+  - Adds the associated documentation.
+* Timeline
+Note: The features listed for each day are meant as estimates, and will surely shift as the project evolves.
+** Day 1
+- Meta
+  - Start the project's VS Code Marketplace build, allowing team to test the extension (Gilbert)
+  - Complete development documentation outlining all relevant features available in the original Org mode along with preferred names for actions (Jason)
+- Features
+  - Begin ~headers~: highlighting for the levels of headers (lines beginning with asterisks) and the action ~insert-sibling~ (described in the MVPs section above) (Gilbert)
+  - Begin ~folding~: allowing headings to be opened or closed, customization to allow one by default (Amos)
+** Day 2
+- Meta
+  - Build example site with placeholder data (Jason)
+- Features
+  - Continue ~headers~ (Amos)
+  - Begin ~dates~: highlighting for date syntax and the action ~insert-current-date~ (Gilbert)
+** Day 3
+- Features
+  - Begin ~lists~: highlighting for ordered and unordered lists and the action ~insert-sibling~ for those lists (Amos)
+  - Begin ~todos~: highlighting for TODO keywords, the action ~insert-todo~, customization of TODO keywords (Gilbert)
+  - Begin ~span-highlighting~: specific highlighting for words in span tags (** for bold, // for italics, ~~ for fixed width) (Jason)
+** Day 4
+- Meta
+  - Polish example site's appearance (Jason)
+- Features
+  - Begin ~smart-reorder~: allowing items in ordered lists to be moved up or down with all list numbers updating (Amos)
+  - Begin ~links~: syntax highlighting for links, action ~follow-link~ which allows users to jump to linked files or open URLs in a browser (Gilbert)
+** Day 5
+- Meta
+  - Take gifs and write descriptions for example site (Jason)
+  - Patch up bugs in existing features (Amos)
+  - Release a polished version of the extension to the marketplace (Gilbert)
+- Features
+  - Add additional features from [[file:feature_queue.org][feature_queue.org]], time permitting (all team)
+* Plan for Publicizing
+We believe that there are many members of the VS Code developer community who will be interested in this extension. We plan to take the following steps to ensure that those possible users find our work:
+- Naming the extension in such a way that it can be found by people searching for the original Emacs mode name (~VS Code Org mode~ / ~vscode-org-mode~)
+- Announcing the extension on VS Code, Emacs, and Org mode developer forums
+- Encouraging contributions from the open source community and continuing to add functionality after the initial MVP phase is complete

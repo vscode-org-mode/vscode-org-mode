@@ -1,0 +1,229 @@
+#+TITLE: Feature Implementation Queue
+The following is a rough list of features that may be implemented. It is meant as a general guide during development, but should not be taken as a strict plan. This document is meant to change dramatically during development.
+* Headers
+** Highlighting
+: * Top level header
+: ** Second level
+** Screenshot
+Note that titles of different levels are different colors
+[[file:img/ordered_lists.png]]
+** Actions
+*** ~org-insert-heading~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Description
+  - Insert a new heading/item with the same level as the one at point.
+- Environment
+  - If the cursor is on a header
+    - If the cursor is at the end of a header, it inserts a new sibling header below
+    - If the cursor is in the middle of a header, it breaks the header at the cursor and inserts a new header below with the text from after the cursor
+  - If the cursor is on a line of plain text
+    - If the cursor is at the beginning of a line of plain text, it converts that line into a header
+    - If the cursor is in the middle or at the end of a line of plain text, it breaks the line at the cursor and inserts a new header below with the text from after the cursor
+*** ~org-insert-heading-respect-content~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Insert a new heading at the end of the current subtree.
+- Environment (differences from ~org-insert-heading~ highlighted in *bold*)
+  - If the cursor is on a header
+    - If the cursor is at the end of a header, it inserts a new sibling header below
+    - If the cursor is in the middle of a header, *it inserts a new sibling header below*
+  - If the cursor is on a line of plain text
+    - If the cursor is at the beginning of a line of plain text, it *inserts a new header below*
+    - If the cursor is in the middle or at the end of a line of plain text, it *inserts a new header below*
+*** ~org-do-promote~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Promote current heading by one level. 
+*** ~org-do-demote~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Demote current heading by one level.
+*** ~org-promote-subtree~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Promote the current subtree by one level. 
+*** ~org-demote-subtree~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Demote the current subtree by one level.
+*** ~org-move-subtree-up~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Move subtree up (swap with previous subtree of same level). 
+*** ~org-move-subtree-down~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Move subtree down (swap with next subtree of same level).
+*** ~org-toggle-heading~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Turn a normal line or plain list item into a headline (so that it becomes a subheading at its location). Also turn a headline into a normal line by removing the stars. If there is an active region, turn all lines in the region into headlines. If the first line in the region was an item, turn only the item lines into headlines. Finally, if the first line is a headline, remove the stars from all headlines in the region.
+** Customizations
+*** Clean View
+- [[http://orgmode.org/manual/Clean-view.html#Clean-view][org docs]]
+* Timestamps
+** Highlighting
+- [[http://orgmode.org/manual/Timestamps.html#Timestamps][org docs]]
+*** Date
+{year}-{month}-{day}
+: [2006-11-30]
+*** Date with day of the week
+: [2006-11-30 Wed]
+*** Date with day of the week and time
+: [2006-11-30 Wed 19:15]
+*** Note
+- Original org also allows for 'active' time stamps, which show up in the agenda, but since we have not implemented the agenda let's start with inactive stamps
+** Screenshots
+Date: 
+[[file:img/dates.png]]
+
+Calendar minibuffer:
+[[file:img/calendar.png]]
+** Actions
+*** ~org-time-stamp~
+- [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
+- Prompt for a date and insert a corresponding timestamp. When the cursor is at an existing timestamp in the buffer, the command is used to modify this timestamp instead of inserting a new one.
+- In our MVP, it might make most sense to default to inserting today's date
+*** ~org-timestamp-day-down~
+- [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
+- Change date at cursor by one day.
+*** ~org-timestamp-day-up~
+- [[http://orgmode.org/manual/Creating-timestamps.html#Creating-timestamps][org docs]]
+- Change date at cursor by one day.
+* Todos
+** Highlighting
+*** Todo keywords
+- ~TODO~
+- ~DONE~
+*** Priorities
+- ~[#A]~ 
+- ~[#B]~ 
+- ~[#C]~ 
+** Screenshots
+Todo keywords
+[[file:img/todo_keyword.png]]
+
+Priorities
+[[file:img/priorities.png]]
+** Actions
+*** ~org-insert-todo-heading~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+*** ~org-todo~
+- [[http://orgmode.org/manual/TODO-basics.html#TODO-basics][org docs]]
+- Rotate the TODO state of the current item among
+  - {unmarked}
+  - ~TODO~
+  - ~DONE~
+*** ~org-priority~
+- [[http://orgmode.org/manual/Priorities.html#Priorities][org docs]]
+- Set the priority of the current headline (org-priority). The command prompts for a priority character ‘A’, ‘B’ or ‘C’. When you press <SPC> instead, the priority cookie is removed from the headline.
+*** ~org-priority-up~
+- [[http://orgmode.org/manual/Priorities.html#Priorities][org docs]]
+- Increase/decrease priority of current headline
+*** ~org-priority-down~
+- [[http://orgmode.org/manual/Priorities.html#Priorities][org docs]]
+- Increase/decrease priority of current headline
+** Settings
+*** Custom TODO keywords
+*** Insert date on line below when DONE
+* Markup
+- [[http://orgmode.org/manual/Emphasis-and-monospace.html#Emphasis-and-monospace][org docs]]
+- [[http://orgmode.org/manual/Literal-examples.html#Literal-examples][literals]]
+** Highlighting
+- =*bold*=
+- =/italic/=
+- =_underlined_=
+- =~code~=
+- = verbatim =
+- : literal
+** Screenshot
+[[file:img/span_styling_2.png]]
+** Actions
+*** ~org-bold~
+Surround selected word with *
+*** ~org-italic~
+Surround selected word with /
+*** ~org-underline~
+Surround selected word with _
+*** ~org-code~
+Surround selected word with ~
+*** ~org-verbose~
+Surround selected word with =
+*** ~org-literal~
+Prepend current line with =: =
+* Plain Lists
+- [[http://orgmode.org/manual/Plain-lists.html#Plain-lists][org docs]]
+** Syntax
+Note: these don't receive any highlighting. The notes below are just for reference when defining actions. 
+*** Unordered
+- Unordered list items start with ‘-’, ‘+’, or ‘*’ as bullets.
+*** Ordered
+- Ordered list items start with a numeral followed by either a period or a right parenthesis, such as ‘1.’ or ‘1)’. If you want a list to start with a different value (e.g., 20), start the text of the item with [@20]. Those constructs can be used in any item of the list in order to enforce a particular numbering.
+** Screenshots
+Unordered lists:
+[[file:img/unordered_lists.png]]
+
+Ordered lists:
+[[file:img/ordered_lists.png]]
+** Actions
+*** ~org-move-subtree-up~
+- [[http://orgmode.org/manual/Plain-lists.html#Plain-lists][org docs]]
+- Move the item including subitems up/down8 (swap with previous/next item of same indentation). If the list is ordered, renumbering is automatic. 
+*** ~org-move-subtree-down~
+- [[http://orgmode.org/manual/Plain-lists.html#Plain-lists][org docs]]
+- Move the item including subitems up/down8 (swap with previous/next item of same indentation). If the list is ordered, renumbering is automatic. 
+*** ~org-insert-heading~
+- [[http://orgmode.org/manual/Plain-lists.html#Plain-lists][org docs]]
+- Insert new item at current level. With a prefix argument, force a new heading (see Structure editing). If this command is used in the middle of an item, that item is split in two, and the second part becomes the new item6. If this command is executed before item's body, the new item is created before the current one.
+*** ~org-demote-heading~
+*** ~org-promote-heading~
+* Links
+** Highlighting
+- [[http://orgmode.org/manual/Link-format.html#Link-format][org docs]]
+*** File links
+- =[[link][description]]= 
+- =[[link]]=
+- file:projects.org
+*** URL links
+*** Image links
+** Actions
+*** ~org-insert-link~
+- [[http://orgmode.org/manual/Handling-links.html#Handling-links][org docs]]
+- Insert a linkThis prompts for a link to be inserted into the buffer. You can just type a link, using text for an internal link, or one of the link type prefixes mentioned in the examples above. The link will be inserted into the buffer, along with a descriptive text. If some text was selected when this command is called, the selected text becomes the default description.
+*** ~org-open-at-point~
+- [[http://orgmode.org/manual/Handling-links.html#Handling-links][org docs]]
+- Open link at point. This will launch a web browser for URLs
+- it will visit text and remote files in ‘file:’ links with [VSCode]
+*** ~org-toggle-inline-images~
+- [[http://orgmode.org/manual/Handling-links.html#Handling-links][org docs]]
+- Note: This could also be treated as a customization, but has been categorized as an action here in keeping with original Org
+* Deprioritized
+** Checkboxes
+- [[http://orgmode.org/manual/Breaking-down-tasks.html#Breaking-down-tasks][org docs]]
+- Percent complete
+** Source code blocks
+*** Highlighting
+**** Example (no specific highlighting)
+**** Source (specific programming languages)
+** Folding 
+[tabled until later date: VS Code only supports folding by indentation]
+*** Actions
+**** ~org-cycle~
+- [[http://orgmode.org/manual/Global-and-local-cycling.html#Global-and-local-cycling][org docs]]
+***** All content
+***** Subheaders
+**** ~org-global-cycle~
+*** Settings
+**** Folded or unfolded by default
+** Sort
+*** Actions
+**** ~org-sort~
+- [[http://orgmode.org/manual/Structure-editing.html#Structure-editing][org docs]]
+- Sort same-level entries. When there is an active region, all entries in the region will be sorted. Otherwise the children of the current headline are sorted. The command prompts for the sorting method, which can be alphabetically, numerically, by time (first timestamp with active preferred, creation time, scheduled time, deadline time), by priority, by TODO keyword (in the sequence the keywords have been defined in the setup) or by the value of a property. Reverse sorting is possible as well. You can also supply your own function to extract the sorting key. With a C-u prefix, sorting will be case-sensitive. 
+** Capture
+** Tables
+*** Actions
+**** Insert new cell
+**** Calc formulas
+**** Import from ~.csv~
+** Clock in
+** Clock table
+** Agendas
+** Exporting
+** Checkboxes
+** Time ranges
+** Motion
+** Drawers
+** Footnotes

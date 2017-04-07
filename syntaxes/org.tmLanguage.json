@@ -1,0 +1,59 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Org Markup",
+    "patterns": [
+        {
+            "name": "entity.name.function.org",
+            "match": "^\\s*[*]{1} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "entity.name.type.org",
+            "match": "^\\s*[*]{2} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "markup.heading.org",
+            "match": "^\\s*[*]{3} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "entity.other.attribute-name.org",
+            "match": "^\\s*[*]{4} [^\\[\\]:\\n]*"
+        },
+        {
+            "name": "markup.bold.org",
+            "match": "\\*.+\\*"
+        },
+        {
+            "name": "markup.italic.org",
+            "match": "\/.+\/"
+        },
+        {
+            "name": "markup.underline.org",
+            "match": "\\_.+\\_"
+        },
+        {
+            "name": "markup.italic.org",
+            "match": "^:.+"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\~.+\\~"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\=.+\\="
+        },
+        {
+            "name": "comment.line.org",
+            "match": "^#.+"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\[\\d{4}-\\d{1,2}-\\d{1,2}(?: \\w{3})?\\]"
+        },
+        {
+            "name": "variable.org",
+            "match": "\\[\\[[^\\[\\]]+\\](\\[[^\\[]+\\])?\\]"
+        }
+    ],
+    "scopeName": "source.org"
+}

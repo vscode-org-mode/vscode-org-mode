@@ -1,0 +1,42 @@
+#+TITLE: Org Mode Demonstration
+* The Hero's Journey
+** Departure
+1. The Call to Adventure
+2. Refusal of the Call
+3. Supernatural Aid
+4. Crossing the Threshold
+5. Belly of the Whale
+** Initiation
+- The Road of Trials
+- The Meeting with the Goddess
+- Woman as Temptress
+- Atonement with the Father
+- Apotheosis
+- The Ultimate Boon
+** Return
+1. Refusal of the *Return*
+2. The Magic /Flight/
+3. Rescue from _Without_
+4. ~The Crossing of the Return Threshold~
+5. Master of Two =Worlds=
+6. Freedom to Live
+: with a literal
+** Source
+Source: [[https://en.wikipedia.org/wiki/Hero%2527s_journey][Hero's Journey]]
+* If You Give a Mouse a Cookie
+Inspired by: [[https://en.wikipedia.org/wiki/If_You_Give_a_Mouse_a_Cookie][Laura Numeroff]]
+** DONE Receive cookie
+Completed on [2017-04-02 SUN]
+** TODO [#A] Ask for a glass of milk
+Make sure to do this by [2017-04-03 Mon]
+** TODO [#C] Ask for a straw
+** TODO [#B] Ask for a napkin
+** TODO Look in mirror
+Check for milk mustache
+** TODO Trim hair
+*** Request nail scissors
+** TODO Sweep up hair
+*** Request broom
+** TODO Sweep other rooms
+** TODO Wash floors
+** TODO Nap

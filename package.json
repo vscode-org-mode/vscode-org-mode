@@ -1,0 +1,124 @@
+{
+    "name": "org-mode",
+    "displayName": "Org Mode",
+    "description": "Port of Emacs Org Mode",
+    "version": "0.0.1",
+    "publisher": "tootone",
+    "icon": "images/logo.png",
+    "engines": {
+        "vscode": "^1.10.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:org"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "org.insertHeadingRespectContent",
+                "title": "Org: Insert Heading Respect Content"
+            },
+            {
+                "command": "org.insertSubheading",
+                "title": "Org: Insert Subheading"
+            },
+            {
+                "command": "org.doDemote",
+                "title": "Org: Do Demote"
+            },
+            {
+                "command": "org.doPromote",
+                "title": "Org: Do Promote"
+            },
+            {
+                "command": "org.doPromoteSubtree",
+                "title": "Org: Do Promote Subtree"
+            },
+            {
+                "command": "org.timestamp",
+                "title": "Org: Timestamp"
+            },
+            {
+                "command": "org.incrementContext",
+                "title": "Org: Increment Context"
+            },
+            {
+                "command": "org.decrementContext",
+                "title": "Org: Decrement Context"
+            },
+            {
+                "command": "org.bold",
+                "title": "Org: Bold"
+            },
+            {
+                "command": "org.italic",
+                "title": "Org: Italic"
+            },
+            {
+                "command": "org.underline",
+                "title": "Org: Underline"
+            },
+            {
+                "command": "org.code",
+                "title": "Org: Code"
+            },
+            {
+                "command": "org.verbose",
+                "title": "Org: Verbose"
+            },
+            {
+                "command": "org.literal",
+                "title": "Org: Literal"
+            }
+        ],
+        "languages": [
+            {
+                "id": "org",
+                "aliases": [
+                    "Org",
+                    "Org Markup",
+                    "org",
+                    "org-mode"
+                ],
+                "extensions": [
+                    ".org"
+                ],
+                "configuration": "./org.configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "org",
+                "scopeName": "source.org",
+                "path": "./syntaxes/org.tmLanguage.json"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Org Mode configuration",
+            "properties": {
+                "org.todoKeywords": {
+                    "type": "array",
+                    "default": ["TODO", "DONE"],
+                    "description": "Specifies the types of TODO statuses available (for switching)."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
