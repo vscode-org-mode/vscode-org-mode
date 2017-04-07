@@ -38,6 +38,10 @@
                 "title": "Org: Promote Subtree"
             },
             {
+                "command": "org.demoteSubtree",
+                "title": "Org: Demote Subtree"
+            },
+            {
                 "command": "org.timestamp",
                 "title": "Org: Timestamp"
             },
