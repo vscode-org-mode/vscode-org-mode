@@ -19,54 +19,7 @@ The extension can be activated in two ways:
 
 ### Keybindings
 
-We recommend the following keybindings. To set them, add them to your `keybindings.json` file.
-
-```json
-[
-    {
-        "key": "shift+right",
-        "command": "org.incrementContext",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "shift+left",
-        "command": "org.decrementContext",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+enter",
-        "command": "org.insertHeadingRespectContent",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c shift+1",
-        "command": "extension.insertTimestamp",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c b",
-        "command": "org.bold",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c i",
-        "command": "org.italic",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c u",
-        "command": "org.underline",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c c",
-        "command": "org.code",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c v",
-        "command": "org.verbose",
-        "when": "editorLangId == 'org'"
-    },{
-        "key": "ctrl+c l",
-        "command": "org.literal",
-        "when": "editorLangId == 'org'"
-    }
-]
-```
-
+All actions in VS Code Org mode come packaged with default keybindings. These can be modified in your `keybindings.json` file.
 
 ## Contributing
 
