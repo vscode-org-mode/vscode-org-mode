@@ -3,7 +3,7 @@
     "name": "Org Markup",
     "patterns": [
         {
-            "name": "entity.name.function.org",
+            "name": "markup.heading.org",
             "begin": "^\\s*[*]{1}\\s+",
             "end": "$",
             "patterns": [
@@ -23,7 +23,7 @@
             ]
         },
         {
-            "name": "markup.heading.org",
+            "name": "entity.name.function.org",
             "begin": "^\\s*[*]{3}\\s+",
             "end": "$",
             "patterns": [

@@ -17,10 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
     let promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.promoteSubtree', SubtreeFunctions.promoteSubtree);
     let demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
 
-    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', (textEditor, edit) => {
-      vscode.window.showInformationMessage('Inserting Date');
-      TimestampFunctions.insertTimestamp(textEditor, edit);
-    });
+    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', (textEditor, edit) => TimestampFunctions.insertTimestamp);
 
     let incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
 
