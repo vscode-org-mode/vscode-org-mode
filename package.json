@@ -75,8 +75,8 @@
             },
             {
                 "command": "org.literal",
-                    "title": "Org: Literal"
-                }
+                "title": "Org: Literal"
+            }
         ],
         "languages": [
             {
@@ -186,7 +186,7 @@
                 "command": "org.literal",
                 "key": "ctrl+alt+o l",
                 "when": "editorLangId == 'org'"
-                }
+            }
         ]
     },
     "scripts": {
