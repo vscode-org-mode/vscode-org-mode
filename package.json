@@ -111,6 +111,12 @@
                 }
             }
         },
+        "snippets": [
+            {
+                "language": "org",
+                "path": "./snippets/org.json"
+            }
+        ],
         "keybindings": [
             {
                 "command": "org.insertHeadingRespectContent",
