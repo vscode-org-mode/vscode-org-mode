@@ -1,31 +1,60 @@
 # VS Code Org Mode
 
-![unicorn logo](docs/img/logo.png)
+VS Code Org Mode is an extension for Visual Studio Code inspired by the venerable [Org mode for Emacs](http://orgmode.org/). Org lets you keep notes, maintain TODO lists, and author documents, all in plain text.
 
-VS Code Org Mode (`vscode-org-mode`) is an extension for Visual Studio Code that allows users to read and write `.org` files.
-
-The extension is currently in development and has not yet been released to the VS Code Marketplace. The development docs are available [here](docs/README.org).
-
-Initial release is estimated for `[2017-04-10 Mon]`. For updates, star this repo.
+The extension is currently in alpha. We welcome issues, feature requests, and contributions to the [repo](https://github.com/jsonreeder/vscode-org-mode).
 
 ## How to
 
 The extension can be activated in two ways:
 1. Save a file with the extension `.org`
 2. Change the language mode to `Org` by either
-    - Click in the lower right corner to the left of the smiley face
-    - Type `change language mode` into the command palette
-    - Using the default shortcut <kbd>cmd</kbd>+<kbd>k</kbd> <kbd>m</kbd>
+    - Clicking in the lower right corner to the left of the smiley face
+    - Typing `change language mode` into the command palette
+    - Using the default shortcut
+        - Linux / Windows: <kbd>ctrl</kbd>+<kbd>k</kbd> <kbd>m</kbd>
+        - Mac: <kbd>cmd</kbd>+<kbd>k</kbd> <kbd>m</kbd>
+
+## Features
+
+### Keep Notes
+[examples coming soon]
+
+### Maintain TODO Lists
+[examples coming soon]
+
+### Author Documents
+[examples coming soon]
+
+### Snippets
+
+The extension comes preloaded with a few snippets (try typing `link` and hitting <kbd>tab</kbd>, for example).
+
+## Settings
 
 ### Keybindings
 
 All actions in VS Code Org mode come packaged with default keybindings. These can be modified in your `keybindings.json` file.
 
+### Custom TODO Keywords
+
+TODO keywords can be customized in `settings.json`. For example:
+```json
+"org.todoKeywords": [
+    "TODO",
+    "DONE",
+    "WAIT",
+    "SCHD"
+]
+```
+
+## Docs
+
+Detailed documentation is kept in the [GitHub Wiki](https://github.com/jsonreeder/vscode-org-mode/wiki).
+
 ## Contributing
 
-Guidelines for contributing are coming soon. Also, see Git conventions below.
-
-## Conventions
+We welcome contributions to the GitHub repo. Here are basic guidelines for conventions.
 
 ### Naming
 
@@ -33,9 +62,9 @@ The full name of this project is `VS Code Org Mode`. It is abbreviated `vscode-o
 
 Commands are prefixed with `org.` and followed by camel case, eg `org.insertHeadingRespectContent`. Command titles are prefixed with `Org: ` and followed by capitalized words separated by spaces, eg `Org: Insert Heading Respect Content`.
 
-Filenames use kebab case.
+Filenames use kebab case, eg `header-functions.ts`.
 
-When referring to the original Org mode, we capitalize the "O" and leave the "m" lower case. This is in keeping with the original teams usage on [orgmode.org](http://orgmode.org/).
+When referring to the original Org mode, we capitalize the "O" and leave the "m" lower case. This is in keeping with the original team's usage on [orgmode.org](http://orgmode.org/).
 
 ### Code
 
@@ -57,17 +86,9 @@ Our unicorn icon is based on an image by [M. Turan Ercan](https://thenounproject
 
 This work is available under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-## Features
-
-Features description coming soon.
-
 ## Requirements
 
-Requirements description coming soon.
-
-## Extension Settings
-
-Settings description coming soon.
+Install the extension. The rest will be taken care of.
 
 ## Known Issues
 
@@ -83,10 +104,6 @@ Until Microsoft addresses those issues, it appears to be impossible to implement
 
 Colorization, bolding, italicization, and other modes of highlighting are handled differently by different themes. We have prioritized supporting the default VS Code themes (Dark+ and Light+). This prioritization means that some colors may not appear as expected in other themes, or that opportunities for more variance have been missed.
 
-### Additional
-
-Feel free to call out issues using the `Issues` tab above.
-
 ## Release Notes
 
-Release notes coming soon.
+See [CHANGELOG.md](https://github.com/jsonreeder/vscode-org-mode/blob/develop/CHANGELOG.md).
