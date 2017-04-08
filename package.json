@@ -110,7 +110,13 @@
                     "description": "Specifies the types of TODO statuses available (for switching)."
                 }
             }
-        }
+        },
+        "snippets": [
+            {
+                "language": "org",
+                "path": "./snippets/org.json"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

@@ -1,0 +1,27 @@
+{
+    "title": {
+        "prefix": "title",
+        "body": "#+TITLE: ${1:title text}",
+        "description": "Document title"
+    },
+    "options": {
+        "prefix": "options",
+        "body": "#+OPTIONS: ${1:option text}",
+        "description": "Document options"
+    },
+    "toc": {
+        "prefix": "toc",
+        "body": "#+TOC: ${1:toc text}",
+        "description": "Document table of contents"
+    },
+    "include": {
+        "prefix": "include",
+        "body": "#+INCLUDE: ${1:include file}",
+        "description": "Include file for export"
+    },
+    "link": {
+        "prefix": "link",
+        "body": "[[${1:link_path}]${2:[${3:Descriptor}]}]",
+        "description": "External link"
+    }
+}
