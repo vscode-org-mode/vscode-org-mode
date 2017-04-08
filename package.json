@@ -75,8 +75,8 @@
             },
             {
                 "command": "org.literal",
-                "title": "Org: Literal"
-            }
+                    "title": "Org: Literal"
+                }
         ],
         "languages": [
             {
@@ -110,7 +110,84 @@
                     "description": "Specifies the types of TODO statuses available (for switching)."
                 }
             }
-        }
+        },
+        "keybindings": [
+            {
+                "command": "org.insertHeadingRespectContent",
+                "key": "ctrl+alt+o h",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.insertSubheading",
+                "key": "ctrl+alt+o s",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.doDemote",
+                "key": "ctrl+alt+o D",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.doPromote",
+                "key": "ctrl+alt+o P",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.promoteSubtree",
+                "key": "ctrl+alt+o d",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.demoteSubtree",
+                "key": "ctrl+alt+o p",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.timestamp",
+                "key": "ctrl+alt+o t",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.incrementContext",
+                "key": "ctrl+alt+o right",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.decrementContext",
+                "key": "ctrl+alt+o left",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.bold",
+                "key": "ctrl+alt+o b",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.italic",
+                "key": "ctrl+alt+o i",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.underline",
+                "key": "ctrl+alt+o u",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.code",
+                "key": "ctrl+alt+o c",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.verbose",
+                "key": "ctrl+alt+o v",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.literal",
+                "key": "ctrl+alt+o l",
+                "when": "editorLangId == 'org'"
+                }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
