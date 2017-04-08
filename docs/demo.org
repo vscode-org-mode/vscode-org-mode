@@ -1,7 +1,6 @@
 #+TITLE: Org Mode Demonstration
-* [2017-04-08 Sat] The Hero's Journey
-[2017-04-08 Sat]
-** [2017-04-10 Mon] Departure
+* The Hero's Journey
+** Departure
 1. The Call to Adventure
 2. Refusal of the Call
 3. Supernatural Aid
@@ -32,10 +31,10 @@ Completed on [2017-04-02 SUN]
 Make sure to do this by [2017-04-03 Mon]
 ** TODO [#C] Ask for a straw
 ** TODO [#B] Ask for a napkin
-** LOL Look in mirror
+** TODO Look in mirror
 Check for milk mustache
 ** TODO Trim hair
-*** [2017-04-08 Sat] Request nail scissors [2017-04-08 Sat]
+*** Request nail scissors
 ** TODO Sweep up hair
 *** Request broom
 ** TODO Sweep other rooms
