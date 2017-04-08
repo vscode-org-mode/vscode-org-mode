@@ -1,7 +1,9 @@
 # Change Log
-All notable changes to the "org-mode" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+All notable changes to VS Code Org Mode will be documented in this file.
 
 ## [Unreleased]
+### Added
+### Changed
+
+## [0.0.1]
 - Initial release
