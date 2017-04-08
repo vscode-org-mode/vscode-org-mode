@@ -3,22 +3,21 @@ import * as vscode from 'vscode';
 import * as HeaderFunctions from './header-functions';
 import * as TimestampFunctions from './timestamp-functions';
 import * as MarkupFunctions from './markup-functions';
+import * as SubtreeFunctions from './subtree-functions';
 import {
     incrementContext,
     decrementContext
 } from './modify-context';
 
 export function activate(context: vscode.ExtensionContext) {
-    let insertSiblingCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertSibling);
+    let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
     let insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
     let demoteLineCmd = vscode.commands.registerTextEditorCommand('org.doDemote', HeaderFunctions.demoteLine);
     let promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
-    let promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.doPromoteSubtree', HeaderFunctions.promoteSubtree);
+    let promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.promoteSubtree', SubtreeFunctions.promoteSubtree);
+    let demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
 
-    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', (textEditor, edit) => {
-      vscode.window.showInformationMessage('Inserting Date');
-      TimestampFunctions.insertTimestamp(textEditor, edit);
-    });
+    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', TimestampFunctions.insertTimestamp);
 
     let incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
 
@@ -31,13 +30,14 @@ export function activate(context: vscode.ExtensionContext) {
     const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
 
-    context.subscriptions.push(insertSiblingCmd);
+    context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);
 
     context.subscriptions.push(demoteLineCmd);
     context.subscriptions.push(promoteLineCmd);
 
     context.subscriptions.push(promoteSubtreeCmd);
+    context.subscriptions.push(demoteSubtreeCmd);
 
     context.subscriptions.push(insertTimestampCmd);
     context.subscriptions.push(incrementContextCmd);

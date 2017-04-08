@@ -34,8 +34,12 @@
                 "title": "Org: Do Promote"
             },
             {
-                "command": "org.doPromoteSubtree",
-                "title": "Org: Do Promote Subtree"
+                "command": "org.promoteSubtree",
+                "title": "Org: Promote Subtree"
+            },
+            {
+                "command": "org.demoteSubtree",
+                "title": "Org: Demote Subtree"
             },
             {
                 "command": "org.timestamp",
@@ -80,8 +84,7 @@
                 "aliases": [
                     "Org",
                     "Org Markup",
-                    "org",
-                    "org-mode"
+                    "Org Mode"
                 ],
                 "extensions": [
                     ".org"
@@ -106,7 +109,90 @@
                     "description": "Specifies the types of TODO statuses available (for switching)."
                 }
             }
-        }
+        },
+        "snippets": [
+            {
+                "language": "org",
+                "path": "./snippets/org.json"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "org.insertHeadingRespectContent",
+                "key": "ctrl+alt+o h",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.insertSubheading",
+                "key": "ctrl+alt+o s",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.doDemote",
+                "key": "ctrl+alt+o shift+d",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.doPromote",
+                "key": "ctrl+alt+o shift+p",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.promoteSubtree",
+                "key": "ctrl+alt+o p",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.demoteSubtree",
+                "key": "ctrl+alt+o d",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.timestamp",
+                "key": "ctrl+alt+o t",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.incrementContext",
+                "key": "alt+right",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.decrementContext",
+                "key": "alt+left",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.bold",
+                "key": "ctrl+alt+o b",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.italic",
+                "key": "ctrl+alt+o i",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.underline",
+                "key": "ctrl+alt+o u",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.code",
+                "key": "ctrl+alt+o c",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.verbose",
+                "key": "ctrl+alt+o v",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.literal",
+                "key": "ctrl+alt+o l",
+                "when": "editorLangId == 'org'"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
