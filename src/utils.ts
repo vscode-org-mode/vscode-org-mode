@@ -40,7 +40,7 @@ export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Posi
     let curLinePrefix = "";
 
     //figure out why it goes all the way up to single star
-    while(curLine > 0 && curLinePrefix == thisLinePrefix) {
+    while(curLine > 0 && curLinePrefix === thisLinePrefix) {
         curLine--;
         let curLineContent = getLine(document, new vscode.Position(curLine, 0));
         curLinePrefix = getHeaderPrefix(curLineContent);
@@ -74,6 +74,9 @@ export function findBeginningOfSection(document: vscode.TextDocument, pos: vscod
 }
 
 export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+    if(pos.line === document.lineCount - 1) {
+        return pos;
+    }
     let sectionRegex = getSectionRegex(levelSym);
 
     let curLine = pos.line;

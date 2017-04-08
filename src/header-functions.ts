@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as Utils from './utils';
 
-export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+export function insertHeadingRespectContent(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
         const document = textEditor.document;
         const cursorPos = Utils.getCursorPosition();
         const curLine = Utils.getLine(document, cursorPos);
@@ -15,7 +15,7 @@ export function insertSibling(textEditor: vscode.TextEditor, edit: vscode.TextEd
             sibling = headerPrefix;
             insertPos = Utils.findEndOfSection(document, cursorPos, sibling);
         } else {
-            let parentHeader = Utils.findParentPrefix(document, cursorPos);
+            let parentHeader = Utils.findParentPrefix(document, cursorPos) || "*";
             sibling = parentHeader;
             insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
         }
