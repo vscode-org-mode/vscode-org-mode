@@ -4,56 +4,192 @@
     "patterns": [
         {
             "name": "entity.name.function.org",
-            "match": "^\\s*[*]{1} [^\\[\\]:\\n]*"
+            "begin": "^\\s*[*]{1}\\s+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#header-matches"
+                }
+            ]
         },
         {
             "name": "entity.name.type.org",
-            "match": "^\\s*[*]{2} [^\\[\\]:\\n]*"
+            "begin": "^\\s*[*]{2}\\s+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#header-matches"
+                }
+            ]
         },
         {
             "name": "markup.heading.org",
-            "match": "^\\s*[*]{3} [^\\[\\]:\\n]*"
+            "begin": "^\\s*[*]{3}\\s+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#header-matches"
+                }
+            ]
         },
         {
             "name": "entity.other.attribute-name.org",
-            "match": "^\\s*[*]{4} [^\\[\\]:\\n]*"
+            "begin": "^\\s*[*]{4}\\s+",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#header-matches"
+                }
+            ]
         },
         {
-            "name": "markup.bold.org",
-            "match": "\\*.+\\*"
-        },
-        {
-            "name": "markup.italic.org",
-            "match": "\/.+\/"
-        },
-        {
-            "name": "markup.underline.org",
-            "match": "\\_.+\\_"
-        },
-        {
-            "name": "markup.italic.org",
-            "match": "^:.+"
-        },
-        {
-            "name": "variable.org",
-            "match": "\\~.+\\~"
-        },
-        {
-            "name": "variable.org",
-            "match": "\\=.+\\="
-        },
-        {
-            "name": "comment.line.org",
-            "match": "^#.+"
-        },
-        {
-            "name": "variable.org",
-            "match": "\\[\\d{4}-\\d{1,2}-\\d{1,2}(?: \\w{3})?\\]"
-        },
-        {
-            "name": "variable.org",
-            "match": "\\[\\[[^\\[\\]]+\\](\\[[^\\[]+\\])?\\]"
+            "include": "#common"
         }
     ],
+    "repository": {
+        "common": {
+            "patterns": [
+                {
+                    "include": "#timestamp"
+                },
+                {
+                    "include": "#link"
+                },
+                {
+                    "include": "#bold"
+                },
+                {
+                    "include": "#italic"
+                },
+                {
+                    "include": "#underline"
+                },
+                {
+                    "include": "#literal"
+                },
+                {
+                    "include": "#code"
+                },
+                {
+                    "include": "#verbatim"
+                },
+                {
+                    "include": "#comment"
+                }
+            ]
+        },
+        "header-matches": {
+            "patterns": [
+                {
+                    "include": "#common"
+                },
+                {
+                    "include": "#todo"
+                },
+                {
+                    "include": "#done"
+                },
+                {
+                    "include": "#userKeywords"
+                }
+            ]
+        },
+        "timestamp": {
+            "patterns": [
+                {
+                    "name": "variable.org",
+                    "match": "\\[\\d{4}-\\d{1,2}-\\d{1,2}(?: \\w{3})?\\]"
+                }
+            ]
+        },
+        "link": {
+            "patterns": [
+                {
+                    "name": "variable.org",
+                    "match": "\\[\\[[^\\[\\]]+\\](\\[[^\\[]+\\])?\\]"
+                }
+            ]
+        },
+        "todo": {
+            "patterns": [
+                {
+                    "name": "invalid.illegal.org",
+                    "match": "\\bTODO\\b"
+                }
+            ]
+        },
+        "done": {
+            "patterns": [
+                {
+                    "name": "keyword.control.org",
+                    "match": "\\bDONE\\b"
+                }
+            ]
+        },
+        "userKeywords": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.org",
+                    "match": "\\b([A-Z]+)\\b"
+                }
+            ]
+        },
+        "bold": {
+            "patterns": [
+                {
+                    "name": "markup.bold.org",
+                    "match": "\\*.+\\*"
+                }
+            ]
+        },
+        "italic": {
+            "patterns": [
+                {
+                    "name": "markup.italic.org",
+                    "match": "\/.+\/"
+                }
+            ]
+        },
+        "underline": {
+            "patterns": [
+                {
+                    "name": "markup.underline.org",
+                    "match": "\\_.+\\_"
+                }
+            ]
+        },
+        "literal": {
+            "patterns": [
+                {
+                    "name": "markup.italic.org",
+                    "match": "^:.+"
+                }
+            ]
+        },
+        "code": {
+            "patterns": [
+                {
+                    "name": "variable.org",
+                    "match": "\\~.+\\~"
+                }
+            ]
+        },
+        "verbatim": {
+            "patterns": [
+                {
+                    "name": "variable.org",
+                    "match": "\\=.+\\="
+                }
+            ]
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "name": "comment.line.org",
+                    "match": "^#.+"
+                }
+            ]
+        }
+    },
     "scopeName": "source.org"
 }
