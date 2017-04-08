@@ -129,22 +129,22 @@
             },
             {
                 "command": "org.doDemote",
-                "key": "ctrl+alt+o D",
+                "key": "ctrl+alt+o shift+d",
                 "when": "editorLangId == 'org'"
             },
             {
                 "command": "org.doPromote",
-                "key": "ctrl+alt+o P",
+                "key": "ctrl+alt+o shift+p",
                 "when": "editorLangId == 'org'"
             },
             {
                 "command": "org.promoteSubtree",
-                "key": "ctrl+alt+o d",
+                "key": "ctrl+alt+o p",
                 "when": "editorLangId == 'org'"
             },
             {
                 "command": "org.demoteSubtree",
-                "key": "ctrl+alt+o p",
+                "key": "ctrl+alt+o d",
                 "when": "editorLangId == 'org'"
             },
             {
@@ -154,12 +154,12 @@
             },
             {
                 "command": "org.incrementContext",
-                "key": "ctrl+alt+o right",
+                "key": "alt+right",
                 "when": "editorLangId == 'org'"
             },
             {
                 "command": "org.decrementContext",
-                "key": "ctrl+alt+o left",
+                "key": "alt+left",
                 "when": "editorLangId == 'org'"
             },
             {
