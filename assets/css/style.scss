@@ -1,0 +1,26 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header {
+    background-color: #DCDFFB;
+    background-image: url("../../img/header_legs.png");
+    background-position: 20%;
+    background-repeat: no-repeat;
+    color: black;
+    text-shadow: 2px 2px 10px #DCDFFB;
+}
+
+.btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: black;
+    color: black;
+    text-shadow: 2px 2px 10px #DCDFFB;
+}
+
+.btn:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: black;
+}
