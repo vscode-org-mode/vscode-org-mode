@@ -2,7 +2,7 @@
     "name": "org-mode",
     "displayName": "Org Mode",
     "description": "Port of Emacs Org Mode",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "tootone",
     "repository": {
         "type": "git",
@@ -13,7 +13,7 @@
         "vscode": "^1.10.0"
     },
     "categories": [
-        "Other"
+        "Languages"
     ],
     "activationEvents": [
         "onLanguage:org"
