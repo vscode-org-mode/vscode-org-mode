@@ -4,25 +4,6 @@ VS Code Org Mode is an extension for Visual Studio Code inspired by the venerabl
 
 The extension is currently in alpha. We welcome issues, feature requests, and contributions to the [repo](https://github.com/jsonreeder/vscode-org-mode).
 
-## How to
-
-The extension can be activated in two ways:
-1. Save a file with the extension `.org`
-2. Change the language mode to `Org` by either
-    - Clicking in the lower right corner to the left of the smiley face
-    - Typing `change language mode` into the command palette
-    - Using the default shortcut
-        - Linux / Windows: <kbd>ctrl</kbd>+<kbd>k</kbd> <kbd>m</kbd>
-        - Mac: <kbd>cmd</kbd>+<kbd>k</kbd> <kbd>m</kbd>
-
-## Features
-
-# VS Code Org Mode
-
-**VS Code Org Mode** is an extension for [Visual Studio Code](https://code.visualstudio.com/) inspired by the venerable [Org mode for Emacs](http://orgmode.org/).
-
-Org lets you keep notes, maintain TODO lists, and author documents, all in plain text.
-
 ## Features
 
 ### Keep Notes
@@ -75,24 +56,6 @@ Add comments:
 
 ![add comments](img/screenshots/11_add_comments.gif)
 
-## Get it
-
-Find Org Mode on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode):
-
-![marketplace](img/screenshots/13_marketplace.gif)
-
-## Learn More
-
-Learn more on the project's repository ([vscode-org-mode](https://github.com/jsonreeder/vscode-org-mode)) and the [complete documentation](https://github.com/jsonreeder/vscode-org-mode/wiki):
-
-![docs](img/screenshots/12_docs.gif)
-
-VS Code Org Mode is an open-source project. We welcome contributions and feature requests. See the repo for contribution guidelines.
-
-### Snippets
-
-The extension comes preloaded with a few snippets (try typing `link` and hitting <kbd>tab</kbd>, for example).
-
 ## Settings
 
 ### Keybindings
@@ -110,6 +73,25 @@ TODO keywords can be customized in `settings.json`. For example:
     "SCHD"
 ]
 ```
+
+## Installation
+
+Org Mode can be installed in a number of ways:
+  - Launch VS Code Quick Open (Linux / Windows: <kbd>ctrl</kbd>+<kbd>P</kbd>; Mac: <kbd>cmd</kbd>+<kbd>P</kbd>) and type `ext install org-mode`.
+  - Search for `org mode` in the `Extensions` view in VS Code.
+
+![install](img/screenshots/14_install.gif)
+
+## Activation
+
+The extension can be activated in two ways:
+1. Save a file with the extension `.org`.
+2. Change the language mode to `Org` by either
+    - Clicking in the lower right corner to the left of the smiley face
+    - Typing `change language mode` into the command palette
+    - Using the default shortcut
+        - Linux / Windows: <kbd>ctrl</kbd>+<kbd>k</kbd> <kbd>m</kbd>
+        - Mac: <kbd>cmd</kbd>+<kbd>k</kbd> <kbd>m</kbd>
 
 ## Docs
 
@@ -143,7 +125,6 @@ Use TSLint with default settings.
 
 The original Org mode was written for Emacs by Carsten Dominik, with the help and support of [an impressive list of geniuses](http://orgmode.org/org.html#History-and-Acknowledgments). Our work is inspired by though not associated with their original masterpiece. In addition, many aspects of the extension were inspired by [the Spacemacs Org layer](https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bemacs/org).
 
-
 Our unicorn icon is based on an image by [M. Turan Ercan](https://thenounproject.com/mte/) for [the Noun Project](https://thenounproject.com/). We're grateful to them for making the image available under the Creative Commons license.
 
 ## License
@@ -167,6 +148,10 @@ Until Microsoft addresses those issues, it appears to be impossible to implement
 ### Colorization
 
 Colorization, bolding, italicization, and other modes of highlighting are handled differently by different themes. We have prioritized supporting the default VS Code themes (Dark+ and Light+). This prioritization means that some colors may not appear as expected in other themes, or that opportunities for more variance have been missed.
+
+### Others
+
+See [GitHub Issues](https://github.com/jsonreeder/vscode-org-mode/issues).
 
 ## Release Notes
 
