@@ -122,7 +122,7 @@ export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Posi
     if(curLine !== document.lineCount - 1) {
         curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
     } else {
-        curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+        curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
     }
 
 
