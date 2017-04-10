@@ -66,10 +66,10 @@ Add comments:
 
 ## Get it
 
-Find Org Mode on the [VS Code Marketplace](https://marketplace.visualstudio.com/vscode) or through the `Extensions` view in VS Code.
+Find Org Mode on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode) or through the `Extensions` view in VS Code.
 
 ## Learn More
 
-Full documentation is available on the project's repository ([vscode-org-mode](https://github.com/jsonreeder/vscode-org-mode)).
+Learn more on the project's repository ([vscode-org-mode](https://github.com/jsonreeder/vscode-org-mode)) or through the [complete documentation](https://github.com/jsonreeder/vscode-org-mode/wiki).
 
 VS Code Org Mode is an open-source project. We welcome contributions and feature requests. See the repo for contribution guidelines.
