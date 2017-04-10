@@ -7,10 +7,10 @@ export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextE
     let curLine = Utils.getLine(textEditor.document, cursorPos);
     let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-    let endOfSection = Utils.findEndOfSection(document, cursorPos, headerPrefix);
-    console.log(endOfSection);
+    let endOfContent = Utils.findEndOfContent(document, cursorPos, headerPrefix);
+
     if(headerPrefix) {
-        for(let i = cursorPos.line; i < endOfSection.line + 1; ++i) {
+        for(let i = cursorPos.line; i < endOfContent.line + 1; ++i) {
             let curlineStart = new vscode.Position(i, 0);
             let lineHeaderPrefix = Utils.getHeaderPrefix(Utils.getLine(document, curlineStart));
             if(lineHeaderPrefix) {
@@ -28,10 +28,10 @@ export function demoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEd
     let curLine = Utils.getLine(textEditor.document, cursorPos);
     let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-    let endOfSection = Utils.findEndOfSection(document, cursorPos, headerPrefix);
+    let endOfContent = Utils.findEndOfContent(document, cursorPos, headerPrefix);
 
     if(headerPrefix) {
-        for(let i = cursorPos.line; i < endOfSection.line + 1; ++i) {
+        for(let i = cursorPos.line; i < endOfContent.line + 1; ++i) {
             let curlineStart = new vscode.Position(i, 0);
             if(Utils.getHeaderPrefix(Utils.getLine(document, curlineStart))) {
                 edit.insert(curlineStart, "*");
