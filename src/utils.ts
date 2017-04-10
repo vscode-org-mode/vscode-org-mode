@@ -78,7 +78,7 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
         return pos;
     }
     let sectionRegex = getSectionRegex(levelSym);
-
+    console.log(sectionRegex.source);
     let curLine = pos.line;
     let curPos;
     let curLinePrefix;
@@ -89,11 +89,7 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
         curLinePrefix = getPrefix(getLine(document, curPos));
     } while(curLine < document.lineCount-1 && inSubsection(curLinePrefix, sectionRegex))
 
-    // if(curPos.line < document.lineCount) {
-    // } else {
-    //     curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
-    // }
-        curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+    curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
 
     return curPos;
 }
