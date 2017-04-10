@@ -13,11 +13,11 @@ export function insertHeadingRespectContent(textEditor: vscode.TextEditor, edit:
 
         if(headerPrefix) {
             sibling = headerPrefix;
-            insertPos = Utils.findEndOfSection(document, cursorPos, sibling);
+            insertPos = Utils.findEndOfContent(document, cursorPos, sibling);
         } else {
             let parentHeader = Utils.findParentPrefix(document, cursorPos) || "*";
             sibling = parentHeader;
-            insertPos = Utils.findEndOfSection(document, cursorPos, Utils.getPrefix(curLine));
+            insertPos = Utils.findEndOfContent(document, cursorPos, Utils.getPrefix(curLine));
         }
 
         if(sibling) {

@@ -39,7 +39,6 @@ export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Posi
     let curLine = pos.line;
     let curLinePrefix = "";
 
-    //figure out why it goes all the way up to single star
     while(curLine > 0 && curLinePrefix === thisLinePrefix) {
         curLine--;
         let curLineContent = getLine(document, new vscode.Position(curLine, 0));
@@ -49,12 +48,17 @@ export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Posi
     return curLinePrefix;
 }
 
+export function findBeginningOfSectionWithHeader(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+    let beginningOfSection = findBeginningOfSection(document, pos, levelSym);
+    let prevLineNum = beginningOfSection.line - 1;
+    if(prevLineNum >= 0 && document.lineAt(prevLineNum).text.match(/^\*+\s/)) {
+        return new vscode.Position(prevLineNum, 0);
+    }
+    return beginningOfSection;
+}
+
 export function findBeginningOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
     let sectionRegex = getSectionRegex(levelSym);
-    if(levelSym.startsWith("*")) {
-        let numStars = getStarPrefixCount(levelSym);
-        sectionRegex = new RegExp(`\\*{${numStars},}`);
-    }
 
     let curLine = pos.line;
     let curPos;
@@ -87,13 +91,40 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
-    } while(curLine < document.lineCount-1 && inSubsection(curLinePrefix, sectionRegex))
+    } while(curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
 
-    // if(curPos.line < document.lineCount) {
-    // } else {
-    //     curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
-    // }
+    curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+
+    return curPos;
+}
+
+//TODO: write findEndOfSection
+export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+    if(pos.line === document.lineCount - 1) {
+        return pos;
+    }
+    let sectionRegex = getSectionRegex(levelSym);
+    if(levelSym.startsWith("*")) {      //add an extra star so that content stops at next header of same level
+        let numStars = getStarPrefixCount(levelSym) + 1;
+        sectionRegex = new RegExp(`\\*{${numStars},}`);
+    }
+
+    let curLine = pos.line;
+    let curPos;
+    let curLinePrefix;
+
+    do {
+        curLine++;
+        curPos = new vscode.Position(curLine, 0);
+        curLinePrefix = getPrefix(getLine(document, curPos));
+    } while(curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
+
+    if(curLine !== document.lineCount - 1) {
         curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+    } else {
+        curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
+    }
+
 
     return curPos;
 }
@@ -115,7 +146,7 @@ export function getSectionRegex(prefix: string) {
         regex = /^-\s$/;
     }
     else if(prefix.startsWith("*")) {                          //starting on header line
-        let numStars = getStarPrefixCount(prefix) + 1;
+        let numStars = getStarPrefixCount(prefix);
         regex = new RegExp(`\\*{${numStars},}`);
     }
 
