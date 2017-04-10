@@ -8,68 +8,64 @@ Org lets you keep notes, maintain TODO lists, and author documents, all in plain
 
 ### Keep Notes
 
-Create outlines with a keystroke:
+Create outlines:
 
-{insert gif}
-
-Reorder items simply:
-
-{insert gif}
+![outlines](img/screenshots/01_outlines.gif)
 
 Promote and demote items:
 
-{insert gif of promotion and demotion}
-
-Even subtrees:
-
-{insert gif of promotion and demotion with subtrees}
+![promote_demote](img/screenshots/02_promote_demote.gif)
 
 ### Maintain TODO Lists
 
-Convert notes to TODOs:
+Create TODOs:
 
-{insert gif}
+![create todos](img/screenshots/03_create_todos.gif)
 
-Cycle status:
+Change TODO status:
 
-{insert gif}
+![cycle todo status](img/screenshots/04_cycle_todo_status.gif)
 
-Insert dates:
+Customize your TODO Keywords:
 
-{insert gif of timestamps}
+![custom todos](img/screenshots/05_customize_todo_keywords.gif)
+
+Insert timestamps:
+
+![timestamps](img/screenshots/06_insert_timestamps.gif)
 
 Modify dates:
 
-{insert gif of shifting timestamps}
+![modify dates](img/screenshots/07_modify_dates.gif)
 
 ### Author Documents
 
 Style your text:
 
-{insert gif of bold, italic}
+![style text](img/screenshots/08_style_text.gif)
 
-Quote others:
+Add metadata with a snippet:
 
-{insert gif of literals}
+![add metadata](img/screenshots/09_add_metadata.gif)
 
-Add links:
+Add links with a snippet:
 
-{insert gif}
-
-Add metadata:
-
-{insert gif of title}
+![add links](img/screenshots/10_add_links.gif)
 
 Add comments:
 
-{insert gif of comment toggling}
+![add comments](img/screenshots/11_add_comments.gif)
 
 ## Get it
 
-Find Org Mode on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode) or through the `Extensions` view in VS Code.
+Find Org Mode on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode):
+
+![marketplace](img/screenshots/13_marketplace.gif)
 
 ## Learn More
 
-Learn more on the project's repository ([vscode-org-mode](https://github.com/jsonreeder/vscode-org-mode)) or through the [complete documentation](https://github.com/jsonreeder/vscode-org-mode/wiki).
+Learn more on the project's repository ([vscode-org-mode](https://github.com/jsonreeder/vscode-org-mode)) and the [complete documentation](https://github.com/jsonreeder/vscode-org-mode/wiki):
+
+![docs](img/screenshots/12_docs.gif)
 
 VS Code Org Mode is an open-source project. We welcome contributions and feature requests. See the repo for contribution guidelines.
