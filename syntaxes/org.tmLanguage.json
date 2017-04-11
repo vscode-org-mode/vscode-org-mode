@@ -130,7 +130,7 @@
             "patterns": [
                 {
                     "name": "string.quoted.double.org",
-                    "match": "\\b([A-Z]+)\\b"
+                    "match": "\\b([A-Z]{3,})\\b"
                 }
             ]
         },
