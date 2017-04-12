@@ -1,8 +1,8 @@
 {
     "name": "org-mode",
     "displayName": "Org Mode",
-    "description": "Port of Emacs Org Mode",
-    "version": "0.1.1",
+    "description": "Emacs Org mode support for VSCode",
+    "version": "0.1.2",
     "publisher": "tootone",
     "repository": {
         "type": "git",
