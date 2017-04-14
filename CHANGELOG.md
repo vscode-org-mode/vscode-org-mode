@@ -4,6 +4,9 @@ All notable changes to VS Code Org Mode will be documented in this file.
 ## [Unreleased]
 ### Added
 ### Changed
+
+## [0.1.2] - 2017-04-14
+### Changed
 - Fix issue #53
 - Attempt fix for issue #62
 - Change description
