@@ -109,7 +109,10 @@
             "properties": {
                 "org.todoKeywords": {
                     "type": "array",
-                    "default": ["TODO", "DONE"],
+                    "default": [
+                        "TODO",
+                        "DONE"
+                    ],
                     "description": "Specifies the types of TODO statuses available (for switching)."
                 }
             }
@@ -210,5 +213,8 @@
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "date-fns": "^1.28.3"
     }
 }

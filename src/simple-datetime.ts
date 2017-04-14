@@ -1,38 +1,43 @@
 import * as vscode from 'vscode';
+import * as datefns from 'date-fns';
 
 const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export interface ISimpleDate {
-    date: string;
+    year: number;
+    month: number;
+    day: number;
     weekday: string;
 }
 
 export function parseDate(dateString: string): ISimpleDate {
-    const dateReg = /\d{4}-\d{1,2}-\d{1,2}/;
-    const dateResult = dateReg.exec(dateString);
-    let date;
+    const dateRegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
+    const dateResult = dateRegExp.exec(dateString);
+    let year, month, day;
     if (dateResult) {
-        date = dateResult[0];
+        year = parseInt(dateResult[1]);
+        month = parseInt(dateResult[2]);
+        day = parseInt(dateResult[3]);
     }
 
-    const weekdayReg = /[A-Za-z]{3}/;
-    const weekdayResult = weekdayReg.exec(dateString);
+    const weekdayRegExp = /[A-Za-z]{3}/;
+    const weekdayResult = weekdayRegExp.exec(dateString);
     let weekday;
     if (weekdayResult) {
         weekday = weekdayResult[0];
     }
 
-    return { date, weekday };
+    return { year, month, day, weekday };
 };
 
 export function isValidSimpleDate(datetime: ISimpleDate): boolean {
-    return Boolean(datetime.date);
+    return Boolean(datetime.year) && Boolean(datetime.month) && Boolean(datetime.day);
 }
 
 export function buildDateString(datetime: ISimpleDate): string {
-    const { date, weekday } = datetime;
+    const { year, month, day, weekday } = datetime;
 
-    let dateString = `${date}`;
+    let dateString = `${year}-${month}-${day}`;
 
     if (weekday) {
         dateString = `${dateString} ${weekday}`;
@@ -53,7 +58,9 @@ export function dateToSimpleDate(dateObject: Date): ISimpleDate {
     const weekday = weekdayArray[dateObject.getDay()];
 
     return {
-        date: `${year}-${padVal(month.toString())}-${padVal(day.toString())}`,
+        year,
+        month,
+        day,
         weekday
     }
 }
@@ -66,11 +73,13 @@ export function currentDatetime(): ISimpleDate {
 
 export function modifyDate(dateString: string, action: string): string {
     const oldDate = parseDate(dateString);
-    let dateObject = new Date(oldDate.date);
+    let dateObject = datefns.parse(`${oldDate.year}-${oldDate.month}-${oldDate.day}`);
 
-    // Someone please explain why this works.
     if (action === "UP") {
-        dateObject.setDate(dateObject.getDate() + 2);
+        dateObject = datefns.addDays(dateObject, 1);
+    }
+    else {
+        dateObject = datefns.addDays(dateObject, -1);
     }
 
     const newDate = dateToSimpleDate(dateObject);
