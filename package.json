@@ -1,214 +1,220 @@
 {
-    "name": "org-mode",
-    "displayName": "Org Mode",
-    "description": "Emacs Org mode support for VSCode",
-    "version": "0.1.2",
-    "publisher": "tootone",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jsonreeder/vscode-org-mode"
-    },
-    "icon": "images/logo.png",
-    "engines": {
-        "vscode": "^1.10.0"
-    },
-    "categories": [
-        "Languages"
+  "name": "org-mode",
+  "displayName": "Org Mode",
+  "description": "Emacs Org mode support for VSCode",
+  "version": "0.1.2",
+  "publisher": "tootone",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsonreeder/vscode-org-mode"
+  },
+  "icon": "images/logo.png",
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "categories": [
+    "Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:org"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "org.insertHeadingRespectContent",
+        "title": "Org: Insert Heading Respect Content"
+      },
+      {
+        "command": "org.insertSubheading",
+        "title": "Org: Insert Subheading"
+      },
+      {
+        "command": "org.doDemote",
+        "title": "Org: Do Demote"
+      },
+      {
+        "command": "org.doPromote",
+        "title": "Org: Do Promote"
+      },
+      {
+        "command": "org.promoteSubtree",
+        "title": "Org: Promote Subtree"
+      },
+      {
+        "command": "org.demoteSubtree",
+        "title": "Org: Demote Subtree"
+      },
+      {
+        "command": "org.timestamp",
+        "title": "Org: Timestamp"
+      },
+      {
+        "command": "org.incrementContext",
+        "title": "Org: Increment Context"
+      },
+      {
+        "command": "org.decrementContext",
+        "title": "Org: Decrement Context"
+      },
+      {
+        "command": "org.bold",
+        "title": "Org: Bold"
+      },
+      {
+        "command": "org.italic",
+        "title": "Org: Italic"
+      },
+      {
+        "command": "org.underline",
+        "title": "Org: Underline"
+      },
+      {
+        "command": "org.code",
+        "title": "Org: Code"
+      },
+      {
+        "command": "org.verbose",
+        "title": "Org: Verbose"
+      },
+      {
+        "command": "org.literal",
+        "title": "Org: Literal"
+      }
     ],
-    "activationEvents": [
-        "onLanguage:org"
+    "languages": [
+      {
+        "id": "org",
+        "aliases": [
+          "Org",
+          "Org Markup",
+          "Org Mode"
+        ],
+        "extensions": [
+          ".org"
+        ],
+        "configuration": "./org.configuration.json"
+      }
     ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "org.insertHeadingRespectContent",
-                "title": "Org: Insert Heading Respect Content"
-            },
-            {
-                "command": "org.insertSubheading",
-                "title": "Org: Insert Subheading"
-            },
-            {
-                "command": "org.doDemote",
-                "title": "Org: Do Demote"
-            },
-            {
-                "command": "org.doPromote",
-                "title": "Org: Do Promote"
-            },
-            {
-                "command": "org.promoteSubtree",
-                "title": "Org: Promote Subtree"
-            },
-            {
-                "command": "org.demoteSubtree",
-                "title": "Org: Demote Subtree"
-            },
-            {
-                "command": "org.timestamp",
-                "title": "Org: Timestamp"
-            },
-            {
-                "command": "org.incrementContext",
-                "title": "Org: Increment Context"
-            },
-            {
-                "command": "org.decrementContext",
-                "title": "Org: Decrement Context"
-            },
-            {
-                "command": "org.bold",
-                "title": "Org: Bold"
-            },
-            {
-                "command": "org.italic",
-                "title": "Org: Italic"
-            },
-            {
-                "command": "org.underline",
-                "title": "Org: Underline"
-            },
-            {
-                "command": "org.code",
-                "title": "Org: Code"
-            },
-            {
-                "command": "org.verbose",
-                "title": "Org: Verbose"
-            },
-            {
-                "command": "org.literal",
-                "title": "Org: Literal"
-            }
-        ],
-        "languages": [
-            {
-                "id": "org",
-                "aliases": [
-                    "Org",
-                    "Org Markup",
-                    "Org Mode"
-                ],
-                "extensions": [
-                    ".org"
-                ],
-                "configuration": "./org.configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "org",
-                "scopeName": "source.org",
-                "path": "./syntaxes/org.tmLanguage.json"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Org Mode configuration",
-            "properties": {
-                "org.todoKeywords": {
-                    "type": "array",
-                    "default": ["TODO", "DONE"],
-                    "description": "Specifies the types of TODO statuses available (for switching)."
-                }
-            }
-        },
-        "snippets": [
-            {
-                "language": "org",
-                "path": "./snippets/org.json"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "org.insertHeadingRespectContent",
-                "key": "ctrl+alt+o h",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.insertSubheading",
-                "key": "ctrl+alt+o s",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.doDemote",
-                "key": "ctrl+alt+o shift+d",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.doPromote",
-                "key": "ctrl+alt+o shift+p",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.promoteSubtree",
-                "key": "ctrl+alt+o p",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.demoteSubtree",
-                "key": "ctrl+alt+o d",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.timestamp",
-                "key": "ctrl+alt+o t",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.incrementContext",
-                "key": "alt+right",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.decrementContext",
-                "key": "alt+left",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.bold",
-                "key": "ctrl+alt+o b",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.italic",
-                "key": "ctrl+alt+o i",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.underline",
-                "key": "ctrl+alt+o u",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.code",
-                "key": "ctrl+alt+o c",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.verbose",
-                "key": "ctrl+alt+o v",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.literal",
-                "key": "ctrl+alt+o l",
-                "when": "editorLangId == 'org'"
-            }
-        ]
+    "grammars": [
+      {
+        "language": "org",
+        "scopeName": "source.org",
+        "path": "./syntaxes/org.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Org Mode configuration",
+      "properties": {
+        "org.todoKeywords": {
+          "type": "array",
+          "default": [
+            "TODO",
+            "DONE"
+          ],
+          "description": "Specifies the types of TODO statuses available (for switching)."
+        }
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+    "snippets": [
+      {
+        "language": "org",
+        "path": "./snippets/org.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "org.insertHeadingRespectContent",
+        "key": "ctrl+alt+o h",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.insertSubheading",
+        "key": "ctrl+alt+o s",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.doDemote",
+        "key": "ctrl+alt+o shift+d",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.doPromote",
+        "key": "ctrl+alt+o shift+p",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.promoteSubtree",
+        "key": "ctrl+alt+o p",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.demoteSubtree",
+        "key": "ctrl+alt+o d",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.timestamp",
+        "key": "ctrl+alt+o t",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.incrementContext",
+        "key": "alt+right",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.decrementContext",
+        "key": "alt+left",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.bold",
+        "key": "ctrl+alt+o b",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.italic",
+        "key": "ctrl+alt+o i",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.underline",
+        "key": "ctrl+alt+o u",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.code",
+        "key": "ctrl+alt+o c",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.verbose",
+        "key": "ctrl+alt+o v",
+        "when": "editorLangId == 'org'"
+      },
+      {
+        "command": "org.literal",
+        "key": "ctrl+alt+o l",
+        "when": "editorLangId == 'org'"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  },
+  "dependencies": {
+    "date-fns": "^1.28.3"
+  }
 }
