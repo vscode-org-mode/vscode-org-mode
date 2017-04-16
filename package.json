@@ -4,6 +4,7 @@
     "description": "Emacs Org mode support for VSCode",
     "version": "0.1.2",
     "publisher": "tootone",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
         "type": "git",
         "url": "https://github.com/jsonreeder/vscode-org-mode"
