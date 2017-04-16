@@ -4,6 +4,7 @@ All notable changes to VS Code Org Mode will be documented in this file.
 ## [Unreleased]
 ### Added
 ### Changed
+- Stop auto-closing single quotes
 
 ## [0.1.2] - 2017-04-14
 ### Changed
