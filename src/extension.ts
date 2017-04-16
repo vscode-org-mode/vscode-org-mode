@@ -8,6 +8,7 @@ import {
     incrementContext,
     decrementContext
 } from './modify-context';
+import * as PascuaneseFunctions from './pascuanese-functions';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
@@ -29,6 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
     const codeCmd = vscode.commands.registerTextEditorCommand('org.code', MarkupFunctions.code);
     const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
+    const butterflyCmd = vscode.commands.registerTextEditorCommand('org.butterfly', PascuaneseFunctions.butterfly);
 
     context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);
@@ -49,6 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(codeCmd);
     context.subscriptions.push(verboseCmd);
     context.subscriptions.push(literalCmd);
+    context.subscriptions.push(butterflyCmd);
 }
 
 export function deactivate() {

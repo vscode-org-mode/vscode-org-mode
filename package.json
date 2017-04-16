@@ -80,6 +80,10 @@
             {
                 "command": "org.literal",
                 "title": "Org: Literal"
+            },
+            {
+                "command": "org.butterfly",
+                "title": "Org: Butterfly"
             }
         ],
         "languages": [
