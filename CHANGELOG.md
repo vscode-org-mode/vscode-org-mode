@@ -3,7 +3,7 @@ All notable changes to VS Code Org Mode will be documented in this file.
 
 ## [Unreleased]
 ### Added
-### Changedgit
+### Changed
 
 
 ## [0.1.3] - 2017-05-27
