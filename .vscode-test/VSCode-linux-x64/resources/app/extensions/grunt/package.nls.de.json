@@ -1,0 +1,3 @@
+{
+	"config.grunt.autoDetect": "Steuert, ob die automatische Erkennung von Grunt-Tasks aktiviert oder deaktiviert ist. Standardmäßig ist die Funktion aktiviert."
+}

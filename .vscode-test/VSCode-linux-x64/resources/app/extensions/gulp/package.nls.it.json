@@ -1,0 +1,3 @@
+{
+	"config.gulp.autoDetect": "Controlla se la rilevazione automatica delle attività gulp è on/off. L'impostazione predefinita è 'on'."
+}

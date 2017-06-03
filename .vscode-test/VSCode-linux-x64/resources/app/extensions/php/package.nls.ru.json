@@ -1,0 +1,9 @@
+{
+	"configuration.suggest.basic": "Указывает, включены ли встроенные языковые предложения для PHP. Поддержка предлагает глобальные значения и переменные PHP.",
+	"configuration.validate.enable": "Включение или отключение встроенной проверки PHP.",
+	"configuration.validate.executablePath": "Указывает на исполняемый файл PHP.",
+	"configuration.validate.run": "Запускается ли анализатор кода при сохранении или при печати.",
+	"configuration.title": "PHP",
+	"commands.categroy.php": "PHP",
+	"command.untrustValidationExecutable": "Запретить исполняемый файл проверки PHP (определяется как параметр рабочей области)"
+}

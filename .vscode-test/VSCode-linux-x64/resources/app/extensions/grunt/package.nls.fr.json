@@ -1,0 +1,3 @@
+{
+	"config.grunt.autoDetect": "Contrôle si la détection automatique des tâches Grunt est activée ou désactivée. La valeur par défaut est activée."
+}

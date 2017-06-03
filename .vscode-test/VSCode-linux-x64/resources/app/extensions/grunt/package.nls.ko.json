@@ -1,0 +1,3 @@
+{
+	"config.grunt.autoDetect": "Grunt 작업의 자동 검색을 사용할지 여부를 제어합니다. 기본값은 [켜기]입니다."
+}

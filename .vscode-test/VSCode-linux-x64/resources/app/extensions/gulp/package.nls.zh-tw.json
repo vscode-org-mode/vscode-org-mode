@@ -1,0 +1,3 @@
+{
+	"config.gulp.autoDetect": "控制 Gulp 工作的自動偵測為開啟或關閉。預設為開。"
+}

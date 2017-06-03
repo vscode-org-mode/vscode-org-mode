@@ -1,0 +1,30 @@
+{
+	"name": "ini",
+	"version": "0.1.0",
+	"publisher": "vscode",
+	"engines": { "vscode": "*" },
+	"contributes": {
+		"languages": [{
+			"id": "ini",
+			"extensions": [ ".ini"],
+			"aliases": [ "Ini", "ini" ],
+			"configuration": "./ini.language-configuration.json"
+		},
+		{
+			"id": "properties",
+			"extensions": [ ".properties", ".gitconfig", ".cfg", ".conf" ],
+			"filenames": [ "config", ".gitattributes", ".gitconfig", "gitconfig", ".editorconfig" ],
+			"aliases": [ "Properties", "properties" ],
+			"configuration": "./properties.language-configuration.json"
+		}],
+		"grammars": [{
+			"language": "ini",
+			"scopeName": "source.properties",
+			"path": "./syntaxes/properties.plist"
+		},{
+			"language": "properties",
+			"scopeName": "source.properties",
+			"path": "./syntaxes/properties.plist"
+		}]
+	}
+}
