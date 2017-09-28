@@ -23,5 +23,103 @@
         "prefix": "link",
         "body": "[[${1:link_path}]${2:[${3:Descriptor}]}]",
         "description": "External link"
+    },
+    "source block": {
+        "prefix": "<s",
+        "body": [
+            "#+BEGIN_SRC\n$0\n#+END_SRC"
+        ],
+        "description": "source block"
+    },
+    "example block": {
+        "prefix": "<e",
+        "body": [
+            "#+BEGIN_EXAMPLE\n$0\n#+END_EXAMPLE"
+        ],
+        "description": "example block"
+    },
+    "verse block": {
+        "prefix": "<v",
+        "body": [
+            "#+BEGIN_VERSE\n$0\n#+END_VERSE"
+        ],
+        "description": "quote block"
+    },
+    "verbatim block": {
+        "prefix": "<v",
+        "body": [
+            "#+BEGIN_VERBATIM\n$0\n#+END_VERBATIM"
+        ],
+        "description": "verbatim block"
+    },
+    "quote block": {
+        "prefix": "<q",
+        "body": [
+            "#+BEGIN_QUOTE\n$0\n#+END_QUOTE"
+        ],
+        "description": "quote block"
+    },
+    "center block": {
+        "prefix": "<c",
+        "body": [
+            "#+BEGIN_CENTER\n$0\n#+END_CENTER"
+        ],
+        "description": "center block "
+    },
+    "LaTeX block": {
+        "prefix": "<l",
+        "body": [
+            "#+BEGIN_LaTeX\n$0\n#+END_LaTeX"
+        ],
+        "description": "LaTeX block"
+    },
+    "LaTeX line": {
+        "prefix": "<L",
+        "body": [
+            "#+LaTeX: $0"
+        ],
+        "description": "LaTeX line"
+    },
+    "HTML block": {
+        "prefix": "<h",
+        "body": [
+            "#+BEGIN_HTML\n$0\n#+END_HTML"
+        ],
+        "description": "HTML block"
+    },
+    "HTML line": {
+        "prefix": "<H",
+        "body": [
+            "#+HTML:$0"
+        ],
+        "description": "HTML line"
+    },
+    "ascii block": {
+        "prefix": "<a",
+        "body": [
+            "#+BEGIN_ASCII\n$0\n#+END_ASCII"
+        ],
+        "description": "ASCII block"
+    },
+    "ascii line": {
+        "prefix": "<A",
+        "body": [
+            "#+ASCII: $0"
+        ],
+        "description": "ASCII line"
+    },
+    "include line": {
+        "prefix": "<I",
+        "body": [
+            "#+INCLUDE: ${1:incllude file}"
+        ],
+        "description": "include line"
+    },
+    "index line": {
+        "prefix": "<i",
+        "body": [
+            "#+INDEX: $0"
+        ],
+        "description": "index line"
     }
 }
