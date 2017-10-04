@@ -75,6 +75,9 @@
                 },
                 {
                     "include": "#comment"
+                },
+                {
+                    "include": "#keywords"
                 }
             ]
         },
@@ -185,8 +188,30 @@
         "comment": {
             "patterns": [
                 {
-                    "name": "comment.line.org",
-                    "match": "^#.+"
+                    "match": "(^|\\s)(#)\\s(.*)$",
+                    "captures": {
+                        "2": {
+                            "name": "punctuation.definition.comment"
+                        },
+                        "3": {
+                            "name": "comment.line"
+                        }
+                    }
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "match": "^(#\\+.*:)\\s(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "support.type.property-name.org"
+                        },
+                        "2": {
+                            "name": "meta.structure.dictionary.value.org"
+                        }
+                    }
                 }
             ]
         }
