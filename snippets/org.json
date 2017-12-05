@@ -27,49 +27,49 @@
     "source block": {
         "prefix": "<s",
         "body": [
-            "#+BEGIN_SRC\n$0\n#+END_SRC"
+            "#+BEGIN_SRC $0\n#+END_SRC"
         ],
         "description": "source block"
     },
     "example block": {
         "prefix": "<e",
         "body": [
-            "#+BEGIN_EXAMPLE\n$0\n#+END_EXAMPLE"
+            "#+BEGIN_EXAMPLE $0\n#+END_EXAMPLE"
         ],
         "description": "example block"
     },
     "verse block": {
         "prefix": "<v",
         "body": [
-            "#+BEGIN_VERSE\n$0\n#+END_VERSE"
+            "#+BEGIN_VERSE $0\n#+END_VERSE"
         ],
         "description": "quote block"
     },
     "verbatim block": {
         "prefix": "<v",
         "body": [
-            "#+BEGIN_VERBATIM\n$0\n#+END_VERBATIM"
+            "#+BEGIN_VERBATIM $0\n#+END_VERBATIM"
         ],
         "description": "verbatim block"
     },
     "quote block": {
         "prefix": "<q",
         "body": [
-            "#+BEGIN_QUOTE\n$0\n#+END_QUOTE"
+            "#+BEGIN_QUOTE $0\n#+END_QUOTE"
         ],
         "description": "quote block"
     },
     "center block": {
         "prefix": "<c",
         "body": [
-            "#+BEGIN_CENTER\n$0\n#+END_CENTER"
+            "#+BEGIN_CENTER $0\n#+END_CENTER"
         ],
         "description": "center block "
     },
     "LaTeX block": {
         "prefix": "<l",
         "body": [
-            "#+BEGIN_LaTeX\n$0\n#+END_LaTeX"
+            "#+BEGIN_LaTeX $0\n#+END_LaTeX"
         ],
         "description": "LaTeX block"
     },
@@ -83,7 +83,7 @@
     "HTML block": {
         "prefix": "<h",
         "body": [
-            "#+BEGIN_HTML\n$0\n#+END_HTML"
+            "#+BEGIN_HTML $0\n#+END_HTML"
         ],
         "description": "HTML block"
     },
@@ -97,7 +97,7 @@
     "ascii block": {
         "prefix": "<a",
         "body": [
-            "#+BEGIN_ASCII\n$0\n#+END_ASCII"
+            "#+BEGIN_ASCII $0\n#+END_ASCII"
         ],
         "description": "ASCII block"
     },
