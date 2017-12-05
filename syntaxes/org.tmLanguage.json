@@ -108,8 +108,34 @@
         "link": {
             "patterns": [
                 {
-                    "name": "variable.org",
-                    "match": "\\[\\[[^\\[\\]]+\\](?:\\[[^\\[\\]]+\\])?\\]"
+                    "name": "meta.link.inline.org",
+                    "match": "(\\[\\[)([^\\[\\]]+)(\\])(?:(\\[)([^\\[\\]]+)(\\]))?(\\])",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.string.begin.org"
+                        },
+                        "2": {
+                            "name": "markup.underline.link.org"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.string.end.org"
+                        },
+                        "4": {
+                            "name": "punctuation.definition.string.begin.org"
+                        },
+                        "5": {
+                            "name": "string.other.link.title.org"
+                        },
+                        "6": {
+                            "name": "punctuation.definition.string.end.org"
+                        },
+                        "7": {
+                            "name": "punctuation.definition.string.end.org"
+                        },
+                        "8": {
+                            "name": "punctuation.definition.string.end.org"
+                        }
+                    }
                 }
             ]
         },
