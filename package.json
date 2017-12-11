@@ -1,9 +1,10 @@
 {
     "name": "org-mode",
     "displayName": "Org Mode",
-    "description": "Port of Emacs Org Mode",
-    "version": "0.1.1",
+    "description": "Emacs Org mode support for VSCode",
+    "version": "0.1.3",
     "publisher": "tootone",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
         "type": "git",
         "url": "https://github.com/jsonreeder/vscode-org-mode"
@@ -50,6 +51,18 @@
                 "title": "Org: Timestamp"
             },
             {
+                "command": "org.clockin",
+                "title": "Org: Clock In"
+            },
+            {
+                "command": "org.clockout",
+                "title": "Org: Clock Out"
+            },
+            {
+                "command": "org.updateclock",
+                "title": "Org: Update Clock Total"
+            },
+            {
                 "command": "org.incrementContext",
                 "title": "Org: Increment Context"
             },
@@ -80,6 +93,10 @@
             {
                 "command": "org.literal",
                 "title": "Org: Literal"
+            },
+            {
+                "command": "org.butterfly",
+                "title": "Org: Butterfly"
             }
         ],
         "languages": [
@@ -109,8 +126,26 @@
             "properties": {
                 "org.todoKeywords": {
                     "type": "array",
-                    "default": ["TODO", "DONE"],
+                    "default": [
+                        "TODO",
+                        "DONE"
+                    ],
                     "description": "Specifies the types of TODO statuses available (for switching)."
+                },
+                "org.addLeftZero": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Add left zero to single-digit dates and months."
+                },
+                "org.clockInOutSeparator": {
+                    "type": "string",
+                    "default": "--",
+                    "description": "Clock in and clock out separator"
+                },
+                "org.clockTotalSeparator": {
+                    "type": "string",
+                    "default": " =>  ",
+                    "description": "Clock total separator"
                 }
             }
         },
@@ -154,6 +189,21 @@
             {
                 "command": "org.timestamp",
                 "key": "ctrl+alt+o t",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.clockin",
+                "key": "ctrl+alt+o ctrl+i",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.clockout",
+                "key": "ctrl+alt+o ctrl+o",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.updateclock",
+                "key": "ctrl+alt+o ctrl+u",
                 "when": "editorLangId == 'org'"
             },
             {
@@ -210,5 +260,8 @@
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "date-fns": "^1.28.3"
     }
 }

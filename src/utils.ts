@@ -196,6 +196,24 @@ export function getKeywords() {
     return todoKeywords;
 }
 
+export function getLeftZero() {
+    const settings = vscode.workspace.getConfiguration("org");
+    let addLeftZero = settings.get<boolean>("addLeftZero");
+    return addLeftZero;
+}
+
+export function getClockInOutSeparator() {
+    const settings = vscode.workspace.getConfiguration("org");
+    let clockInOutSeparator = settings.get<string>("clockInOutSeparator");
+    return clockInOutSeparator;
+}
+
+export function getClockTotalSeparator() {
+    const settings = vscode.workspace.getConfiguration("org");
+    let clockTotalSeparator = settings.get<string>("clockTotalSeparator");
+    return clockTotalSeparator;
+}
+
 export function getUniq(arr: string[]): string[] {
     // Must also preserve order
     let map = {};
