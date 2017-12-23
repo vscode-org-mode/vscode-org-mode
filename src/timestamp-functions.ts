@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import * as Utils from './utils/general_utils';
+import * as Utils from './utils/general-utils';
 import * as Datetime from './simple-datetime';
 
 export function insertTimestamp(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {

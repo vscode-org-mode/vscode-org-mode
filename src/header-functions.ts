@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import * as Utils from './utils/general_utils';
+import * as Utils from './utils/general-utils';
+import {findEndOfContent} from './utils/content-utils';
 
 export function insertHeadingRespectContent(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
         const document = textEditor.document;
@@ -13,11 +14,11 @@ export function insertHeadingRespectContent(textEditor: vscode.TextEditor, edit:
 
         if(headerPrefix) {
             sibling = headerPrefix;
-            insertPos = Utils.findEndOfContent(document, cursorPos, sibling);
+            insertPos = findEndOfContent(document, cursorPos, sibling);
         } else {
             let parentHeader = Utils.findParentPrefix(document, cursorPos) || "*";
             sibling = parentHeader;
-            insertPos = Utils.findEndOfContent(document, cursorPos, Utils.getPrefix(curLine));
+            insertPos = findEndOfContent(document, cursorPos, Utils.getPrefix(curLine));
         }
 
         if(sibling) {

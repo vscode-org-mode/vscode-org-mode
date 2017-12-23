@@ -7,7 +7,7 @@ import {
     workspace
 } from "vscode";
 import * as Datetime from './simple-datetime';
-import * as Util from './utils';
+import * as Util from './utils/general-utils';
 
 // Any potential data labels should go here
 export const DATE = "DATE";

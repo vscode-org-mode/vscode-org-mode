@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import * as Utils from './utils/general_utils';
+import * as Utils from './utils/general-utils';
+import {findEndOfContent} from './utils/content-utils';
 
 export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = textEditor.document;
@@ -7,7 +8,7 @@ export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextE
     let curLine = Utils.getLine(textEditor.document, cursorPos);
     let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-    let endOfContent = Utils.findEndOfContent(document, cursorPos, headerPrefix);
+    let endOfContent = findEndOfContent(document, cursorPos, headerPrefix);
 
     if(headerPrefix) {
         for(let i = cursorPos.line; i < endOfContent.line + 1; ++i) {
@@ -28,7 +29,7 @@ export function demoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEd
     let curLine = Utils.getLine(textEditor.document, cursorPos);
     let headerPrefix = Utils.getHeaderPrefix(curLine);
 
-    let endOfContent = Utils.findEndOfContent(document, cursorPos, headerPrefix);
+    let endOfContent = findEndOfContent(document, cursorPos, headerPrefix);
 
     if(headerPrefix) {
         for(let i = cursorPos.line; i < endOfContent.line + 1; ++i) {

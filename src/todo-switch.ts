@@ -1,5 +1,5 @@
 import { workspace, window } from 'vscode';
-import { getKeywords, getUniq } from './utils/general_utils';
+import { getKeywords, getUniq } from './utils/general-utils';
 
 export default function (todoString: string, action: string) {
     const todoKeywords = getUniq(getKeywords());
