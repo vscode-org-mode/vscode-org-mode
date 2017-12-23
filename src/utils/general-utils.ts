@@ -1,16 +1,22 @@
-import * as vscode from 'vscode';
-
+import {
+    Position, 
+    Selection, 
+    TextDocument, 
+    TextEditor, 
+    TextEditorEdit, 
+    window, 
+    workspace
+} from 'vscode';
 export function getCursorPosition() {
-    const curEditor = vscode.window.activeTextEditor;
+    const curEditor = window.activeTextEditor;
     return curEditor.selection.active;
 }
 
-
 export function getActiveTextEditorEdit() {
-    return vscode.window.activeTextEditor.document;
+    return window.activeTextEditor.document;
 }
 
-export function getLine(document: vscode.TextDocument, lineNum: vscode.Position) {
+export function getLine(document: TextDocument, lineNum: Position) {
     return document.lineAt(lineNum).text;
 }
 
@@ -34,14 +40,14 @@ export function getPrefix(line: string) {
     }
 }
 
-export function findParentPrefix(document: vscode.TextDocument, pos: vscode.Position) {
+export function findParentPrefix(document: TextDocument, pos: Position) {
     let thisLinePrefix = getHeaderPrefix(getLine(document, pos));
     let curLine = pos.line;
     let curLinePrefix = "";
 
     while(curLine > 0 && curLinePrefix === thisLinePrefix) {
         curLine--;
-        let curLineContent = getLine(document, new vscode.Position(curLine, 0));
+        let curLineContent = getLine(document, new Position(curLine, 0));
         curLinePrefix = getHeaderPrefix(curLineContent);
     }
 
@@ -61,54 +67,54 @@ export function getStarPrefixCount(prefix: string) {
     return starMatch[0].length;
 }
 
-export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, surroundingText: string, errorMessage: string) {
-    const selection = vscode.window.activeTextEditor.selection;
+export function surroundWithText(textEditor: TextEditor, edit: TextEditorEdit, surroundingText: string, errorMessage: string) {
+    const selection = window.activeTextEditor.selection;
     if (selection.isEmpty) {
-        vscode.window.showErrorMessage(errorMessage);
+        window.showErrorMessage(errorMessage);
     } else {
         edit.insert(selection.start, surroundingText);
         edit.insert(selection.end, surroundingText);
     }
 }
 
-export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, prependingText: string) {
+export function prependTextToLine(textEditor: TextEditor, edit: TextEditorEdit, prependingText: string) {
     const document = getActiveTextEditorEdit();
     const cursorPos = getCursorPosition();
     const curLine = getLine(document, cursorPos);
 
-    const insertPos = new vscode.Position(cursorPos.line, 0);
+    const insertPos = new Position(cursorPos.line, 0);
     edit.insert(insertPos, prependingText);
 }
 
 //pos is a position anywhere on the target line
-export function moveToEndOfLine(editor: vscode.TextEditor, pos: vscode.Position) {
+export function moveToEndOfLine(editor: TextEditor, pos: Position) {
     const curLine = getLine(editor.document, pos);
     const endOfLine = curLine.length;
-    const endOfLinePos = new vscode.Position(pos.line, endOfLine);
-    editor.selections = [new vscode.Selection(endOfLinePos, endOfLinePos)];
+    const endOfLinePos = new Position(pos.line, endOfLine);
+    editor.selections = [new Selection(endOfLinePos, endOfLinePos)];
 }
 
 export function getKeywords() {
-    const settings = vscode.workspace.getConfiguration("org");
+    const settings = workspace.getConfiguration("org");
     let todoKeywords = settings.get<string[]>("todoKeywords");
     todoKeywords.push(""); // Since 'nothing' can be a TODO
     return todoKeywords;
 }
 
 export function getLeftZero() {
-    const settings = vscode.workspace.getConfiguration("org");
+    const settings = workspace.getConfiguration("org");
     let addLeftZero = settings.get<boolean>("addLeftZero");
     return addLeftZero;
 }
 
 export function getClockInOutSeparator() {
-    const settings = vscode.workspace.getConfiguration("org");
+    const settings = workspace.getConfiguration("org");
     let clockInOutSeparator = settings.get<string>("clockInOutSeparator");
     return clockInOutSeparator;
 }
 
 export function getClockTotalSeparator() {
-    const settings = vscode.workspace.getConfiguration("org");
+    const settings = workspace.getConfiguration("org");
     let clockTotalSeparator = settings.get<string>("clockTotalSeparator");
     return clockTotalSeparator;
 }

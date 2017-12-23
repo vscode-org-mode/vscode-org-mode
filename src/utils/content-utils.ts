@@ -1,8 +1,8 @@
-import * as vscode from 'vscode';
+import {Position, TextDocument} from 'vscode';
 import {getLine, getPrefix, getStarPrefixCount, inSubsection} from './general-utils';
 import {getSectionRegex} from './section-utils';
 
-export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+export function findEndOfContent(document: TextDocument, pos: Position, levelSym: string = "") {
     if(pos.line === document.lineCount - 1) {
         return pos;
     }
@@ -18,14 +18,14 @@ export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Posi
 
     do {
         curLine++;
-        curPos = new vscode.Position(curLine, 0);
+        curPos = new Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
     } while(curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
 
     if(curLine !== document.lineCount - 1) {
-        curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+        curPos = new Position(curPos.line - 1, getLine(document, new Position(curPos.line - 1, 0)).length + 1);
     } else {
-        curPos = new vscode.Position(curPos.line, getLine(document, new vscode.Position(curPos.line, 0)).length + 1);
+        curPos = new Position(curPos.line, getLine(document, new Position(curPos.line, 0)).length + 1);
     }
 
 

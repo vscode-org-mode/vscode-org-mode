@@ -1,16 +1,16 @@
-import * as vscode from 'vscode';
+import {Position, TextDocument} from 'vscode';
 import {getLine, getPrefix, getStarPrefixCount, inSubsection} from './general-utils';
 
-export function findBeginningOfSectionWithHeader(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+export function findBeginningOfSectionWithHeader(document: TextDocument, pos: Position, levelSym: string = "") {
     let beginningOfSection = findBeginningOfSection(document, pos, levelSym);
     let prevLineNum = beginningOfSection.line - 1;
     if(prevLineNum >= 0 && document.lineAt(prevLineNum).text.match(/^\*+\s/)) {
-        return new vscode.Position(prevLineNum, 0);
+        return new Position(prevLineNum, 0);
     }
     return beginningOfSection;
 }
 
-export function findBeginningOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+export function findBeginningOfSection(document: TextDocument, pos: Position, levelSym: string = "") {
     let sectionRegex = getSectionRegex(levelSym);
 
     let curLine = pos.line;
@@ -19,18 +19,18 @@ export function findBeginningOfSection(document: vscode.TextDocument, pos: vscod
 
     do {
         curLine--;
-        curPos = new vscode.Position(curLine, 0);
+        curPos = new Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
     } while(curLine > 0 && inSubsection(curLinePrefix, sectionRegex))
 
     if(curPos) {
-        curPos = new vscode.Position(curPos.line + 1, 0);
+        curPos = new Position(curPos.line + 1, 0);
     }
 
     return curPos;
 }
 
-export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
+export function findEndOfSection(document: TextDocument, pos: Position, levelSym: string = "") {
     if(pos.line === document.lineCount - 1) {
         return pos;
     }
@@ -42,11 +42,11 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
 
     do {
         curLine++;
-        curPos = new vscode.Position(curLine, 0);
+        curPos = new Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
     } while(curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
 
-    curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
+    curPos = new Position(curPos.line - 1, getLine(document, new Position(curPos.line - 1, 0)).length + 1);
 
     return curPos;
 }
