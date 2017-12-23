@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import * as Utils from './utils';
+import * as Utils from './utils/general_utils';
 
 export function promoteSubtree(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = textEditor.document;

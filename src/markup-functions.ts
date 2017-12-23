@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { surroundWithText, prependTextToLine } from './utils';
+import { surroundWithText, prependTextToLine } from './utils/general_utils';
 
 export function bold(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     surroundWithText(textEditor, edit, "*", "Please select the text you want to mark as bold.")

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as datefns from 'date-fns';
-import * as Utils from './utils';
+import * as Utils from './utils/general_utils';
 
 const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
