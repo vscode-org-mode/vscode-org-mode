@@ -7,38 +7,6 @@ import {
     window, 
     workspace
 } from 'vscode';
-export function getCursorPosition() {
-    const curEditor = window.activeTextEditor;
-    return curEditor.selection.active;
-}
-
-export function getActiveTextEditorEdit() {
-    return window.activeTextEditor.document;
-}
-
-export function getLine(document: TextDocument, lineNum: Position) {
-    return document.lineAt(lineNum).text;
-}
-
-export function getHeaderPrefix(line: string) {
-    const prefix = line.match(/^\*+\s/);
-    if(prefix) {
-        return prefix[0].trim();
-    }
-    else {
-        return "";
-    }
-}
-
-export function getPrefix(line: string) {
-    const prefix = line.match(/^\*+|^-\s|^\d+\./);
-    if(prefix) {
-        return prefix[0].trim();
-    }
-    else {
-        return "";
-    }
-}
 
 export function findParentPrefix(document: TextDocument, pos: Position) {
     let thisLinePrefix = getHeaderPrefix(getLine(document, pos));
@@ -54,44 +22,35 @@ export function findParentPrefix(document: TextDocument, pos: Position) {
     return curLinePrefix;
 }
 
-export function inSubsection(linePrefix: string, sectionRegex: RegExp) {
-    return (linePrefix.match(sectionRegex)) || linePrefix === "-" || !linePrefix || linePrefix.match(/\d+\./);
+export function getActiveTextEditorEdit() {
+    return window.activeTextEditor.document;
 }
 
-export function getStarPrefixCount(prefix: string) {
-    if(!prefix.startsWith("*")) {
-        return 0;
+export function getClockInOutSeparator() {
+    const settings = workspace.getConfiguration("org");
+    let clockInOutSeparator = settings.get<string>("clockInOutSeparator");
+    return clockInOutSeparator;
+}
+
+export function getClockTotalSeparator() {
+    const settings = workspace.getConfiguration("org");
+    let clockTotalSeparator = settings.get<string>("clockTotalSeparator");
+    return clockTotalSeparator;
+}
+
+export function getCursorPosition() {
+    const curEditor = window.activeTextEditor;
+    return curEditor.selection.active;
+}
+
+export function getHeaderPrefix(line: string) {
+    const prefix = line.match(/^\*+\s/);
+    if(prefix) {
+        return prefix[0].trim();
     }
-
-    let starMatch = prefix.match(/\*+/);
-    return starMatch[0].length;
-}
-
-export function surroundWithText(textEditor: TextEditor, edit: TextEditorEdit, surroundingText: string, errorMessage: string) {
-    const selection = window.activeTextEditor.selection;
-    if (selection.isEmpty) {
-        window.showErrorMessage(errorMessage);
-    } else {
-        edit.insert(selection.start, surroundingText);
-        edit.insert(selection.end, surroundingText);
+    else {
+        return "";
     }
-}
-
-export function prependTextToLine(textEditor: TextEditor, edit: TextEditorEdit, prependingText: string) {
-    const document = getActiveTextEditorEdit();
-    const cursorPos = getCursorPosition();
-    const curLine = getLine(document, cursorPos);
-
-    const insertPos = new Position(cursorPos.line, 0);
-    edit.insert(insertPos, prependingText);
-}
-
-//pos is a position anywhere on the target line
-export function moveToEndOfLine(editor: TextEditor, pos: Position) {
-    const curLine = getLine(editor.document, pos);
-    const endOfLine = curLine.length;
-    const endOfLinePos = new Position(pos.line, endOfLine);
-    editor.selections = [new Selection(endOfLinePos, endOfLinePos)];
 }
 
 export function getKeywords() {
@@ -107,16 +66,27 @@ export function getLeftZero() {
     return addLeftZero;
 }
 
-export function getClockInOutSeparator() {
-    const settings = workspace.getConfiguration("org");
-    let clockInOutSeparator = settings.get<string>("clockInOutSeparator");
-    return clockInOutSeparator;
+export function getLine(document: TextDocument, lineNum: Position) {
+    return document.lineAt(lineNum).text;
 }
 
-export function getClockTotalSeparator() {
-    const settings = workspace.getConfiguration("org");
-    let clockTotalSeparator = settings.get<string>("clockTotalSeparator");
-    return clockTotalSeparator;
+export function getPrefix(line: string) {
+    const prefix = line.match(/^\*+|^-\s|^\d+\./);
+    if(prefix) {
+        return prefix[0].trim();
+    }
+    else {
+        return "";
+    }
+}
+
+export function getStarPrefixCount(prefix: string) {
+    if(!prefix.startsWith("*")) {
+        return 0;
+    }
+
+    let starMatch = prefix.match(/\*+/);
+    return starMatch[0].length;
 }
 
 export function getUniq(arr: string[]): string[] {
@@ -132,4 +102,35 @@ export function getUniq(arr: string[]): string[] {
     });
 
     return uniq;
+}
+
+export function inSubsection(linePrefix: string, sectionRegex: RegExp) {
+    return (linePrefix.match(sectionRegex)) || linePrefix === "-" || !linePrefix || linePrefix.match(/\d+\./);
+}
+
+//pos is a position anywhere on the target line
+export function moveToEndOfLine(editor: TextEditor, pos: Position) {
+    const curLine = getLine(editor.document, pos);
+    const endOfLine = curLine.length;
+    const endOfLinePos = new Position(pos.line, endOfLine);
+    editor.selections = [new Selection(endOfLinePos, endOfLinePos)];
+}
+
+export function prependTextToLine(textEditor: TextEditor, edit: TextEditorEdit, prependingText: string) {
+    const document = getActiveTextEditorEdit();
+    const cursorPos = getCursorPosition();
+    const curLine = getLine(document, cursorPos);
+
+    const insertPos = new Position(cursorPos.line, 0);
+    edit.insert(insertPos, prependingText);
+}
+
+export function surroundWithText(textEditor: TextEditor, edit: TextEditorEdit, surroundingText: string, errorMessage: string) {
+    const selection = window.activeTextEditor.selection;
+    if (selection.isEmpty) {
+        window.showErrorMessage(errorMessage);
+    } else {
+        edit.insert(selection.start, surroundingText);
+        edit.insert(selection.end, surroundingText);
+    }
 }
