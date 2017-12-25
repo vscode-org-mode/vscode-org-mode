@@ -1,15 +1,6 @@
 import {Position, TextDocument} from 'vscode';
 import {getLine, getPrefix, getStarPrefixCount, inSubsection} from './general-utils';
 
-export function findBeginningOfSectionWithHeader(document: TextDocument, pos: Position, levelSym: string = "") {
-    let beginningOfSection = findBeginningOfSection(document, pos, levelSym);
-    let prevLineNum = beginningOfSection.line - 1;
-    if(prevLineNum >= 0 && document.lineAt(prevLineNum).text.match(/^\*+\s/)) {
-        return new Position(prevLineNum, 0);
-    }
-    return beginningOfSection;
-}
-
 export function findBeginningOfSection(document: TextDocument, pos: Position, levelSym: string = "") {
     let sectionRegex = getSectionRegex(levelSym);
 
