@@ -38,7 +38,7 @@ export default function getCursorContext(textEditor: TextEditor, edit: TextEdito
     // Match for TODO (or absence)
     const todoKeywords = Util.getKeywords().join("|");
     // const todoWords = "TODO|DONE";
-    const todoHeaderRegexp = new RegExp(`^(\\*+\\s+)(${todoKeywords})(?:\\b|\\[|$)`);
+    const todoHeaderRegexp = new RegExp(`^(\\s*\\*+\\s+)(${todoKeywords})(?:\\b|\\[|$)`);
     match = todoHeaderRegexp.exec(curLine);
     if (match) {
         // We've found our match
