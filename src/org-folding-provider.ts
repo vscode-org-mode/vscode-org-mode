@@ -16,8 +16,6 @@ export class OrgFoldingProvider implements FoldingProvider {
         let stack: FoldStart[] = [];
         let ranges: FoldingRange[] = [];
 
-        document
-
         for (let lineNumber = 0; lineNumber < count; lineNumber++) {
             const element = document.lineAt(lineNumber);
             const text = element.text;
