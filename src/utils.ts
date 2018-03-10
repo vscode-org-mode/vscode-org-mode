@@ -101,7 +101,7 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
 //TODO: write findEndOfSection
 export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Position, levelSym: string = "") {
     if(pos.line === document.lineCount - 1) {
-        return new vscode.Position(pos.line, getLine(document, pos).length)''
+        return new vscode.Position(pos.line, getLine(document, pos).length);
     }
     let sectionRegex = getSectionRegex(levelSym);
     if(levelSym.startsWith("*")) {      //add an extra star so that content stops at next header of same level

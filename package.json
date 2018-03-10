@@ -19,8 +19,10 @@
     "activationEvents": [
         "onLanguage:org"
     ],
+    "enableProposedApi": true,
     "main": "./out/src/extension",
     "contributes": {
+
         "commands": [
             {
                 "command": "org.insertHeadingRespectContent",
