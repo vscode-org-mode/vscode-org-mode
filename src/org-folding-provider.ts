@@ -29,12 +29,10 @@ export class OrgFoldingProvider implements FoldingProvider {
                 level++;
             }
 
-            if (stack.length > 0) {
-                const adjustmentCount = stack.length - level + 1;
-                for (let i = 0; i < adjustmentCount; i++) {
-                    const top = stack.pop();
-                    ranges.push(new FoldingRange(top.lineNumber, lineNumber - 1));
-                }
+            const adjustmentCount = stack.length - level + 1;
+            for (let i = 0; i < adjustmentCount; i++) {
+                const top = stack.pop();
+                ranges.push(new FoldingRange(top.lineNumber, lineNumber - 1));
             }
 
             stack.push({ level, lineNumber });
