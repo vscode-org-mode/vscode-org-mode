@@ -1,16 +1,15 @@
 import {
-    FoldingProvider,
+    FoldingRangeProvider,
     CancellationToken,
     TextDocument,
-    FoldingRangeList,
     FoldingRange,
     ProviderResult
 } from 'vscode';
 
 type FoldStart = { level: number, lineNumber: number };
 
-export class OrgFoldingProvider implements FoldingProvider {
-    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRangeList> {
+export class OrgFoldingProvider implements FoldingRangeProvider {
+    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
         const count = document.lineCount;
 
         let stack: FoldStart[] = [];
@@ -43,6 +42,6 @@ export class OrgFoldingProvider implements FoldingProvider {
             ranges.push(new FoldingRange(top.lineNumber, count - 1));
         }
 
-        return new FoldingRangeList(ranges);
+        return ranges;
     }
 }

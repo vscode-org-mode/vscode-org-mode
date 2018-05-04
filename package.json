@@ -11,7 +11,7 @@
     },
     "icon": "images/logo.png",
     "engines": {
-        "vscode": "^1.10.0"
+        "vscode": "^1.23.0"
     },
     "categories": [
         "Languages"
@@ -19,10 +19,8 @@
     "activationEvents": [
         "onLanguage:org"
     ],
-    "enableProposedApi": true,
     "main": "./out/src/extension",
     "contributes": {
-
         "commands": [
             {
                 "command": "org.insertHeadingRespectContent",

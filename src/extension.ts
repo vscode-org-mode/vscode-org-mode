@@ -57,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
 
-    vscode.languages.registerFoldingProvider('org', new OrgFoldingProvider());
+    vscode.languages.registerFoldingRangeProvider('org', new OrgFoldingProvider());
 }
 
 export function deactivate() {
