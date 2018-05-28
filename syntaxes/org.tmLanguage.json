@@ -155,6 +155,27 @@
                             "include": "source.python"
                         }
                     ]
+                },
+                {
+                    "name": "meta.block.source.unknown.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(\\w+)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    }
                 }
             ]
         },
