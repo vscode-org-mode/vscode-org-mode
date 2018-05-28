@@ -235,7 +235,7 @@
         "keywords": {
             "patterns": [
                 {
-                    "match": "^(#\\+.*:)\\s(.*)$",
+                    "match": "^(#\\+\\w+:)\\s(.*)$",
                     "captures": {
                         "1": {
                             "name": "support.type.property-name.org"
