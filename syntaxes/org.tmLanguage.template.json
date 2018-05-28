@@ -51,112 +51,7 @@
     ],
     "repository": {
         "src-block": {
-            "patterns": [
-                {
-                    "name": "meta.block.source.js.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(js|javascript)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        },
-                        "2": {
-                            "name": "constant.other.language.org"
-                        },
-                        "3": {
-                            "name": "string.other.header-args.org"
-                        }
-                    },
-                    "endCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "source.js"
-                        }
-                    ]
-                },
-                {
-                    "name": "meta.block.source.ts.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(ts|typescript)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        },
-                        "2": {
-                            "name": "constant.other.language.org"
-                        },
-                        "3": {
-                            "name": "string.other.header-args.org"
-                        }
-                    },
-                    "endCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "source.ts"
-                        }
-                    ]
-                },
-                {
-                    "name": "meta.block.source.java.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(java)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        },
-                        "2": {
-                            "name": "constant.other.language.org"
-                        },
-                        "3": {
-                            "name": "string.other.header-args.org"
-                        }
-                    },
-                    "endCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "source.java"
-                        }
-                    ]
-                },
-                {
-                    "name": "meta.block.source.python.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(python|py)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        },
-                        "2": {
-                            "name": "constant.other.language.org"
-                        },
-                        "3": {
-                            "name": "string.other.header-args.org"
-                        }
-                    },
-                    "endCaptures": {
-                        "1": {
-                            "name": "keyword.control.block.org"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "source.python"
-                        }
-                    ]
-                }
-            ]
+           "patterns": "// Dynamically Generated"
         },
         "common": {
             "patterns": [
@@ -286,7 +181,7 @@
             "patterns": [
                 {
                     "name": "markup.italic.org",
-                    "match": "(^|\\s)/[^\\s](.*?[^\\s])?/($|\\W)"
+                    "match": "(^|\\s)\/[^\\s](.*?[^\\s])?\/($|\\W)"
                 }
             ]
         },
