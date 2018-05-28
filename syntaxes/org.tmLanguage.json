@@ -44,9 +44,42 @@
         },
         {
             "include": "#common"
+        },
+        {
+            "include": "#src-block"
         }
     ],
     "repository": {
+        "src-block": {
+           "patterns": [
+                {
+                  "name": "meta.block.source.js.orgmode",
+                  "begin": "(?i)(#\\+BEGIN_SRC)\\s+(js|javascript)\\s*(.*)$",
+                  "end": "(?i)(#\\+END_SRC)$",
+                  "beginCaptures": {
+                    "1": {
+                      "name": "keyword.control.block.org"
+                    },
+                    "2": {
+                      "name": "constant.other.language.org"
+                    },
+                    "3": {
+                      "name": "string.other.header-args.org"
+                    }
+                  },
+                  "endCaptures": {
+                    "1": {
+                      "name": "keyword.control.block.org"
+                    }
+                  },
+                  "patterns": [
+                    {
+                      "include": "source.js"
+                    }
+                  ]
+                }
+           ]
+        },
         "common": {
             "patterns": [
                 {
