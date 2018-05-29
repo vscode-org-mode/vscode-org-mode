@@ -64,8 +64,8 @@ const generateDefinitionForMarkupLanguage = language =>
 const generateBlockSourceDefinition = (scope, match, sourceLanguage) => {
     var basePattern = {
         name: `meta.block.source.${scope}.org`,
-        begin: `(?i)(#\\+BEGIN_SRC)\\s+(${match})\\b\\s*(.*)$`,
-        end: "(?i)(#\\+END_SRC)$",
+        begin: `(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(${match})\\b\\s*(.*)$`,
+        end: "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
         beginCaptures: {
             "1": {
                 "name": "keyword.control.block.org"

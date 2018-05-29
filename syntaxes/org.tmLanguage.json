@@ -57,8 +57,8 @@
             "patterns": [
                 {
                     "name": "meta.block.source.js.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(js|javascript|mjs|es6|jsx)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(js|javascript|mjs|es6|jsx)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -90,8 +90,8 @@
                 },
                 {
                     "name": "meta.block.source.js.regexp.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(js.regexp|regexp)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(js.regexp|regexp)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -123,8 +123,8 @@
                 },
                 {
                     "name": "meta.block.source.ts.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(ts|typescript)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(ts|typescript)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -156,8 +156,8 @@
                 },
                 {
                     "name": "meta.block.source.tsx.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(tsx)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(tsx)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -189,8 +189,8 @@
                 },
                 {
                     "name": "meta.block.source.java.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(java)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(java)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -222,8 +222,8 @@
                 },
                 {
                     "name": "meta.block.source.python.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(python|py|py3|rpy|pyw|cpy|SConstruct|Sconstruct|sconstruct|SConscript|gyp|gypi)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(python|py|py3|rpy|pyw|cpy|SConstruct|Sconstruct|sconstruct|SConscript|gyp|gypi)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -255,8 +255,8 @@
                 },
                 {
                     "name": "meta.block.source.regexp.python.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(regexp.python|re)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(regexp.python|re)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -288,8 +288,8 @@
                 },
                 {
                     "name": "meta.block.source.css.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(css)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(css)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -321,8 +321,8 @@
                 },
                 {
                     "name": "meta.block.source.lua.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(lua)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(lua)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -354,8 +354,8 @@
                 },
                 {
                     "name": "meta.block.source.ini.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(ini|conf|properties)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(ini|conf|properties)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -387,8 +387,8 @@
                 },
                 {
                     "name": "meta.block.source.makefile.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(makefile|Malefile)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(makefile|Malefile)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -420,8 +420,8 @@
                 },
                 {
                     "name": "meta.block.source.perl.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(perl|pl|pm)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(perl|pl|pm)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -453,8 +453,8 @@
                 },
                 {
                     "name": "meta.block.source.r.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(r|R|s|S|Rprofile)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(r|R|s|S|Rprofile)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -486,8 +486,8 @@
                 },
                 {
                     "name": "meta.block.source.ruby.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(ruby|rb|rbx|rjs|Rakefile|rake|cgi|fcgi|gemspec|irbrc|Capfile|ru|prawn|Cheffile|Gemfile|Guardfile|Hobofile|Vagrantfile|Appraisals|Rantfile|Berksfile|Berksfile.lock|Thorfile|Puppetfile)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(ruby|rb|rbx|rjs|Rakefile|rake|cgi|fcgi|gemspec|irbrc|Capfile|ru|prawn|Cheffile|Gemfile|Guardfile|Hobofile|Vagrantfile|Appraisals|Rantfile|Berksfile|Berksfile.lock|Thorfile|Puppetfile)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -519,8 +519,8 @@
                 },
                 {
                     "name": "meta.block.source.php.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(php|php3|php4|php5|phpt|phtml|aw|ctp)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(php|php3|php4|php5|phpt|phtml|aw|ctp)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -552,8 +552,8 @@
                 },
                 {
                     "name": "meta.block.source.sql.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(sql|ddl|dml)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(sql|ddl|dml)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -585,8 +585,8 @@
                 },
                 {
                     "name": "meta.block.source.asp.vb.net.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(asp.vb.net|vb)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(asp.vb.net|vb)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -618,8 +618,8 @@
                 },
                 {
                     "name": "meta.block.source.dosbatch.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(dosbatch|batch|bat)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(dosbatch|batch|bat)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -651,8 +651,8 @@
                 },
                 {
                     "name": "meta.block.source.clojure.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(clojure|clj|cljs)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(clojure|clj|cljs)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -684,8 +684,8 @@
                 },
                 {
                     "name": "meta.block.source.coffee.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(coffee|Cakefile|coffe.erb)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(coffee|Cakefile|coffe.erb)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -717,8 +717,8 @@
                 },
                 {
                     "name": "meta.block.source.c.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(c|h)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(c|h)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -750,8 +750,8 @@
                 },
                 {
                     "name": "meta.block.source.cpp.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(cpp|c\\+\\+|cxx)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(cpp|c\\+\\+|cxx)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -783,8 +783,8 @@
                 },
                 {
                     "name": "meta.block.source.objc.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(objc|objectivec|objective-c|mm|m|obj-c)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(objc|objectivec|objective-c|mm|m|obj-c)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -816,8 +816,8 @@
                 },
                 {
                     "name": "meta.block.source.diff.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(diff|patch|rej)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(diff|patch|rej)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -849,8 +849,8 @@
                 },
                 {
                     "name": "meta.block.source.dockerfile.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(dockerfile|Dockerfile)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(dockerfile|Dockerfile)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -882,8 +882,8 @@
                 },
                 {
                     "name": "meta.block.source.go.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(go|golang)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(go|golang)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -915,8 +915,8 @@
                 },
                 {
                     "name": "meta.block.source.groovy.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(groovy|gvy)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(groovy|gvy)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -948,8 +948,8 @@
                 },
                 {
                     "name": "meta.block.source.pug.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(pug|jade)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(pug|jade)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -981,8 +981,8 @@
                 },
                 {
                     "name": "meta.block.source.css.less.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(css.less|less)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(css.less|less)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1014,8 +1014,8 @@
                 },
                 {
                     "name": "meta.block.source.css.scss.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(css.scss|scss)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(css.scss|scss)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1047,8 +1047,8 @@
                 },
                 {
                     "name": "meta.block.source.perl.6.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(perl.6|perl6|p6|pl6|pm6|nqp)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(perl.6|perl6|p6|pl6|pm6|nqp)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1080,8 +1080,8 @@
                 },
                 {
                     "name": "meta.block.source.rust.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(rust|rs)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(rust|rs)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1113,8 +1113,8 @@
                 },
                 {
                     "name": "meta.block.source.scala.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(scala|sbt)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(scala|sbt)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1146,8 +1146,8 @@
                 },
                 {
                     "name": "meta.block.source.shell.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(shell|sh|bash|zsh|bashrc|bash_profile)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(shell|sh|bash|zsh|bashrc|bash_profile)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1179,8 +1179,8 @@
                 },
                 {
                     "name": "meta.block.source.cs.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(cs|csharp|c#)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(cs|csharp|c#)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1212,8 +1212,8 @@
                 },
                 {
                     "name": "meta.block.source.fs.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(fs|fsharp|f#)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(fs|fsharp|f#)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1245,8 +1245,8 @@
                 },
                 {
                     "name": "meta.block.source.dart.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(dart)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(dart)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1278,8 +1278,8 @@
                 },
                 {
                     "name": "meta.block.source.yaml.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(yaml|yml)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(yaml|yml)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1311,8 +1311,8 @@
                 },
                 {
                     "name": "meta.block.source.json.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(json)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(json)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1344,8 +1344,8 @@
                 },
                 {
                     "name": "meta.block.source.xml.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(xml|xsd|tld|jsp|pt|cpt|dtml|rss|opml)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(xml|xsd|tld|jsp|pt|cpt|dtml|rss|opml)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1377,8 +1377,8 @@
                 },
                 {
                     "name": "meta.block.source.xsl.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(xsl|xslt)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(xsl|xslt)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1410,8 +1410,8 @@
                 },
                 {
                     "name": "meta.block.source.markdown.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(markdown|md)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(markdown|md)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1443,8 +1443,8 @@
                 },
                 {
                     "name": "meta.block.source.orgmode.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(orgmode|org)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(orgmode|org)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1476,8 +1476,8 @@
                 },
                 {
                     "name": "meta.block.source.html.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(html|htm|shtml|xhtml|inc|tmpl|tpl)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(html|htm|shtml|xhtml|inc|tmpl|tpl)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1509,8 +1509,8 @@
                 },
                 {
                     "name": "meta.block.source.COMMIT_EDITMSG.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(COMMIT_EDITMSG|MERGE_MSG)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(COMMIT_EDITMSG|MERGE_MSG)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1542,8 +1542,8 @@
                 },
                 {
                     "name": "meta.block.source.git-rebase-todo.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(git-rebase-todo)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(git-rebase-todo)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1575,8 +1575,8 @@
                 },
                 {
                     "name": "meta.block.source.unknown.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(\\w+)\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_SRC)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(\\w+)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
@@ -1607,8 +1607,8 @@
             "patterns": [
                 {
                     "name": "meta.block.${2:/downcase}",
-                    "begin": "(?i)(#\\+BEGIN_(\\w+))\\b\\s*(.*)$",
-                    "end": "(?i)(#\\+END_\\2)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_(\\w+))\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_\\2)$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
