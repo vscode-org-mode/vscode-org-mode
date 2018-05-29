@@ -153,7 +153,7 @@
                 },
                 {
                     "name": "meta.block.source.python.org",
-                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(python|py)\\b\\s*(.*)$",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(python|py|gyp)\\b\\s*(.*)$",
                     "end": "(?i)(#\\+END_SRC)$",
                     "beginCaptures": {
                         "1": {
@@ -179,6 +179,204 @@
                             "patterns": [
                                 {
                                     "include": "source.python"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.yaml.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(yaml|yml)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.yaml",
+                            "patterns": [
+                                {
+                                    "include": "source.yaml"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.json.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(json)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.json",
+                            "patterns": [
+                                {
+                                    "include": "source.json"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.xml.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(xml)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.xml",
+                            "patterns": [
+                                {
+                                    "include": "text.xml"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.markdown.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(markdown|md)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.markdown",
+                            "patterns": [
+                                {
+                                    "include": "text.html.markdown"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.orgmode.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(orgmode|org)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.orgmode",
+                            "patterns": [
+                                {
+                                    "include": "source.org"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.block.source.html.org",
+                    "begin": "(?i)(#\\+BEGIN_SRC)\\s+(html|htm|shtml|xhtml|inc|tmpl|tpl)\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.html",
+                            "patterns": [
+                                {
+                                    "include": "text.html.basic"
                                 }
                             ]
                         }
