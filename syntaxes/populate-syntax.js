@@ -30,10 +30,17 @@ const generateBlockSourceDefinition = (scope, match, sourceLanguage) => {
             "1": {
                 "name": "keyword.control.block.org"
             }
-        }
+        },
+        patterns: [
+            {
+                "begin": "(^|\\G)(\\s*)(.*)",
+                "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                "contentName": `meta.embedded.block.${scope}`
+            }
+        ]
     }
     if (sourceLanguage)
-        basePattern.patterns = [
+        basePattern.patterns[0].patterns = [
             {
                 "include": sourceLanguage
             }

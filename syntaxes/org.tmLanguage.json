@@ -74,7 +74,14 @@
                     },
                     "patterns": [
                         {
-                            "include": "source.js"
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.js",
+                            "patterns": [
+                                {
+                                    "include": "source.js"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -100,7 +107,14 @@
                     },
                     "patterns": [
                         {
-                            "include": "source.ts"
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.ts",
+                            "patterns": [
+                                {
+                                    "include": "source.ts"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -126,7 +140,14 @@
                     },
                     "patterns": [
                         {
-                            "include": "source.java"
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.java",
+                            "patterns": [
+                                {
+                                    "include": "source.java"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -152,7 +173,14 @@
                     },
                     "patterns": [
                         {
-                            "include": "source.python"
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.python",
+                            "patterns": [
+                                {
+                                    "include": "source.python"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -175,7 +203,14 @@
                         "1": {
                             "name": "keyword.control.block.org"
                         }
-                    }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.unknown"
+                        }
+                    ]
                 }
             ]
         },
