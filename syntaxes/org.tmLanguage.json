@@ -46,11 +46,14 @@
             "include": "#common"
         },
         {
-            "include": "#src-block"
+            "include": "#src-blocks"
+        },
+        {
+            "include": "#blocks"
         }
     ],
     "repository": {
-        "src-block": {
+        "src-blocks": {
             "patterns": [
                 {
                     "name": "meta.block.source.js.org",
@@ -1595,6 +1598,33 @@
                             "begin": "(^|\\G)(\\s*)(.*)",
                             "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.unknown"
+                        }
+                    ]
+                }
+            ]
+        },
+        "blocks": {
+            "patterns": [
+                {
+                    "name": "meta.block.${2:/downcase}",
+                    "begin": "(?i)(#\\+BEGIN_(\\w+))\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_\\2)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#common"
                         }
                     ]
                 }

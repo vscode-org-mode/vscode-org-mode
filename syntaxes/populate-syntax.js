@@ -105,7 +105,7 @@ const generateGrammar = () => {
     const languageDefinitions = programmingLanguages.map(generateDefinitionForProgrammingLanguage)
         .concat(markupLanguages.map(generateDefinitionForMarkupLanguage));
     languageDefinitions.push(generateBlockSourceDefinition('unknown', '\\w+', null))
-    jsonGrammar.repository['src-block'].patterns = languageDefinitions;
+    jsonGrammar.repository['src-blocks'].patterns = languageDefinitions;
     fs.writeFileSync(`${__dirname}/org.tmLanguage.json`, JSON.stringify(jsonGrammar, null, 4));
 };
 

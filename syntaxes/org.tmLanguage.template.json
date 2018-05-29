@@ -46,12 +46,42 @@
             "include": "#common"
         },
         {
-            "include": "#src-block"
+            "include": "#src-blocks"
+        },
+        {
+            "include": "#blocks"
         }
     ],
     "repository": {
-        "src-block": {
-           "patterns": "// Dynamically Generated"
+        "src-blocks": {
+            "patterns": "// Dynamically Generated"
+        },
+        "blocks": {
+            "patterns": [
+                {
+                    "name": "meta.block.${2:/downcase}",
+                    "begin": "(?i)(#\\+BEGIN_(\\w+))\\b\\s*(.*)$",
+                    "end": "(?i)(#\\+END_\\2)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#common"
+                        }
+                    ]
+                }
+            ]
         },
         "common": {
             "patterns": [
