@@ -7,7 +7,7 @@ const programmingLanguages = [
     ['ts', 'typescript'],
     ['tsx'],
     ['java'],
-    ['python', 'py','py3','rpy','pyw','cpy','SConstruct','Sconstruct','sconstruct','SConscript','gyp','gypi'],
+    ['python', 'py', 'py3', 'rpy', 'pyw', 'cpy', 'SConstruct', 'Sconstruct', 'sconstruct', 'SConscript', 'gyp', 'gypi'],
     ['regexp.python', 're'],
     ['css'],
     ['lua'],
@@ -16,7 +16,7 @@ const programmingLanguages = [
     ['perl', 'pl', 'pm'],
     ['r', 'R', 's', 'S', 'Rprofile'],
     ['ruby', 'rb', 'rbx', 'rjs', 'Rakefile', 'rake', 'cgi', 'fcgi', 'gemspec', 'irbrc', 'Capfile', 'ru', 'prawn', 'Cheffile', 'Gemfile', 'Guardfile', 'Hobofile', 'Vagrantfile', 'Appraisals', 'Rantfile', 'Berksfile', 'Berksfile.lock', 'Thorfile', 'Puppetfile'],
-    ["php", "php3", "php4", "php5", "phpt", "phtml", "aw", "ctp"],
+    ['php', 'php3', 'php4', 'php5', 'phpt', 'phtml', 'aw', 'ctp'],
     ['sql', 'ddl', 'dml'],
     ['asp.vb.net', 'vb'],
     ['dosbatch', 'batch', 'bat'],
@@ -29,6 +29,7 @@ const programmingLanguages = [
     ['dockerfile', 'Dockerfile'],
     ['go', 'golang'],
     ['groovy', 'gvy'],
+    ['lisp', 'emacs-lisp', 'common-lisp'],
     ['pug', 'jade'],
     ['css.less', 'less'],
     ['css.scss', 'scss'],
@@ -36,8 +37,8 @@ const programmingLanguages = [
     ['rust', 'rs'],
     ['scala', 'sbt'],
     ['shell', 'sh', 'bash', 'zsh', 'bashrc', 'bash_profile'],
-    ['cs','csharp','c#'],
-    ['fs','fsharp','f#'],
+    ['cs', 'csharp', 'c#'],
+    ['fs', 'fsharp', 'f#'],
     ['dart']
 ];
 // List of language retrieve from https://github.com/Microsoft/vscode/blob/master/extensions/markdown-basics/syntaxes/markdown.tmLanguage.json
@@ -65,35 +66,35 @@ const generateBlockSourceDefinition = (scope, match, sourceLanguage) => {
     var basePattern = {
         name: `meta.block.source.${scope}.org`,
         begin: `(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(${match})\\b\\s*(.*)$`,
-        end: "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
+        end: '(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$',
         beginCaptures: {
-            "1": {
-                "name": "keyword.control.block.org"
+            '1': {
+                name: 'keyword.control.block.org'
             },
-            "2": {
-                "name": "constant.other.language.org"
+            '2': {
+                name: 'constant.other.language.org'
             },
-            "3": {
-                "name": "string.other.header-args.org"
+            '3': {
+                name: 'string.other.header-args.org'
             }
         },
         endCaptures: {
-            "1": {
-                "name": "keyword.control.block.org"
+            '1': {
+                name: 'keyword.control.block.org'
             }
         },
         patterns: [
             {
-                "begin": "(^|\\G)(\\s*)(.*)",
-                "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
-                "contentName": `meta.embedded.block.${scope}`
+                begin: '(^|\\G)(\\s*)(.*)',
+                while: '(^|\\G)(?!\\s*#\\+END_SRC\\s*)',
+                contentName: `meta.embedded.block.${scope}`
             }
         ]
     }
     if (sourceLanguage)
         basePattern.patterns[0].patterns = [
             {
-                "include": sourceLanguage
+                include: sourceLanguage
             }
         ];
     return basePattern;

@@ -33,13 +33,11 @@ export class OrgFoldingProvider implements FoldingRangeProvider {
                 }
 
                 stack.push({ level, lineNumber });
-                
-            } else if (/^\s*#\+(BEGIN|END)_/.test(text)) {
-                if (text.startsWith('#+BEGIN_')) {
-                    blockStack = lineNumber;
-                } else {
-                    ranges.push(new FoldingRange(blockStack, lineNumber));
-                }
+
+            } else if (/^\s*#\+BEGIN_/.test(text)) {
+                blockStack = lineNumber;
+            } else if (/^\s*#\+END_/.test(text)) {
+                ranges.push(new FoldingRange(blockStack, lineNumber));
             }
         }
 

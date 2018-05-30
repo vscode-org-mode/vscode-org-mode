@@ -947,6 +947,39 @@
                     ]
                 },
                 {
+                    "name": "meta.block.source.lisp.org",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(lisp|emacs-lisp|common-lisp)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.lisp",
+                            "patterns": [
+                                {
+                                    "include": "source.lisp"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
                     "name": "meta.block.source.pug.org",
                     "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(pug|jade)\\b\\s*(.*)$",
                     "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
