@@ -1607,6 +1607,39 @@
                     ]
                 },
                 {
+                    "name": "meta.block.source.latex.org",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(latex|tex)\\b\\s*(.*)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        },
+                        "2": {
+                            "name": "constant.other.language.org"
+                        },
+                        "3": {
+                            "name": "string.other.header-args.org"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.org"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "(^|\\G)(\\s*)(.*)",
+                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "contentName": "meta.embedded.block.latex",
+                            "patterns": [
+                                {
+                                    "include": "text.tex.latex"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
                     "name": "meta.block.source.unknown.org",
                     "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(\\w+)\\b\\s*(.*)$",
                     "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$",

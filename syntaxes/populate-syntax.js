@@ -53,7 +53,8 @@ const markupLanguages = [
     ['source.org', 'orgmode', 'org'],
     ['text.html.basic', 'html', 'htm', 'shtml', 'xhtml', 'inc', 'tmpl', 'tpl'],
     ['text.git-commit', 'COMMIT_EDITMSG', 'MERGE_MSG'],
-    ['text.git-rebase', 'git-rebase-todo']
+    ['text.git-rebase', 'git-rebase-todo'],
+    ['text.tex.latex', 'latex', 'tex']
 ];
 
 const generateDefinitionForProgrammingLanguage = language =>
