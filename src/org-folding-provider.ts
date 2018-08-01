@@ -19,7 +19,7 @@ export class OrgFoldingProvider implements FoldingRangeProvider {
             const element = document.lineAt(lineNumber);
             const text = element.text;
 
-            if (!text.startsWith("*")) {
+            if (!text.match(/^\*+ /)) {
                 continue;
             }
 
