@@ -11,7 +11,7 @@ import {
     Position
 } from 'vscode';
 
-type SectionStart = { title: string, lineNumber: number };
+type SectionStart = { title: string, level: number, lineNumber: number };
 
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
     private static readonly HEADLINE_SYMBOL = SymbolKind.Struct;
@@ -37,18 +37,17 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
 
             if (text.match(/^\*+ /)) {
                 // compute level
-                let level = -1;
-                while(text[++level] === '*');
+                let currentLevel = -1;
+                while(text[++currentLevel] === '*');
 
                 // close previous sections
-                const adjustmentCount = stack.length - level + 1;
-                for (let i = 0; i < adjustmentCount; i++) {
+                while(stack.length > 0 && stack[stack.length - 1].level >= currentLevel ) {
                     const top = stack.pop();
                     this.createSection(top.title, top.lineNumber, lineNumber - 1)
                 }
 
                 let title = text.substr(text.indexOf(' ') + 1);
-                stack.push({ title, lineNumber });
+                stack.push({ title, level: currentLevel, lineNumber });
             }
         }
 
