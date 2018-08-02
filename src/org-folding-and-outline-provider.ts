@@ -11,17 +11,21 @@ import {
     Position
 } from 'vscode';
 
-type SectionStart = { title: string, level: number, lineNumber: number };
+// ChunkType value is used as SymbolKind for outline
+enum ChunkType {
+    SECTION = SymbolKind.Constant,
+    BLOCK = SymbolKind.Number
+}
+type Chunk = { type: ChunkType, title: string, level: number, startLine: number };
 
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
-    private static readonly HEADLINE_SYMBOL = SymbolKind.Struct;
 
     private ranges: FoldingRange[];
     private symbols: SymbolInformation[];
     private text: string;
 
     private compute(document: TextDocument) {
-        if(document.getText() === this.text) {
+        if (document.getText() === this.text) {
             return;
         }
         this.text = document.getText();
@@ -29,31 +33,45 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         this.symbols = [];
 
         const count = document.lineCount;
-        let stack: SectionStart[] = [];
+        let stack: Chunk[] = [];
+        let inBlock = false;
 
         for (let lineNumber = 0; lineNumber < count; lineNumber++) {
             const element = document.lineAt(lineNumber);
             const text = element.text;
 
-            if (text.match(/^\*+ /)) {
+            if (inBlock) {
+                // we look for the end of the block
+                if (text.match(/#\+END_/i)) {
+                    inBlock = false;
+                    if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
+                        const top = stack.pop();
+                        this.createSection(top, lineNumber - 1)
+                    }
+                }
+            } else if (text.match(/#\+BEGIN_/i)) { // block beginning
+                inBlock = true;
+                let title = text.substr(text.indexOf('_') + 1);
+                stack.push({ type: ChunkType.BLOCK, title, level: Number.MAX_SAFE_INTEGER, startLine: lineNumber });
+            } else if (text.match(/^\*+ /)) { // header
                 // compute level
                 let currentLevel = -1;
-                while(text[++currentLevel] === '*');
+                while (text[++currentLevel] === '*');
 
                 // close previous sections
-                while(stack.length > 0 && stack[stack.length - 1].level >= currentLevel ) {
+                while (stack.length > 0 && stack[stack.length - 1].level >= currentLevel) {
                     const top = stack.pop();
-                    this.createSection(top.title, top.lineNumber, lineNumber - 1)
+                    this.createSection(top, lineNumber - 1)
                 }
 
                 let title = text.substr(text.indexOf(' ') + 1);
-                stack.push({ title, level: currentLevel, lineNumber });
+                stack.push({ type: ChunkType.SECTION, title, level: currentLevel, startLine: lineNumber });
             }
         }
 
-        let top: SectionStart;
+        let top: Chunk;
         while ((top = stack.pop()) != null) {
-            this.createSection(top.title, top.lineNumber, count - 1)
+            this.createSection(top, count - 1)
         }
     }
 
@@ -67,14 +85,14 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         return this.symbols;
     }
 
-    private createSection(title: string, startLine: number, endLine) {
-        this.ranges.push(new FoldingRange(startLine, endLine));
+    private createSection(chunk: Chunk, endLine) {
+        this.ranges.push(new FoldingRange(chunk.startLine, endLine));
         this.symbols.push(new SymbolInformation(
-            title,
-            OrgFoldingAndOutlineProvider.HEADLINE_SYMBOL,
+            chunk.title,
+            chunk.type.valueOf(),
             new Range(
-                new Position(startLine,0),
-                new Position(endLine,0)
+                new Position(chunk.startLine, 0),
+                new Position(endLine, 0)
             )
         ));
     }
