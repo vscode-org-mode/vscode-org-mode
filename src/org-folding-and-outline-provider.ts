@@ -18,17 +18,52 @@ enum ChunkType {
 }
 type Chunk = { type: ChunkType, title: string, level: number, startLine: number };
 
+export type OrgFoldingAndOutlineDocumentStateRegistry = WeakMap<TextDocument, OrgFoldingAndOutlineDocumentState>;
+
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
 
-    private ranges: FoldingRange[];
-    private symbols: SymbolInformation[];
-    private text: string;
+    constructor(private documentStateRegistry: OrgFoldingAndOutlineDocumentStateRegistry) { }
+
+    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
+        let state = this.getOrCreateDocumentState(document);
+        return state.getRanges(document);
+    }
+
+    provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
+        let state = this.getOrCreateDocumentState(document);
+        return state.getSymbols(document);
+    }
+
+    private getOrCreateDocumentState(document: TextDocument): OrgFoldingAndOutlineDocumentState {
+        let state = this.documentStateRegistry.get(document);
+        if (!state) {
+            state = new OrgFoldingAndOutlineDocumentState();
+            this.documentStateRegistry.set(document, state);
+        }
+        return state;
+    }
+}
+
+export class OrgFoldingAndOutlineDocumentState {
+    private computedForDocumentVersion: number = null;
+    private ranges: FoldingRange[] = [];
+    private symbols: SymbolInformation[] = [];
+
+    getRanges(document: TextDocument): FoldingRange[] {
+        this.compute(document);
+        return this.ranges;
+    }
+
+    getSymbols(document: TextDocument): SymbolInformation[] {
+        this.compute(document);
+        return this.symbols;
+    }
 
     private compute(document: TextDocument) {
-        if (document.getText() === this.text) {
+        if (document.version === this.computedForDocumentVersion) {
             return;
         }
-        this.text = document.getText();
+        this.computedForDocumentVersion = document.version;
         this.ranges = [];
         this.symbols = [];
 
@@ -73,16 +108,6 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         while ((top = stack.pop()) != null) {
             this.createSection(top, count - 1)
         }
-    }
-
-    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
-        this.compute(document);
-        return this.ranges;
-    }
-
-    provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
-        this.compute(document);
-        return this.symbols;
     }
 
     private createSection(chunk: Chunk, endLine) {

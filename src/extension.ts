@@ -9,7 +9,7 @@ import {
     decrementContext
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
-import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
+import { OrgFoldingAndOutlineProvider, OrgFoldingAndOutlineDocumentStateRegistry } from './org-folding-and-outline-provider';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
@@ -57,7 +57,8 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
 
-    let provider = new OrgFoldingAndOutlineProvider();
+    let registry: OrgFoldingAndOutlineDocumentStateRegistry = new WeakMap();
+    let provider = new OrgFoldingAndOutlineProvider(registry);
     vscode.languages.registerFoldingRangeProvider('org', provider);
     vscode.languages.registerDocumentSymbolProvider('org', provider);
 }
