@@ -79,18 +79,18 @@ class OrgFoldingAndOutlineDocumentState {
 
             if (inBlock) {
                 // we look for the end of the block
-                if (text.match(/^ *#\+END_/i)) {
+                if (/^ *#\+END_/i.test(text)) {
                     inBlock = false;
                     if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
                         const top = stack.pop();
                         this.createSection(top, lineNumber)
                     }
                 }
-            } else if (text.match(/^ *#\+BEGIN_/i)) { // block beginning
+            } else if (/^ *#\+BEGIN_/i.test(text)) { // block beginning
                 inBlock = true;
                 let title = text.substr(text.indexOf('_') + 1);
                 stack.push({ type: ChunkType.BLOCK, title, level: Number.MAX_SAFE_INTEGER, startLine: lineNumber });
-            } else if (text.match(/^\*+ /)) { // header
+            } else if (/^\*+ /.test(text)) { // header
                 // compute level
                 let currentLevel = -1;
                 while (text[++currentLevel] === '*');
