@@ -18,11 +18,13 @@ enum ChunkType {
 }
 type Chunk = { type: ChunkType, title: string, level: number, startLine: number };
 
-export type OrgFoldingAndOutlineDocumentStateRegistry = WeakMap<TextDocument, OrgFoldingAndOutlineDocumentState>;
-
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
 
-    constructor(private documentStateRegistry: OrgFoldingAndOutlineDocumentStateRegistry) { }
+    private documentStateRegistry: WeakMap<TextDocument, OrgFoldingAndOutlineDocumentState>;;
+
+    constructor() {
+        this.documentStateRegistry = new WeakMap()
+    }
 
     provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
         let state = this.getOrCreateDocumentState(document);
@@ -44,7 +46,7 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
     }
 }
 
-export class OrgFoldingAndOutlineDocumentState {
+class OrgFoldingAndOutlineDocumentState {
     private computedForDocumentVersion: number = null;
     private ranges: FoldingRange[] = [];
     private symbols: SymbolInformation[] = [];
