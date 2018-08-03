@@ -83,7 +83,7 @@ class OrgFoldingAndOutlineDocumentState {
                     inBlock = false;
                     if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
                         const top = stack.pop();
-                        this.createSection(top, lineNumber - 1)
+                        this.createSection(top, lineNumber)
                     }
                 }
             } else if (text.match(/^ *#\+BEGIN_/i)) { // block beginning
