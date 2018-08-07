@@ -97,6 +97,42 @@
             {
                 "command": "org.butterfly",
                 "title": "Org: Butterfly"
+            },
+            {
+                "command": "org.asciiExportToAscii",
+                "title": "Org: export to ascii"
+            },
+            {
+                "command": "org.beamerExportToLatex",
+                "title": "Org: export to beamer latex"
+            },
+            {
+                "command": "org.beamerExportToPdf",
+                "title": "Org: export to beamer pdf"
+            },
+            {
+                "command": "org.htmlExportToHtml",
+                "title": "Org: export to html"
+            },
+            {
+                "command": "org.icalendarExportToIcs",
+                "title": "Org: export to ics"
+            },
+            {
+                "command": "org.latexExportToLatex",
+                "title": "Org: export to latex"
+            },
+            {
+                "command": "org.latexExportToPdf",
+                "title": "Org: export to pdf"
+            },
+            {
+                "command": "org.mdExportToMarkdown",
+                "title": "Org: export to markdown"
+            },
+            {
+                "command": "org.odtExportToOdt",
+                "title": "Org: export to odt"
             }
         ],
         "languages": [
