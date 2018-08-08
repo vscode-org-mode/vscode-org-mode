@@ -12,10 +12,8 @@ import {
 import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingProvider } from './org-folding-provider';
 
-let _outputChannel: vscode.OutputChannel = null;
-
 export function activate(context: vscode.ExtensionContext) {
-    _outputChannel = vscode.window.createOutputChannel("Org");
+    const outputChannel = vscode.window.createOutputChannel("Org");
 
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
     let insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
@@ -43,33 +41,35 @@ export function activate(context: vscode.ExtensionContext) {
 
     // export command
     const orgToAscii = vscode.commands.registerTextEditorCommand("org.asciiExportToAscii", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toAscii(textEditor, _outputChannel);
+        OrgExportFunctions.toAscii(textEditor, outputChannel);
     });
     const orgToBeamerLatex = vscode.commands.registerTextEditorCommand("org.beamerExportToLatex", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toBeamerLatex(textEditor, _outputChannel);
+        OrgExportFunctions.toBeamerLatex(textEditor, outputChannel);
     });
     const orgToBeamerPdf = vscode.commands.registerTextEditorCommand("org.beamerExportToPdf", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toBeamerPdf(textEditor, _outputChannel);
+        OrgExportFunctions.toBeamerPdf(textEditor, outputChannel);
     });
     const orgToHtml = vscode.commands.registerTextEditorCommand("org.htmlExportToHtml", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toHtml(textEditor, _outputChannel);
+        OrgExportFunctions.toHtml(textEditor, outputChannel);
     });
     const orgToIcs = vscode.commands.registerTextEditorCommand("org.icalendarExportToIcs", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toIcs(textEditor, _outputChannel);
+        OrgExportFunctions.toIcs(textEditor, outputChannel);
     });
     const orgToLatex = vscode.commands.registerTextEditorCommand("org.latexExportToLatex", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toLatex(textEditor, _outputChannel);
+        OrgExportFunctions.toLatex(textEditor, outputChannel);
     });
     const orgToPdf = vscode.commands.registerTextEditorCommand("org.latexExportToPdf", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toPdf(textEditor, _outputChannel);
+        OrgExportFunctions.toPdf(textEditor, outputChannel);
     });
     const orgToMarkdown = vscode.commands.registerTextEditorCommand("org.mdExportToMarkdown", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toMarkdown(textEditor, _outputChannel);
+        OrgExportFunctions.toMarkdown(textEditor, outputChannel);
     });
     const orgToOdt = vscode.commands.registerTextEditorCommand("org.odtExportToOdt", (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-        OrgExportFunctions.toOdt(textEditor, _outputChannel);
+        OrgExportFunctions.toOdt(textEditor, outputChannel);
     });
 
+    context.subscriptions.push(outputChannel);
+    
     context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);
 
@@ -105,5 +105,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-    _outputChannel.dispose();
 }
