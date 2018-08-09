@@ -182,6 +182,11 @@
                     "type": "string",
                     "default": " =>  ",
                     "description": "Clock total separator"
+                },
+                "org.export.showOutputChannel": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Display or not the Org output channel when exporting."
                 }
             }
         },

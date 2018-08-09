@@ -48,9 +48,12 @@ function execEmacsCommand(textEditor: vscode.TextEditor, outputChannel: vscode.O
     if(!textEditor || !textEditor.document || !textEditor.document.fileName) {
         return;
     }
+    let config = vscode.workspace.getConfiguration("org.export");
     let filename = textEditor.document.fileName;
     textEditor.document.save().then(() => {
-        outputChannel.show(true);
+        if(config.get<boolean>("showOutputChannel")) {
+            outputChannel.show(true);
+        }
         let cmd = util.format(cmdPattern, filename, exportFunction);
 
         outputChannel.appendLine("[Running] " + cmd);
