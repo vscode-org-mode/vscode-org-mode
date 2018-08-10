@@ -65,6 +65,9 @@
                     "include": "#underline"
                 },
                 {
+                    "include": "#deleted"
+                },
+                {
                     "include": "#literal"
                 },
                 {
@@ -166,24 +169,60 @@
         "bold": {
             "patterns": [
                 {
-                    "name": "markup.bold.org",
-                    "match": "(^|\\s)\\*[^\\s](.*?[^\\s])?\\*($|\\W)"
+                    "match": "(^|[\\s\\(\\{\"'])(\\*(\\S|\\S.*?\\S)\\*)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "markup.bold.org" }
+                    }
                 }
             ]
         },
         "italic": {
             "patterns": [
                 {
-                    "name": "markup.italic.org",
-                    "match": "(^|\\s)\/[^\\s](.*?[^\\s])?\/($|\\W)"
+                    "match": "(^|[\\s\\(\\{\"'])(/(\\S|\\S.*?\\S)/)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "markup.italic.org" }
+                    }
                 }
             ]
         },
         "underline": {
             "patterns": [
                 {
-                    "name": "markup.underline.org",
-                    "match": "(^|\\s)\\_[^\\s](.*?[^\\s])?\\_($|\\W)"
+                    "match": "(^|\\s)(_(\\S|\\S.*?\\S)_)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "markup.underline.org" }
+                    }
+                }
+            ]
+        },
+        "code": {
+            "patterns": [
+                {
+                    "match": "(^|[\\s\\(\\{\"'])(~(\\S|\\S.*?\\S)~)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "variable.org" }
+                    }
+                }
+            ]
+        },
+        "verbatim": {
+            "patterns": [
+                {
+                    "match": "(^|[\\s\\(\\{\"'])(=(\\S|\\S.*?\\S)=)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "variable.org" }
+                    }
+                }
+            ]
+        },
+        "deleted": {
+            "patterns": [
+                {
+                    "match": "(^|[\\s\\(\\{\"'])(\\+(\\S|\\S.*?\\S)\\+)($|[\\s\\)\\}\"'])",
+                    "captures": {
+                        "2" : { "name": "markup.deleted.org" }
+                    }
                 }
             ]
         },
@@ -192,22 +231,6 @@
                 {
                     "name": "markup.italic.org",
                     "match": "^:.+"
-                }
-            ]
-        },
-        "code": {
-            "patterns": [
-                {
-                    "name": "variable.org",
-                    "match": "(^|\\s)\\~[^\\s](.*?[^\\s])?\\~($|\\W)"
-                }
-            ]
-        },
-        "verbatim": {
-            "patterns": [
-                {
-                    "name": "variable.org",
-                    "match": "(^|\\s)\\=[^\\s](.*?[^\\s])?\\=($|\\W)"
                 }
             ]
         },
