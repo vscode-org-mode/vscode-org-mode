@@ -78,7 +78,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.js",
                             "patterns": [
                                 {
@@ -111,7 +111,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.js.regexp",
                             "patterns": [
                                 {
@@ -144,7 +144,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.ts",
                             "patterns": [
                                 {
@@ -177,7 +177,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.tsx",
                             "patterns": [
                                 {
@@ -210,7 +210,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.java",
                             "patterns": [
                                 {
@@ -243,7 +243,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.python",
                             "patterns": [
                                 {
@@ -276,7 +276,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.regexp.python",
                             "patterns": [
                                 {
@@ -309,7 +309,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.css",
                             "patterns": [
                                 {
@@ -342,7 +342,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.lua",
                             "patterns": [
                                 {
@@ -375,7 +375,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.ini",
                             "patterns": [
                                 {
@@ -408,7 +408,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.makefile",
                             "patterns": [
                                 {
@@ -441,7 +441,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.perl",
                             "patterns": [
                                 {
@@ -474,7 +474,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.r",
                             "patterns": [
                                 {
@@ -507,7 +507,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.ruby",
                             "patterns": [
                                 {
@@ -540,7 +540,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.php",
                             "patterns": [
                                 {
@@ -573,7 +573,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.sql",
                             "patterns": [
                                 {
@@ -606,7 +606,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.asp.vb.net",
                             "patterns": [
                                 {
@@ -639,7 +639,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.dosbatch",
                             "patterns": [
                                 {
@@ -672,7 +672,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.clojure",
                             "patterns": [
                                 {
@@ -705,7 +705,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.coffee",
                             "patterns": [
                                 {
@@ -738,7 +738,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.c",
                             "patterns": [
                                 {
@@ -771,7 +771,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.cpp",
                             "patterns": [
                                 {
@@ -804,7 +804,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.objc",
                             "patterns": [
                                 {
@@ -837,7 +837,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.diff",
                             "patterns": [
                                 {
@@ -870,7 +870,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.dockerfile",
                             "patterns": [
                                 {
@@ -903,7 +903,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.go",
                             "patterns": [
                                 {
@@ -936,7 +936,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.groovy",
                             "patterns": [
                                 {
@@ -969,7 +969,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.lisp",
                             "patterns": [
                                 {
@@ -1002,7 +1002,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.pug",
                             "patterns": [
                                 {
@@ -1035,7 +1035,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.css.less",
                             "patterns": [
                                 {
@@ -1068,7 +1068,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.css.scss",
                             "patterns": [
                                 {
@@ -1101,7 +1101,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.perl.6",
                             "patterns": [
                                 {
@@ -1134,7 +1134,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.rust",
                             "patterns": [
                                 {
@@ -1167,7 +1167,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.scala",
                             "patterns": [
                                 {
@@ -1200,7 +1200,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.shell",
                             "patterns": [
                                 {
@@ -1233,7 +1233,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.cs",
                             "patterns": [
                                 {
@@ -1266,7 +1266,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.fs",
                             "patterns": [
                                 {
@@ -1299,7 +1299,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.dart",
                             "patterns": [
                                 {
@@ -1332,7 +1332,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.yaml",
                             "patterns": [
                                 {
@@ -1365,7 +1365,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.json",
                             "patterns": [
                                 {
@@ -1398,7 +1398,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.xml",
                             "patterns": [
                                 {
@@ -1431,7 +1431,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.xsl",
                             "patterns": [
                                 {
@@ -1464,7 +1464,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.markdown",
                             "patterns": [
                                 {
@@ -1497,7 +1497,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.orgmode",
                             "patterns": [
                                 {
@@ -1530,7 +1530,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.html",
                             "patterns": [
                                 {
@@ -1563,7 +1563,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.COMMIT_EDITMSG",
                             "patterns": [
                                 {
@@ -1596,7 +1596,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.git-rebase-todo",
                             "patterns": [
                                 {
@@ -1629,7 +1629,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.latex",
                             "patterns": [
                                 {
@@ -1662,7 +1662,7 @@
                     "patterns": [
                         {
                             "begin": "(^|\\G)(\\s*)(.*)",
-                            "while": "(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
+                            "while": "(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)",
                             "contentName": "meta.embedded.block.unknown"
                         }
                     ]

@@ -87,7 +87,7 @@ const generateBlockSourceDefinition = (scope, match, sourceLanguage) => {
         patterns: [
             {
                 begin: '(^|\\G)(\\s*)(.*)',
-                while: '(^|\\G)(?!\\s*#\\+END_SRC\\s*)',
+                while: '(?i)(^|\\G)(?!\\s*#\\+END_SRC\\s*)',
                 contentName: `meta.embedded.block.${scope}`
             }
         ]
