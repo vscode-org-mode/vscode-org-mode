@@ -67,7 +67,7 @@ const generateBlockSourceDefinition = (scope, match, sourceLanguage) => {
     var basePattern = {
         name: `meta.block.source.${scope}.org`,
         begin: `(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(${match})\\b\\s*(.*)$`,
-        end: '(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)$',
+        end: '(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)\\s*$',
         beginCaptures: {
             '1': {
                 name: 'keyword.control.block.org'

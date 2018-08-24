@@ -61,7 +61,7 @@
                 {
                     "name": "meta.block.${2:/downcase}",
                     "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_(\\w+))\\b\\s*(.*)$",
-                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_\\2)$",
+                    "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_\\2)\\s*$",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.block.org"
