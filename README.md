@@ -1,3 +1,7 @@
+[![Version](https://vsmarketplacebadge.apphb.com/version/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+
 # VS Code Org Mode
 
 VS Code Org Mode is an extension for Visual Studio Code inspired by the venerable [Org mode for Emacs](http://orgmode.org/). Org lets you keep notes, maintain TODO lists, and author documents, all in plain text.
