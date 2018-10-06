@@ -19,6 +19,10 @@ function move(editor: vscode.TextEditor, line: number, col: number) {
     editor.selection = new vscode.Selection(pos, pos);
 }
 
+function select(editor: vscode.TextEditor, range: vscode.Range) {
+    editor.selection = new vscode.Selection(range.start, range.end);
+}
+
 suite('Commands', () => {
 
     test('Demote', async () => {
@@ -36,7 +40,7 @@ suite('Commands', () => {
                 assert.equal(d.getText(), steps[i]);
             }
         });
-    });
+    }).timeout(10000); // First test could be slow because of VSCode init
 
     test('Promote', async () => {
         const steps = [
@@ -52,6 +56,76 @@ suite('Commands', () => {
                 await vscode.commands.executeCommand('org.doPromote');
                 assert.equal(d.getText(), steps[i]);
             }
+        });
+    });
+
+    test('Bold', async () => {
+        const initial = 'Some text here';
+        const expected = 'Some *text* here';
+        const textWordRange = new vscode.Range(0, 5, 0, 9);
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            select(e, textWordRange);
+            await vscode.commands.executeCommand('org.bold');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Italic', async () => {
+        const initial = 'Some text here';
+        const expected = 'Some /text/ here';
+        const textWordRange = new vscode.Range(0, 5, 0, 9);
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            select(e, textWordRange);
+            await vscode.commands.executeCommand('org.italic');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Underline', async () => {
+        const initial = 'Some text here';
+        const expected = 'Some _text_ here';
+        const textWordRange = new vscode.Range(0, 5, 0, 9);
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            select(e, textWordRange);
+            await vscode.commands.executeCommand('org.underline');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Code', async () => {
+        const initial = 'Some text here';
+        const expected = 'Some ~text~ here';
+        const textWordRange = new vscode.Range(0, 5, 0, 9);
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            select(e, textWordRange);
+            await vscode.commands.executeCommand('org.code');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Verbose', async () => {
+        const initial = 'Some text here';
+        const expected = 'Some =text= here';
+        const textWordRange = new vscode.Range(0, 5, 0, 9);
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            select(e, textWordRange);
+            await vscode.commands.executeCommand('org.verbose');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Literal', async () => {
+        const initial = 'Some text here';
+        const expected = ': Some text here';
+
+        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+            await vscode.commands.executeCommand('org.literal');
+            assert.equal(d.getText(), expected);
         });
     });
 });
