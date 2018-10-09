@@ -112,7 +112,7 @@ function orgFindParent(editor: TextEditor, line: TextLine): TextLine | undefined
     let doc = editor.document;
     let lnum = line.lineNumber;
     let indent = orgGetIndent(line);
-    let parent = null;
+    let parent = undefined;
     let pindent = indent;
     while (pindent >= indent) {
         lnum--;
