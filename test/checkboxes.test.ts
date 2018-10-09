@@ -68,4 +68,22 @@ suite('Checkboxes', () => {
             }
         }).then(done, done);
     });
+    test('Unticking last ticked child clears parent checkbox', done => {
+        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
+        let expected = '  - [ ] call people [0/3]';
+        let textDocument: TextDocument;
+        workspace.openTextDocument(filePath).then(document => {
+            textDocument = document;
+            return window.showTextDocument(document);
+        }).then(editor => {
+            const pos = new Position(3, 14);
+            editor.selection = new Selection(pos, pos);
+            return editor.edit(edit => {
+                checkboxes.OrgToggleCheckbox(editor, edit);
+            });
+        }).then(() => {
+            var actual = textDocument.lineAt(1).text;
+            assert.equal(actual, expected);
+        }).then(done, done);
+    });
 });
