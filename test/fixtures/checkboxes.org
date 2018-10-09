@@ -1,0 +1,21 @@
+* TODO Organize party [/]
+  - [-] call people [/]
+    - [ ] Peter
+    - [X] Sarah
+    - [ ] Sam
+  - [X] order food
+  - [ ] think about what music to play
+  - [X] talk to the neighbors
+
+* TODO Implement tests [%] [/]
+  - [ ] updates summary cookie
+  - [ ] updates percent cookie
+  - [ ] toggling child checkbox [%]
+    - [ ] updates parent summary/percent cookie
+    - [ ] sets parent to on if all children are on
+    - [ ] sets parent to off when all children are off
+    - [ ] sets parent to undetermined when some children are on and some are off
+  - [ ] toggling parent checkbox [/]
+    - [ ] updates summary/percent cookie
+    - [ ] sets all children to on when parent is on
+    - [ ] sets all children to off when parent is off
