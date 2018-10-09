@@ -19,7 +19,9 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
         var delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
         let parent = orgFindParent(editor, line);
         // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
-        orgUpdateParent(editor, edit, parent, delta);
+        if (parent) {
+            orgUpdateParent(editor, edit, parent, delta);
+        }
     }
 }
 
@@ -143,7 +145,9 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     // Recursively update parent nodes
     let parent = orgFindParent(editor, line);
     // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
-    orgUpdateParent(editor, edit, parent, delta);
+    if (parent) {
+        orgUpdateParent(editor, edit, parent, delta);
+    }
 }
 
 // Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
