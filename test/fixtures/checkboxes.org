@@ -15,7 +15,7 @@
     - [ ] sets parent to on if all children are on
     - [ ] sets parent to off when all children are off
     - [ ] sets parent to undetermined when some children are on and some are off
-  - [ ] toggling parent checkbox [/]
+  - [-] toggling parent checkbox [/]
     - [ ] updates summary/percent cookie
-    - [ ] sets all children to on when parent is on
+    - [x] sets all children to on when parent is on
     - [ ] sets all children to off when parent is off

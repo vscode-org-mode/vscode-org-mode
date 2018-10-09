@@ -2,7 +2,7 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { Position, Selection, TextDocument, window, workspace } from 'vscode';
+import { Position, Selection, TextDocument, window, workspace, TextEditor } from 'vscode';
 import { join } from 'path';
 import * as checkboxes from '../src/checkboxes';
 
@@ -83,6 +83,32 @@ suite('Checkboxes', () => {
             });
         }).then(() => {
             var actual = textDocument.lineAt(1).text;
+            assert.equal(actual, expected);
+        }).then(done, done);
+    });
+    test('Ticking all children ticks parent checkbox', done => {
+        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
+        let expected = '  - [x] toggling parent checkbox [3/3]';
+        let textDocument: TextDocument;
+        let textEditor: TextEditor;
+        workspace.openTextDocument(filePath).then(document => {
+            textDocument = document;
+            return window.showTextDocument(document);
+        }).then(editor => {
+            textEditor = editor;
+            var pos = new Position(18, 5);
+            editor.selection = new Selection(pos, pos);
+            return editor.edit(edit => {
+                checkboxes.OrgToggleCheckbox(editor, edit);
+            });
+        }).then(() => {
+            var pos = new Position(20, 5);
+            textEditor.selection = new Selection(pos, pos);
+            return textEditor.edit(edit => {
+                checkboxes.OrgToggleCheckbox(textEditor, edit);
+            });
+        }).then(() => {
+            var actual = textDocument.lineAt(17).text;
             assert.equal(actual, expected);
         }).then(done, done);
     });
