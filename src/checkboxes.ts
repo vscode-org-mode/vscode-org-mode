@@ -15,8 +15,8 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     let line = doc.lineAt(editor.selection.active.line);
     let checkbox = orgFindCookie(checkboxRegex, line);
     if (checkbox) {
-        let text = doc.getText(checkbox);
-        var delta = orgCascadeCheckbox(edit, checkbox, line, !orgIsChecked(text));
+        let text = doc.getText(checkbox).toLowerCase();
+        var delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
         let parent = orgFindParent(editor, line);
         // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
         orgUpdateParent(editor, edit, parent, delta);
@@ -29,16 +29,24 @@ export function OrgUpdateSummary(editor: TextEditor, edit: TextEditorEdit) {
     orgUpdateParent(editor, edit, line, 0);
 }
 
-function orgIsChecked(value: string): boolean {
-    return value == 'x' || value == 'X';
-}
-
 function orgFindCookie(cookie: RegExp, line: TextLine): Range | undefined {
     let match = cookie.exec(line.text);
     if (match) {
         return new Range(line.lineNumber, match.index + 1, line.lineNumber, match.index + 1 + match[1].length);
     }
     return undefined;
+}
+
+function orgTriStateToDelta(value: string): number {
+    switch (value) {
+        case 'x': return 1;
+        case ' ': return -1;
+        default:  return 0;
+    }
+}
+
+function orgGetTriState(checked, total: number): string {
+    return checked == 0 ? ' ' : (checked == total ? 'x' : '-');
 }
     
 // Calculate and return indentation level of the line.  Used in traversing nested lists and locating parent item.
@@ -52,19 +60,18 @@ function orgGetIndent(line: TextLine): number {
 }
 
 // Perform the toggle.  'x' or 'X' becomes blank and blank becomes 'X'.
-function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLine, toCheck: boolean): number {
+function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLine, toCheck: string): number {
     if (!checkbox) {
         return 0;
     }
     let editor = window.activeTextEditor;
-    let text = editor.document.getText(checkbox);
-    let isChecked = orgIsChecked(text);
-    if (isChecked == toCheck) {
+    let text = editor.document.getText(checkbox).toLowerCase();
+    if (text == toCheck) {
         return 0;  // Nothing to do.
     }
-    edit.replace(checkbox, toCheck ? 'X' : ' ');
+    edit.replace(checkbox, toCheck);
     if (!line) {
-        return toCheck ? 1 : -1;
+        return orgTriStateToDelta(toCheck);
     }
     let children = orgFindChildren(editor, line);
     let child: TextLine = null;
@@ -79,10 +86,10 @@ function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLin
     }
     let percent = orgFindCookie(percentRegex, line);
     if (percent) {
-        total = toCheck ? 100 : 0;
+        total = toCheck == 'x' ? 100 : 0;
         edit.replace(percent, total.toString());
     }
-    return toCheck ? 1 : -1;
+    return orgTriStateToDelta(toCheck);
 }
 
 // Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
@@ -117,7 +124,7 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     let doc = editor.document;
     for (let child of children) {
         chk = orgFindCookie(checkboxRegex, child);
-        if (orgIsChecked(doc.getText(chk))) {
+        if (doc.getText(chk).toLowerCase() == 'x') {
             checked++;
         }
     }
@@ -132,7 +139,7 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     // If there is a checkbox on this line, update it depending on (checked == total).
     chk = orgFindCookie(checkboxRegex, line);
     // Prevent propagation downstream by passing line = null.
-    let delta = orgCascadeCheckbox(edit, chk, null, checked == total);
+    let delta = orgCascadeCheckbox(edit, chk, null, orgGetTriState(checked, total));
     // Recursively update parent nodes
     let parent = orgFindParent(editor, line);
     // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
