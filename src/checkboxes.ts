@@ -51,12 +51,25 @@ function orgGetTriState(checked, total: number): string {
     return checked == 0 ? ' ' : (checked == total ? 'x' : '-');
 }
     
+export function OrgTabsToSpaces(tabs: string): number {
+    if (!tabs)
+        return 0;
+    const tabWidth = 4;
+    let off = 1;
+    for (let i = 0; i < tabs.length; i++) {
+        if (tabs[i] == '\t')
+            off += tabWidth - off % tabWidth;
+        else
+            off++;
+    }
+    return off;
+}
+
 // Calculate and return indentation level of the line.  Used in traversing nested lists and locating parent item.
 function orgGetIndent(line: TextLine): number {
     let match = indentRegex.exec(line.text);
     if (match) {
-        // TODO: Convert tabs to spaces?
-        return match[1].length;
+        return OrgTabsToSpaces(match[1]);
     }
     return 0;
 }
@@ -96,11 +109,11 @@ function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLin
 
 // Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
 function orgFindParent(editor: TextEditor, line: TextLine): TextLine | undefined {
+    let doc = editor.document;
     let lnum = line.lineNumber;
     let indent = orgGetIndent(line);
     let parent = null;
     let pindent = indent;
-    let doc = editor.document;
     while (pindent >= indent) {
         lnum--;
         if (lnum < 0) {

@@ -7,6 +7,25 @@ import { join } from 'path';
 import * as checkboxes from '../src/checkboxes';
 
 suite('Checkboxes', () => {
+    test('Can convert tabs to spaces', done => {
+        let cases = [
+            "  \t \t ",
+            "\t\t",
+            "\t  \t",
+            "    \t \t  "
+        ];
+        let expected = [
+            9,
+            8,
+            8,
+            14
+        ];
+
+        for (let i = 0; i < cases.length; i++) {
+            assert.equal(checkboxes.OrgTabsToSpaces(cases[i]), expected[i]);
+        }
+        done();
+    });
     test('Can update summary', done => {
         const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         let expected = '* TODO Implement tests [0%] [0/4]';
