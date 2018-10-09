@@ -76,7 +76,7 @@ function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLin
         return orgTriStateToDelta(toCheck);
     }
     let children = orgFindChildren(editor, line);
-    let child: TextLine = null;
+    let child: TextLine = undefined;
     for (child of children) {
         orgCascadeCheckbox(edit, orgFindCookie(checkboxRegex, child), child, toCheck);
     }
@@ -95,7 +95,7 @@ function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLin
 }
 
 // Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
-function orgFindParent(editor: TextEditor, line: TextLine): TextLine {
+function orgFindParent(editor: TextEditor, line: TextLine): TextLine | undefined {
     let lnum = line.lineNumber;
     let indent = orgGetIndent(line);
     let parent = null;
@@ -104,7 +104,7 @@ function orgFindParent(editor: TextEditor, line: TextLine): TextLine {
     while (pindent >= indent) {
         lnum--;
         if (lnum < 0) {
-            return null;
+            return undefined;
         }
         
         parent = doc.lineAt(lnum);
@@ -122,7 +122,7 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     let children = orgFindChildren(editor, line);
     let total = children.length;
     let checked = adjust;
-    let chk = null;
+    let chk: Range = undefined;
     let doc = editor.document;
     for (let child of children) {
         chk = orgFindCookie(checkboxRegex, child);
@@ -141,7 +141,7 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     // If there is a checkbox on this line, update it depending on (checked == total).
     chk = orgFindCookie(checkboxRegex, line);
     // Prevent propagation downstream by passing line = null.
-    let delta = orgCascadeCheckbox(edit, chk, null, orgGetTriState(checked, total));
+    let delta = orgCascadeCheckbox(edit, chk, undefined, orgGetTriState(checked, total));
     // Recursively update parent nodes
     let parent = orgFindParent(editor, line);
     // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
@@ -157,7 +157,7 @@ function orgFindChildren(editor: TextEditor, line: TextLine): TextLine[] {
     let doc = editor.document;
     let lmax = doc.lineCount - 1; 
     let indent = orgGetIndent(line);
-    let child: TextLine = null;
+    let child: TextLine = undefined;
     let cindent = indent;
     let next_indent = -1;
     while (lnum < lmax) {
