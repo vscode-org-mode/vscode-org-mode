@@ -159,7 +159,7 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     }
     // If there is a checkbox on this line, update it depending on (checked == total).
     chk = orgFindCookie(checkboxRegex, line);
-    // Prevent propagation downstream by passing line = null.
+    // Prevent propagation downstream by passing line = undefined.
     let delta = orgCascadeCheckbox(edit, chk, undefined, orgGetTriState(checked, total));
     // Recursively update parent nodes
     let parent = orgFindParent(editor, line);
