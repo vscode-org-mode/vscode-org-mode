@@ -9,6 +9,19 @@ const summaryRegex = /\[(\d*\/\d*)\]/;
 // Percentage is a cookie indicating the percentage of ticked checkboxes in the child list relative to the total number of checkboxes in the list. 
 const percentRegex = /\[(\d*)%\]/;
 const indentRegex = /^(\s*)\S/;
+    
+export function OrgTabsToSpaces(tabs: string, tabSize: number = 4): number {
+    if (!tabs)
+        return 0;
+    let off = 1;
+    for (let i = 0; i < tabs.length; i++) {
+        if (tabs[i] == '\t')
+            off += tabSize - off % tabSize;
+        else
+            off++;
+    }
+    return off;
+}
 
 export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     let doc = editor.document;
@@ -49,20 +62,6 @@ function orgTriStateToDelta(value: string): number {
 
 function orgGetTriState(checked, total: number): string {
     return checked == 0 ? ' ' : (checked == total ? 'x' : '-');
-}
-    
-export function OrgTabsToSpaces(tabs: string): number {
-    if (!tabs)
-        return 0;
-    const tabWidth = 4;
-    let off = 1;
-    for (let i = 0; i < tabs.length; i++) {
-        if (tabs[i] == '\t')
-            off += tabWidth - off % tabWidth;
-        else
-            off++;
-    }
-    return off;
 }
 
 // Calculate and return indentation level of the line.  Used in traversing nested lists and locating parent item.
