@@ -6,6 +6,12 @@ import { Position, Selection, TextDocument, window, workspace, TextEditor } from
 import { join } from 'path';
 import * as checkboxes from '../src/checkboxes';
 
+function moveAndSelect(editor: TextEditor, line: number, col: number, lineTo?: number, colTo?: number) {
+    lineTo = lineTo ? lineTo : line;
+    colTo = colTo ? colTo : col;
+    editor.selection = new Selection(line, col, lineTo, colTo);
+}
+
 suite('Checkboxes', () => {
     test('Can convert tabs to spaces', done => {
         let cases = [
@@ -34,8 +40,7 @@ suite('Checkboxes', () => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
-            const pos = new Position(9, 5);
-            editor.selection = new Selection(pos, pos);
+            moveAndSelect(editor, 9, 5);
             return editor.edit(edit => {
                 checkboxes.OrgUpdateSummary(editor, edit);
             });
@@ -52,8 +57,7 @@ suite('Checkboxes', () => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
-            const pos = new Position(14, 14);
-            editor.selection = new Selection(pos, pos);
+            moveAndSelect(editor, 14, 14);
             return editor.edit(edit => {
                 checkboxes.OrgToggleCheckbox(editor, edit);
             });
@@ -75,8 +79,7 @@ suite('Checkboxes', () => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
-            const pos = new Position(12, 14);
-            editor.selection = new Selection(pos, pos);
+            moveAndSelect(editor, 12, 14);
             return editor.edit(edit => {
                 checkboxes.OrgToggleCheckbox(editor, edit);
             });
@@ -95,8 +98,7 @@ suite('Checkboxes', () => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
-            const pos = new Position(3, 14);
-            editor.selection = new Selection(pos, pos);
+            moveAndSelect(editor, 3, 14);
             return editor.edit(edit => {
                 checkboxes.OrgToggleCheckbox(editor, edit);
             });
@@ -115,14 +117,12 @@ suite('Checkboxes', () => {
             return window.showTextDocument(document);
         }).then(editor => {
             textEditor = editor;
-            var pos = new Position(18, 5);
-            editor.selection = new Selection(pos, pos);
+            moveAndSelect(editor, 18, 5);
             return editor.edit(edit => {
                 checkboxes.OrgToggleCheckbox(editor, edit);
             });
         }).then(() => {
-            var pos = new Position(20, 5);
-            textEditor.selection = new Selection(pos, pos);
+            moveAndSelect(textEditor, 20, 5);
             return textEditor.edit(edit => {
                 checkboxes.OrgToggleCheckbox(textEditor, edit);
             });
