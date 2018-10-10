@@ -2,7 +2,7 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { Selection, TextDocument, window, workspace, TextEditor } from 'vscode';
+import * as vscode from 'vscode';
 import * as checkboxes from '../src/checkboxes';
 
 const content: string = 
@@ -29,17 +29,23 @@ const content: string =
     - [ ] sets all children to off when parent is off
 `;
 
-function moveAndSelect(editor: TextEditor, line: number, col: number, lineTo?: number, colTo?: number) {
-    lineTo = lineTo ? lineTo : line;
-    colTo = colTo ? colTo : col;
-    editor.selection = new Selection(line, col, lineTo, colTo);
+function closeAllEditors(): Thenable<any> {
+	return vscode.commands.executeCommand('workbench.action.closeAllEditors');
 }
 
-function loadContent(): Thenable<TextDocument> {
-    return workspace.openTextDocument({ language: 'org', content: content });
+function moveAndSelect(editor: vscode.TextEditor, line: number, col: number, lineTo?: number, colTo?: number) {
+    lineTo = lineTo ? lineTo : line;
+    colTo = colTo ? colTo : col;
+    editor.selection = new vscode.Selection(line, col, lineTo, colTo);
+}
+
+function loadContent(): Thenable<vscode.TextDocument> {
+    return vscode.workspace.openTextDocument({ language: 'org', content: content });
 }
 
 suite('Checkboxes', () => {
+    teardown(closeAllEditors);
+    
     test('Can convert tabs to spaces', done => {
         let cases = [
             "  \t \t ",
@@ -61,10 +67,10 @@ suite('Checkboxes', () => {
     });
     test('Can update summary', done => {
         let expected = '* TODO Implement tests [0%] [0/4]';
-        let textDocument: TextDocument;
+        let textDocument: vscode.TextDocument;
         loadContent().then(document => {
             textDocument = document;
-            return window.showTextDocument(document);
+            return vscode.window.showTextDocument(document);
         }).then(editor => {
             moveAndSelect(editor, 9, 5);
             return editor.edit(edit => {
@@ -73,14 +79,15 @@ suite('Checkboxes', () => {
         }).then(() => {
             var actual = textDocument.lineAt(9).text;
             assert.equal(actual, expected);
+            return Promise.resolve();
         }).then(done, done);
     });
     test('Ticking checkbox updates parent', done => {
         let expected = '  - [-] toggling child checkbox [25%]';
-        let textDocument: TextDocument;
+        let textDocument: vscode.TextDocument;
         loadContent().then(document => {
             textDocument = document;
-            return window.showTextDocument(document);
+            return vscode.window.showTextDocument(document);
         }).then(editor => {
             moveAndSelect(editor, 14, 14);
             return editor.edit(edit => {
@@ -89,6 +96,7 @@ suite('Checkboxes', () => {
         }).then(() => {
             var actual = textDocument.lineAt(12).text;
             assert.equal(actual, expected);
+            return Promise.resolve();
         }).then(done, done);
     });
     test('Ticking parent checkbox ticks all children', done => {
@@ -98,10 +106,10 @@ suite('Checkboxes', () => {
             '    - [x] sets parent to off when all children are off',
             '    - [x] sets parent to undetermined when some children are on and some are off'
         ];
-        let textDocument: TextDocument;
+        let textDocument: vscode.TextDocument;
         loadContent().then(document => {
             textDocument = document;
-            return window.showTextDocument(document);
+            return vscode.window.showTextDocument(document);
         }).then(editor => {
             moveAndSelect(editor, 12, 14);
             return editor.edit(edit => {
@@ -112,14 +120,15 @@ suite('Checkboxes', () => {
                 var actual = textDocument.lineAt(13 + i).text;
                 assert.equal(actual, expected[i]);
             }
+            return Promise.resolve();
         }).then(done, done);
     });
     test('Unticking last ticked child clears parent checkbox', done => {
         let expected = '  - [ ] call people [0/3]';
-        let textDocument: TextDocument;
+        let textDocument: vscode.TextDocument;
         loadContent().then(document => {
             textDocument = document;
-            return window.showTextDocument(document);
+            return vscode.window.showTextDocument(document);
         }).then(editor => {
             moveAndSelect(editor, 3, 14);
             return editor.edit(edit => {
@@ -128,15 +137,16 @@ suite('Checkboxes', () => {
         }).then(() => {
             var actual = textDocument.lineAt(1).text;
             assert.equal(actual, expected);
+            return Promise.resolve();
         }).then(done, done);
     });
     test('Ticking all children ticks parent checkbox', done => {
         let expected = '  - [x] toggling parent checkbox [3/3]';
-        let textDocument: TextDocument;
-        let textEditor: TextEditor;
+        let textDocument: vscode.TextDocument;
+        let textEditor: vscode.TextEditor;
         loadContent().then(document => {
             textDocument = document;
-            return window.showTextDocument(document);
+            return vscode.window.showTextDocument(document);
         }).then(editor => {
             textEditor = editor;
             moveAndSelect(editor, 18, 5);
@@ -151,6 +161,7 @@ suite('Checkboxes', () => {
         }).then(() => {
             var actual = textDocument.lineAt(17).text;
             assert.equal(actual, expected);
+            return Promise.resolve();
         }).then(done, done);
     });
 });
