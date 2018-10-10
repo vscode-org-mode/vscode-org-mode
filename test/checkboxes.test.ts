@@ -5,7 +5,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import * as checkboxes from '../src/checkboxes';
 
-const content: string = 
+const content2level: string = 
 `* TODO Organize party [/]
   - [-] call people [/]
     - [ ] Peter
@@ -29,6 +29,21 @@ const content: string =
     - [ ] sets all children to off when parent is off
 `;
 
+const content3level: string = 
+`* TODO Organize party [/]
+  - [-] order food [%]
+    - [ ] appetizers
+    - [-] salads [/]
+      - [ ] ceasar salad
+      - [x] coleslaw
+      - [ ] avocado salad
+    - [ ] dessert [/]
+      - [ ] cake
+      - [ ] cookies
+      - [ ] icecream
+  - [x] order drinks
+`;
+
 function closeAllEditors(): Thenable<any> {
 	return vscode.commands.executeCommand('workbench.action.closeAllEditors');
 }
@@ -39,7 +54,7 @@ function moveAndSelect(editor: vscode.TextEditor, line: number, col: number, lin
     editor.selection = new vscode.Selection(line, col, lineTo, colTo);
 }
 
-function loadContent(): Thenable<vscode.TextDocument> {
+function loadContent(content: string): Thenable<vscode.TextDocument> {
     return vscode.workspace.openTextDocument({ language: 'org', content: content });
 }
 
@@ -74,7 +89,7 @@ suite('Checkboxes', () => {
     });
     test('Can update summary', async () => {
         let expected = '* TODO Implement tests [0%] [0/4]';
-        let document = await loadContent();
+        let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.updateSummary', checkboxes.OrgUpdateSummary);
         moveAndSelect(editor, 9, 5);
@@ -85,7 +100,7 @@ suite('Checkboxes', () => {
     });
     test('Ticking checkbox updates parent', async () => {
         let expected = '  - [-] toggling child checkbox [25%]';
-        let document = await loadContent();
+        let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 14, 14);
@@ -101,7 +116,7 @@ suite('Checkboxes', () => {
             '    - [x] sets parent to off when all children are off',
             '    - [x] sets parent to undetermined when some children are on and some are off'
         ];
-        let document = await loadContent();
+        let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 12, 14);
@@ -114,7 +129,7 @@ suite('Checkboxes', () => {
     });
     test('Unticking last ticked child clears parent checkbox', async () => {
         let expected = '  - [ ] call people [0/3]';
-        let document = await loadContent();
+        let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 3, 14);
@@ -125,7 +140,7 @@ suite('Checkboxes', () => {
     });
     test('Ticking all children ticks parent checkbox', async () => {
         let expected = '  - [x] toggling parent checkbox [3/3]';
-        let document = await loadContent();
+        let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 18, 5);
@@ -134,6 +149,23 @@ suite('Checkboxes', () => {
         await vscode.commands.executeCommand('org.toggleCheckbox');
         var actual = document.lineAt(17).text;
         assert.equal(actual, expected);
+        registration.dispose();
+    });
+    test('Ticking parent checkbox ticks all children (3 level)', async () => {
+        const expected = [
+            '    - [x] salads [3/3]',
+            '      - [x] cookies'
+        ];
+        const lineNo = [3, 9];
+        let document = await loadContent(content3level);
+        let editor = await vscode.window.showTextDocument(document);
+        let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
+        moveAndSelect(editor, 1, 7);
+        await vscode.commands.executeCommand('org.toggleCheckbox');
+        for (var i: number = 0; i < expected.length; i++) {
+            var actual = document.lineAt(lineNo[i]).text;
+            assert.equal(actual, expected[i]);
+        }
         registration.dispose();
     });
 });
