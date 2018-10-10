@@ -2,14 +2,41 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { Position, Selection, TextDocument, window, workspace, TextEditor } from 'vscode';
-import { join } from 'path';
+import { Selection, TextDocument, window, workspace, TextEditor } from 'vscode';
 import * as checkboxes from '../src/checkboxes';
+
+const content: string = 
+`* TODO Organize party [/]
+  - [-] call people [/]
+    - [ ] Peter
+    - [X] Sarah
+    - [ ] Sam
+  - [X] order food
+  - [ ] think about what music to play
+  - [X] talk to the neighbors
+
+* TODO Implement tests [%] [/]
+  - [ ] updates summary cookie
+  - [ ] updates percent cookie
+  - [ ] toggling child checkbox [%]
+    - [ ] updates parent summary/percent cookie
+    - [ ] sets parent to on if all children are on
+    - [ ] sets parent to off when all children are off
+    - [ ] sets parent to undetermined when some children are on and some are off
+  - [-] toggling parent checkbox [/]
+    - [ ] updates summary/percent cookie
+    - [x] sets all children to on when parent is on
+    - [ ] sets all children to off when parent is off
+`;
 
 function moveAndSelect(editor: TextEditor, line: number, col: number, lineTo?: number, colTo?: number) {
     lineTo = lineTo ? lineTo : line;
     colTo = colTo ? colTo : col;
     editor.selection = new Selection(line, col, lineTo, colTo);
+}
+
+function loadContent(): Thenable<TextDocument> {
+    return workspace.openTextDocument({ language: 'org', content: content });
 }
 
 suite('Checkboxes', () => {
@@ -33,10 +60,9 @@ suite('Checkboxes', () => {
         done();
     });
     test('Can update summary', done => {
-        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         let expected = '* TODO Implement tests [0%] [0/4]';
         let textDocument: TextDocument;
-        workspace.openTextDocument(filePath).then(document => {
+        loadContent().then(document => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
@@ -50,10 +76,9 @@ suite('Checkboxes', () => {
         }).then(done, done);
     });
     test('Ticking checkbox updates parent', done => {
-        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         let expected = '  - [-] toggling child checkbox [25%]';
         let textDocument: TextDocument;
-        workspace.openTextDocument(filePath).then(document => {
+        loadContent().then(document => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
@@ -67,7 +92,6 @@ suite('Checkboxes', () => {
         }).then(done, done);
     });
     test('Ticking parent checkbox ticks all children', done => {
-        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         const expected = [
             '    - [x] updates parent summary/percent cookie',
             '    - [x] sets parent to on if all children are on',
@@ -75,7 +99,7 @@ suite('Checkboxes', () => {
             '    - [x] sets parent to undetermined when some children are on and some are off'
         ];
         let textDocument: TextDocument;
-        workspace.openTextDocument(filePath).then(document => {
+        loadContent().then(document => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
@@ -91,10 +115,9 @@ suite('Checkboxes', () => {
         }).then(done, done);
     });
     test('Unticking last ticked child clears parent checkbox', done => {
-        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         let expected = '  - [ ] call people [0/3]';
         let textDocument: TextDocument;
-        workspace.openTextDocument(filePath).then(document => {
+        loadContent().then(document => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
@@ -108,11 +131,10 @@ suite('Checkboxes', () => {
         }).then(done, done);
     });
     test('Ticking all children ticks parent checkbox', done => {
-        const filePath = join(__dirname, '../../test/fixtures/checkboxes.org');
         let expected = '  - [x] toggling parent checkbox [3/3]';
         let textDocument: TextDocument;
         let textEditor: TextEditor;
-        workspace.openTextDocument(filePath).then(document => {
+        loadContent().then(document => {
             textDocument = document;
             return window.showTextDocument(document);
         }).then(editor => {
