@@ -11,14 +11,16 @@ const percentRegex = /\[(\d*)%\]/;
 const indentRegex = /^(\s*)\S/;
     
 export function OrgTabsToSpaces(tabs: string, tabSize: number = 4): number {
-    if (!tabs)
+    if (!tabs) {
         return 0;
+    }
     let off = 1;
     for (let i = 0; i < tabs.length; i++) {
-        if (tabs[i] == '\t')
+        if (tabs[i] == '\t') {
             off += tabSize - off % tabSize;
-        else
+        } else {
             off++;
+        }
     }
     return off;
 }
@@ -31,7 +33,9 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
         let text = doc.getText(checkbox).toLowerCase();
         var delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
         let parent = orgFindParent(editor, line);
-        // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
+        // Since the updates as a result of toggle have not happened yet in the editor, 
+        // counting checked children is going to use old value of the current checkbox.  
+        // Hence the delta adjustment.
         if (parent) {
             orgUpdateParent(editor, edit, parent, delta);
         }
@@ -44,6 +48,7 @@ export function OrgUpdateSummary(editor: TextEditor, edit: TextEditorEdit) {
     orgUpdateParent(editor, edit, line, 0);
 }
 
+// Pattern elements, like ratio summary, percent summary, checkbox, of the orgmode document are called cookies.
 function orgFindCookie(cookie: RegExp, line: TextLine): Range | undefined {
     let match = cookie.exec(line.text);
     if (match) {
@@ -73,40 +78,42 @@ function orgGetIndent(line: TextLine): number {
     return 0;
 }
 
-// Perform the toggle.  'x' or 'X' becomes blank and blank becomes 'X'.
-function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLine, toCheck: string): number {
+// Set checkbox to the desired state and perform necessary updates to child and parent elements (however many levels).
+function orgCascadeCheckbox(edit: TextEditorEdit, checkbox: Range, line: TextLine, state: string): number {
     if (!checkbox) {
         return 0;
     }
     let editor = window.activeTextEditor;
     let text = editor.document.getText(checkbox).toLowerCase();
-    if (text == toCheck) {
+    if (text == state) {
         return 0;  // Nothing to do.
     }
-    edit.replace(checkbox, toCheck);
+    edit.replace(checkbox, state);
     if (!line) {
-        return orgTriStateToDelta(toCheck);
+        return orgTriStateToDelta(state);
     }
     let children = orgFindChildren(editor, line);
     let child: TextLine = undefined;
     for (child of children) {
-        orgCascadeCheckbox(edit, orgFindCookie(checkboxRegex, child), child, toCheck);
+        orgCascadeCheckbox(edit, orgFindCookie(checkboxRegex, child), child, state);
     }
-    // If there is a summary on this line, update it to either [0/0] or [total/total] depending on value of 'check'.
-    let total = toCheck ? children.length : 0;
+    // If there is a summary cookie on this line, update it to either [0/0] or [total/total] depending on target state.
+    let total = state ? children.length : 0;
     let summary = orgFindCookie(summaryRegex, line);
     if (summary) {
         edit.replace(summary, total.toString() + '/' + total.toString());
     }
+    // If there is a percent cookie on this line, update it to either [0%] or [100%] depending on target state.
     let percent = orgFindCookie(percentRegex, line);
     if (percent) {
-        total = toCheck == 'x' ? 100 : 0;
+        total = state == 'x' ? 100 : 0;
         edit.replace(percent, total.toString());
     }
-    return orgTriStateToDelta(toCheck);
+    return orgTriStateToDelta(state);
 }
 
-// Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
+// Find parent item by walking lines up to the start of the file looking for a smaller indentation.  
+// Does not ignore blank lines (indentation 0).
 function orgFindParent(editor: TextEditor, line: TextLine): TextLine | undefined {
     let doc = editor.document;
     let lnum = line.lineNumber;
@@ -125,8 +132,8 @@ function orgFindParent(editor: TextEditor, line: TextLine): TextLine | undefined
     return parent;
 }
 
-// Update checkbox and summary on this line.  Adjust checked items count with an additional offset.  That accounts for 
-// a checkbox that has just been toggled but text in the editor has not been updated yet.
+// Update checkbox and summary on this line.  Adjust checked items count with an additional offset.  
+// That accounts for a checkbox that has just been toggled but text in the editor has not been updated yet.
 function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLine, adjust: number) {
     if (!line) {
         return;
@@ -156,13 +163,16 @@ function orgUpdateParent(editor: TextEditor, edit: TextEditorEdit, line: TextLin
     let delta = orgCascadeCheckbox(edit, chk, undefined, orgGetTriState(checked, total));
     // Recursively update parent nodes
     let parent = orgFindParent(editor, line);
-    // Since the updates as a result of toggle have not happened yet in the editor, counting checked children is going to use old value of current checkbox.  Hence the adjustment.
+    // Since the updates as a result of toggle have not happened yet in the editor, 
+    // counting checked children is going to use old value of the current checkbox.  
+    // Hence the delta adjustment.
     if (parent) {
         orgUpdateParent(editor, edit, parent, delta);
     }
 }
 
-// Find parent item by walking lines up to the start of the file looking for a smaller indentation.  Does not ignore blank lines (indentation 0).
+// Find parent item by walking lines up to the start of the file looking for a smaller indentation.  
+// Does not ignore blank lines (indentation 0).
 function orgFindChildren(editor: TextEditor, line: TextLine): TextLine[] {
     let children: TextLine[] = [];
     let lnum = line.lineNumber;
