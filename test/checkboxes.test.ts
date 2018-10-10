@@ -81,7 +81,7 @@ suite('Checkboxes', () => {
             18
         ];
 
-        for (let i = 0; i < cases.length; i++) {
+        for (let i: number = 0; i < cases.length; i++) {
             assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 4), expected4[i]);
             assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 8), expected8[i]);
         }
@@ -94,7 +94,7 @@ suite('Checkboxes', () => {
         let registration = vscode.commands.registerTextEditorCommand('org.updateSummary', checkboxes.OrgUpdateSummary);
         moveAndSelect(editor, 9, 5);
         await vscode.commands.executeCommand('org.updateSummary');
-        var actual = document.lineAt(9).text;
+        let actual = document.lineAt(9).text;
         assert.equal(actual, expected);
         registration.dispose();
     });
@@ -105,7 +105,7 @@ suite('Checkboxes', () => {
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 14, 14);
         await vscode.commands.executeCommand('org.toggleCheckbox');
-        var actual = document.lineAt(12).text;
+        let actual = document.lineAt(12).text;
         assert.equal(actual, expected);
         registration.dispose();
     });
@@ -116,13 +116,14 @@ suite('Checkboxes', () => {
             '    - [x] sets parent to off when all children are off',
             '    - [x] sets parent to undetermined when some children are on and some are off'
         ];
+        const lineNo = [13, 14, 15, 16];
         let document = await loadContent(content2level);
         let editor = await vscode.window.showTextDocument(document);
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 12, 14);
         await vscode.commands.executeCommand('org.toggleCheckbox');
-        for (var i: number = 0; i < 4; i++) {
-            var actual = document.lineAt(13 + i).text;
+        for (let i: number = 0; i < expected.length; i++) {
+            let actual = document.lineAt(lineNo[i]).text;
             assert.equal(actual, expected[i]);
         }
         registration.dispose();
@@ -134,7 +135,7 @@ suite('Checkboxes', () => {
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 3, 14);
         await vscode.commands.executeCommand('org.toggleCheckbox');
-        var actual = document.lineAt(1).text;
+        let actual = document.lineAt(1).text;
         assert.equal(actual, expected);
         registration.dispose();
     });
@@ -147,7 +148,7 @@ suite('Checkboxes', () => {
         await vscode.commands.executeCommand('org.toggleCheckbox');
         moveAndSelect(editor, 20, 5);
         await vscode.commands.executeCommand('org.toggleCheckbox');
-        var actual = document.lineAt(17).text;
+        let actual = document.lineAt(17).text;
         assert.equal(actual, expected);
         registration.dispose();
     });
@@ -162,8 +163,8 @@ suite('Checkboxes', () => {
         let registration = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', checkboxes.OrgToggleCheckbox);
         moveAndSelect(editor, 1, 7);
         await vscode.commands.executeCommand('org.toggleCheckbox');
-        for (var i: number = 0; i < expected.length; i++) {
-            var actual = document.lineAt(lineNo[i]).text;
+        for (let i: number = 0; i < expected.length; i++) {
+            let actual = document.lineAt(lineNo[i]).text;
             assert.equal(actual, expected[i]);
         }
         registration.dispose();

@@ -31,7 +31,7 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     let checkbox = orgFindCookie(checkboxRegex, line);
     if (checkbox) {
         let text = doc.getText(checkbox).toLowerCase();
-        var delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
+        let delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
         let parent = orgFindParent(editor, line);
         // Since the updates as a result of toggle have not happened yet in the editor, 
         // counting checked children is going to use old value of the current checkbox.  
