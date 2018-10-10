@@ -53,15 +53,22 @@ suite('Checkboxes', () => {
             "\t  \t",
             "    \t \t  "
         ];
-        let expected = [
+        let expected4 = [
             9,
             8,
             8,
             14
         ];
+        let expected8 = [
+            17,
+            16,
+            16,
+            18
+        ];
 
         for (let i = 0; i < cases.length; i++) {
-            assert.equal(checkboxes.OrgTabsToSpaces(cases[i]), expected[i]);
+            assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 4), expected4[i]);
+            assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 8), expected8[i]);
         }
         done();
     });
