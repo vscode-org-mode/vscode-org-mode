@@ -157,4 +157,15 @@ suite('Checkboxes', () => {
             assert.equal(actual, expected[i]);
         }
     });
+    test('Unticking child checkbox makes parent untetermined (3 level)', async () => {
+        const expected = '    - [-] dessert [2/3]';
+        let document = await loadContent(content3level);
+        let editor = await vscode.window.showTextDocument(document);
+        moveAndSelect(editor, 1, 7);
+        await vscode.commands.executeCommand('org.toggleCheckbox');
+        moveAndSelect(editor, 8, 7);
+        await vscode.commands.executeCommand('org.toggleCheckbox');
+        let actual = document.lineAt(7).text;
+        assert.equal(actual, expected);
+    });
 });
