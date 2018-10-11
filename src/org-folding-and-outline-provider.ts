@@ -20,10 +20,10 @@ type Chunk = { type: ChunkType, title: string, level: number, startLine: number 
 
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
 
-    private documentStateRegistry: WeakMap<TextDocument, OrgFoldingAndOutlineDocumentState>;;
+    private documentStateRegistry: WeakMap<TextDocument, OrgFoldingAndOutlineDocumentState>;
 
     constructor() {
-        this.documentStateRegistry = new WeakMap()
+        this.documentStateRegistry = new WeakMap();
     }
 
     provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
@@ -83,7 +83,7 @@ class OrgFoldingAndOutlineDocumentState {
                     inBlock = false;
                     if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
                         const top = stack.pop();
-                        this.createSection(top, lineNumber)
+                        this.createSection(top, lineNumber);
                     }
                 }
             } else if (/^ *#\+BEGIN_/i.test(text)) { // block beginning
@@ -98,7 +98,7 @@ class OrgFoldingAndOutlineDocumentState {
                 // close previous sections
                 while (stack.length > 0 && stack[stack.length - 1].level >= currentLevel) {
                     const top = stack.pop();
-                    this.createSection(top, lineNumber - 1)
+                    this.createSection(top, lineNumber - 1);
                 }
 
                 let title = text.substr(text.indexOf(' ') + 1);
@@ -108,7 +108,7 @@ class OrgFoldingAndOutlineDocumentState {
 
         let top: Chunk;
         while ((top = stack.pop()) != null) {
-            this.createSection(top, count - 1)
+            this.createSection(top, count - 1);
         }
     }
 
