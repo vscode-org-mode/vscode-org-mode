@@ -241,7 +241,7 @@ export function getUniq(arr: string[]): string[] {
  * @return true if the specified line is a block end, false otherwise.
  */
 export function isBlockEndLine(line: string) : boolean {
-    return /^ *#\+END_/i.test(line);
+    return /^ *#\+END(_|:)/i.test(line);
 }
 
 /**
@@ -250,7 +250,7 @@ export function isBlockEndLine(line: string) : boolean {
  * @return true if the specified line is a block, false otherwise.
  */
 export function isBlockStartLine(line: string) : boolean  {
-    return /^ *#\+BEGIN_/i.test(line);
+    return /^ *#\+BEGIN(_|:)/i.test(line);
 }
 
 /**

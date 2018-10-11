@@ -93,7 +93,7 @@ class OrgFoldingAndOutlineDocumentState {
                 }
             } else if (isBlockStartLine(text)) {
                 inBlock = true;
-                let title = text.substr(text.indexOf('_') + 1);
+                let title = this.extractBlockTitle(text);
                 stack.push({ type: ChunkType.BLOCK, title, level: Number.MAX_SAFE_INTEGER, startLine: lineNumber });
             } else if (isHeaderLine(text)) {
                 let currentLevel = getStarPrefixCount(text);
@@ -125,5 +125,13 @@ class OrgFoldingAndOutlineDocumentState {
                 new Position(endLine, 0)
             )
         ));
+    }
+
+    private extractBlockTitle(line: string) : string {
+        let titleStartAt = line.indexOf('_') + 1;
+        if(titleStartAt == 0) {
+            titleStartAt = line.indexOf(':') + 2;
+        }
+        return line.substr(titleStartAt);
     }
 }
