@@ -1,6 +1,6 @@
 'use strict';
 
-import { window, TextLine, Range, TextEditor, TextEditorEdit } from 'vscode';
+import { window, workspace, TextLine, Range, TextEditor, TextEditorEdit } from 'vscode';
 
 // Checkbox is represented by exactly one symbol between square brackets.  Symbol indicates status: '-' undetermined, 'x' or 'X' checked, ' ' unchecked.
 const checkboxRegex = /\[([-xX ])\]/;
@@ -9,6 +9,7 @@ const summaryRegex = /\[(\d*\/\d*)\]/;
 // Percentage is a cookie indicating the percentage of ticked checkboxes in the child list relative to the total number of checkboxes in the list. 
 const percentRegex = /\[(\d*)%\]/;
 const indentRegex = /^(\s*)\S/;
+let orgTabSize: number = 4;
     
 export function OrgTabsToSpaces(tabs: string, tabSize: number = 4): number {
     if (!tabs) {
@@ -30,6 +31,7 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     let line = doc.lineAt(editor.selection.active.line);
     let checkbox = orgFindCookie(checkboxRegex, line);
     if (checkbox) {
+        orgTabSize = workspace.getConfiguration('editor', doc.uri).get('tabSize');
         let text = doc.getText(checkbox).toLowerCase();
         let delta = orgCascadeCheckbox(edit, checkbox, line, text == 'x' ? ' ' : 'x');
         let parent = orgFindParent(editor, line);
@@ -45,6 +47,7 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
 export function OrgUpdateSummary(editor: TextEditor, edit: TextEditorEdit) {
     let doc = editor.document;
     let line = doc.lineAt(editor.selection.active.line);
+    orgTabSize = workspace.getConfiguration('editor', doc.uri).get('tabSize');
     orgUpdateParent(editor, edit, line, 0);
 }
 
@@ -73,7 +76,7 @@ function orgGetTriState(checked, total: number): string {
 function orgGetIndent(line: TextLine): number {
     let match = indentRegex.exec(line.text);
     if (match) {
-        return OrgTabsToSpaces(match[1]);
+        return OrgTabsToSpaces(match[1], orgTabSize);
     }
     return 0;
 }
