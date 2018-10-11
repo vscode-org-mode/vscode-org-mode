@@ -245,6 +245,16 @@
                 "command": "org.literal",
                 "key": "ctrl+alt+o l",
                 "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.updateSummary",
+                "key": "ctrl+alt+o #",
+                "when": "editorLangId == 'org'"
+            },
+            {
+                "command": "org.toggleCheckbox",
+                "key": "ctrl+alt+o x",
+                "when": "editorLangId == 'org'"
             }
         ]
     },
