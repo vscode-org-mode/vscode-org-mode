@@ -34,7 +34,7 @@ suite('Commands', () => {
             '***** Home',
         ];
 
-        await inTextEditor({language: 'org', content: steps[0]}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
             for (let i = 1; i < steps.length; ++i) {
                 await vscode.commands.executeCommand('org.doDemote');
                 assert.equal(d.getText(), steps[i]);
@@ -51,7 +51,7 @@ suite('Commands', () => {
             '* Home',
         ];
 
-        await inTextEditor({language: 'org', content: steps[0]}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
             for (let i = 1; i < steps.length; ++i) {
                 await vscode.commands.executeCommand('org.doPromote');
                 assert.equal(d.getText(), steps[i]);
@@ -64,7 +64,7 @@ suite('Commands', () => {
         const expected = 'Some *text* here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             select(e, textWordRange);
             await vscode.commands.executeCommand('org.bold');
             assert.equal(d.getText(), expected);
@@ -76,7 +76,7 @@ suite('Commands', () => {
         const expected = 'Some /text/ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             select(e, textWordRange);
             await vscode.commands.executeCommand('org.italic');
             assert.equal(d.getText(), expected);
@@ -88,7 +88,7 @@ suite('Commands', () => {
         const expected = 'Some _text_ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             select(e, textWordRange);
             await vscode.commands.executeCommand('org.underline');
             assert.equal(d.getText(), expected);
@@ -100,7 +100,7 @@ suite('Commands', () => {
         const expected = 'Some ~text~ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             select(e, textWordRange);
             await vscode.commands.executeCommand('org.code');
             assert.equal(d.getText(), expected);
@@ -112,7 +112,7 @@ suite('Commands', () => {
         const expected = 'Some =text= here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             select(e, textWordRange);
             await vscode.commands.executeCommand('org.verbose');
             assert.equal(d.getText(), expected);
@@ -123,8 +123,23 @@ suite('Commands', () => {
         const initial = 'Some text here';
         const expected = ': Some text here';
 
-        await inTextEditor({language: 'org', content: initial}, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             await vscode.commands.executeCommand('org.literal');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('InsertSubheading', async () => {
+        const initial = `* Header
+* Header2`;
+        const expected = `* Header\n` +
+            `** \n` +
+            `*** \n` +
+            `* Header2`;
+
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+            await vscode.commands.executeCommand('org.insertSubheading');
+            await vscode.commands.executeCommand('org.insertSubheading');
             assert.equal(d.getText(), expected);
         });
     });
