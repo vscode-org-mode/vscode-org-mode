@@ -143,4 +143,34 @@ suite('Commands', () => {
             assert.equal(d.getText(), expected);
         });
     });
+
+    test('IncrementContext', async () => {
+        const steps = [
+            '* Header',
+            '* TODO Header',
+            '* DONE Header',
+        ];
+
+        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
+            for (let i = 1; i < steps.length; ++i) {
+                await vscode.commands.executeCommand('org.incrementContext');
+                assert.equal(d.getText(), steps[i]);
+            }
+        });
+    });
+
+    test('DecrementContext', async () => {
+        const steps = [
+            '* DONE Header',
+            '* TODO Header',
+            '* Header',
+        ];
+
+        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
+            for (let i = 1; i < steps.length; ++i) {
+                await vscode.commands.executeCommand('org.decrementContext');
+                assert.equal(d.getText(), steps[i]);
+            }
+        });
+    });
 });
