@@ -36,8 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
     const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
     const butterflyCmd = vscode.commands.registerTextEditorCommand('org.butterfly', PascuaneseFunctions.butterfly);
-    const updateSummaryCmd = vscode.commands.registerTextEditorCommand('org.updateSummary', Checkboxes.OrgUpdateSummary);
-    const toggleCheckboxCmd = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', Checkboxes.OrgToggleCheckbox);
+    const updateSummaryCmd = vscode.commands.registerTextEditorCommand('org.updateSummary', Checkboxes.orgUpdateSummary);
+    const toggleCheckboxCmd = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', Checkboxes.orgToggleCheckbox);
 
     context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);

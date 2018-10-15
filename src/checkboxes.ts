@@ -11,7 +11,7 @@ const percentRegex = /\[(\d*)%\]/;
 const indentRegex = /^(\s*)\S/;
 let orgTabSize: number = 4;
     
-export function OrgTabsToSpaces(tabs: string, tabSize: number = 4): number {
+export function orgTabsToSpaces(tabs: string, tabSize: number = 4): number {
     if (!tabs) {
         return 0;
     }
@@ -26,7 +26,7 @@ export function OrgTabsToSpaces(tabs: string, tabSize: number = 4): number {
     return off;
 }
 
-export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
+export function orgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     let doc = editor.document;
     let line = doc.lineAt(editor.selection.active.line);
     let checkbox = orgFindCookie(checkboxRegex, line);
@@ -44,7 +44,7 @@ export function OrgToggleCheckbox(editor: TextEditor, edit: TextEditorEdit) {
     }
 }
 
-export function OrgUpdateSummary(editor: TextEditor, edit: TextEditorEdit) {
+export function orgUpdateSummary(editor: TextEditor, edit: TextEditorEdit) {
     let doc = editor.document;
     let line = doc.lineAt(editor.selection.active.line);
     orgTabSize = workspace.getConfiguration('editor', doc.uri).get('tabSize');
@@ -76,7 +76,7 @@ function orgGetTriState(checked, total: number): string {
 function orgGetIndent(line: TextLine): number {
     let match = indentRegex.exec(line.text);
     if (match) {
-        return OrgTabsToSpaces(match[1], orgTabSize);
+        return orgTabsToSpaces(match[1], orgTabSize);
     }
     return 0;
 }

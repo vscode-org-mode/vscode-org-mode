@@ -82,8 +82,8 @@ suite('Checkboxes', () => {
         ];
 
         for (let i: number = 0; i < cases.length; i++) {
-            assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 4), expected4[i]);
-            assert.equal(checkboxes.OrgTabsToSpaces(cases[i], 8), expected8[i]);
+            assert.equal(checkboxes.orgTabsToSpaces(cases[i], 4), expected4[i]);
+            assert.equal(checkboxes.orgTabsToSpaces(cases[i], 8), expected8[i]);
         }
         done();
     });
