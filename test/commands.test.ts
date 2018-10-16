@@ -23,6 +23,8 @@ function select(editor: vscode.TextEditor, range: vscode.Range) {
     editor.selection = new vscode.Selection(range.start, range.end);
 }
 
+const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 suite('Commands', () => {
 
     test('Demote', async () => {
@@ -200,6 +202,21 @@ suite('Commands', () => {
 
         await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
             await vscode.commands.executeCommand('org.promoteSubtree');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('Timestamp', async () => {
+        // TODO: Need to find a way to somehow mock Date
+        const now = new Date();
+        const datePart = now.toISOString().slice(0, 10);
+        const dayOfWeek = weekdayArray[now.getDay()];
+
+        const initial = '';
+        const expected = `<${datePart} ${dayOfWeek}>`;
+
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+            await vscode.commands.executeCommand('org.timestamp');
             assert.equal(d.getText(), expected);
         });
     });
