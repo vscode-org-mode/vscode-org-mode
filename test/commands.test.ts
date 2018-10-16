@@ -173,4 +173,34 @@ suite('Commands', () => {
             }
         });
     });
+
+    test('DemoteSubtree', async () => {
+        const initial = `* Header 1
+** Subheader
+* Header 2`;
+
+        const expected = `** Header 1
+*** Subheader
+* Header 2`;
+
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+            await vscode.commands.executeCommand('org.demoteSubtree');
+            assert.equal(d.getText(), expected);
+        });
+    });
+
+    test('PromoteSubtree', async () => {
+        const initial = `** Header 1
+*** Subheader
+** Header 2`;
+
+        const expected = `* Header 1
+** Subheader
+** Header 2`;
+
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+            await vscode.commands.executeCommand('org.promoteSubtree');
+            assert.equal(d.getText(), expected);
+        });
+    });
 });
