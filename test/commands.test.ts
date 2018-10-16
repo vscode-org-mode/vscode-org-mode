@@ -220,4 +220,40 @@ suite('Commands', () => {
             assert.equal(d.getText(), expected);
         });
     });
+
+    test('Insert Heading Respect Content', async () => {
+        const initial = '* Header\n' +
+            '** Header 2\n' +
+            '    Some content goes here\n' +
+            '*** Header 3\n' +
+            '    Some more content that goes here\n' +
+            '** Header again\n' +
+            '    And some more content here';
+
+        const expected = '* Header\n' +
+            '** Header 2\n' +
+            '    Some content goes here\n' +
+            '*** Header 3\n' +
+            '    Some more content that goes here\n' +
+            '** \n' +
+            '** \n' +
+            '** Header again\n' +
+            '    And some more content here\n' +
+            '* ';
+
+        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+            // Invoke while standing on 'Header'
+            await vscode.commands.executeCommand('org.insertHeadingRespectContent');
+
+            // Invoke while standing on 'Header 2'
+            move(e, 1, 0);
+            await vscode.commands.executeCommand('org.insertHeadingRespectContent');
+
+            // Invoke while standing on content of 'Header 2' section
+            move(e, 2, 0);
+            await vscode.commands.executeCommand('org.insertHeadingRespectContent');
+
+            assert.equal(d.getText(), expected);
+        });
+    });
 });
