@@ -3,3 +3,4 @@ node_modules
 src/*.js
 
 coverage/
+.vscode-test/
