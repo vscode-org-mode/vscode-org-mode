@@ -4,10 +4,10 @@ os:
   - linux
   - osx
 node_js:
-  - "node" # latest node
-  - "7.9.0" # vscode >= 1.16.0
-  - "7.4.0" # vscode >= 1.12.0 < 1.16.0
-  - "6.5.0" # vscode >= 1.8.0 < 1.12.0
+  - "8.9" # vscode >= 1.26.0
+  - "7.9" # vscode >= 1.16.0 < 1.26.0
+  - "7.4" # vscode >= 1.12.0 < 1.16.0
+  - "6.5" # vscode >= 1.8.0 < 1.12.0
 
 before_install:
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
