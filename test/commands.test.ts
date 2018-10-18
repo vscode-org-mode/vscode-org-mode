@@ -36,13 +36,13 @@ suite('Commands', () => {
             '***** Home',
         ];
 
-        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: steps[0] }, async (_, document) => {
             for (let i = 1; i < steps.length; ++i) {
                 await vscode.commands.executeCommand('org.doDemote');
-                assert.equal(d.getText(), steps[i]);
+                assert.equal(document.getText(), steps[i]);
             }
         });
-    }).timeout(10000); // First test could be slow because of VSCode init
+    });
 
     test('Promote', async () => {
         const steps = [
@@ -53,10 +53,10 @@ suite('Commands', () => {
             '* Home',
         ];
 
-        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: steps[0] }, async (_, document) => {
             for (let i = 1; i < steps.length; ++i) {
                 await vscode.commands.executeCommand('org.doPromote');
-                assert.equal(d.getText(), steps[i]);
+                assert.equal(document.getText(), steps[i]);
             }
         });
     });
@@ -66,10 +66,10 @@ suite('Commands', () => {
         const expected = 'Some *text* here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
-            select(e, textWordRange);
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
+            select(editor, textWordRange);
             await vscode.commands.executeCommand('org.bold');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -78,10 +78,10 @@ suite('Commands', () => {
         const expected = 'Some /text/ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
-            select(e, textWordRange);
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
+            select(editor, textWordRange);
             await vscode.commands.executeCommand('org.italic');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -90,10 +90,10 @@ suite('Commands', () => {
         const expected = 'Some _text_ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
-            select(e, textWordRange);
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
+            select(editor, textWordRange);
             await vscode.commands.executeCommand('org.underline');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -102,10 +102,10 @@ suite('Commands', () => {
         const expected = 'Some ~text~ here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
-            select(e, textWordRange);
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
+            select(editor, textWordRange);
             await vscode.commands.executeCommand('org.code');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -114,10 +114,10 @@ suite('Commands', () => {
         const expected = 'Some =text= here';
         const textWordRange = new vscode.Range(0, 5, 0, 9);
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
-            select(e, textWordRange);
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
+            select(editor, textWordRange);
             await vscode.commands.executeCommand('org.verbose');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -125,9 +125,9 @@ suite('Commands', () => {
         const initial = 'Some text here';
         const expected = ': Some text here';
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (_, document) => {
             await vscode.commands.executeCommand('org.literal');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -139,10 +139,10 @@ suite('Commands', () => {
             `*** \n` +
             `* Header2`;
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (_, document) => {
             await vscode.commands.executeCommand('org.insertSubheading');
             await vscode.commands.executeCommand('org.insertSubheading');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -153,10 +153,10 @@ suite('Commands', () => {
             '* DONE Header',
         ];
 
-        await inTextEditor({ language: 'org', content: steps[0] }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: steps[0] }, async (_, document) => {
             for (let i = 1; i < steps.length; ++i) {
                 await vscode.commands.executeCommand('org.incrementContext');
-                assert.equal(d.getText(), steps[i]);
+                assert.equal(document.getText(), steps[i]);
             }
         });
     });
@@ -185,9 +185,9 @@ suite('Commands', () => {
 *** Subheader
 * Header 2`;
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (_, document) => {
             await vscode.commands.executeCommand('org.demoteSubtree');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -200,9 +200,9 @@ suite('Commands', () => {
 ** Subheader
 ** Header 2`;
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (_, document) => {
             await vscode.commands.executeCommand('org.promoteSubtree');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -215,9 +215,9 @@ suite('Commands', () => {
         const initial = '';
         const expected = `<${datePart} ${dayOfWeek}>`;
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (_, document) => {
             await vscode.commands.executeCommand('org.timestamp');
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 
@@ -241,19 +241,19 @@ suite('Commands', () => {
             '    And some more content here\n' +
             '* ';
 
-        await inTextEditor({ language: 'org', content: initial }, async (e, d) => {
+        await inTextEditor({ language: 'org', content: initial }, async (editor, document) => {
             // Invoke while standing on 'Header'
             await vscode.commands.executeCommand('org.insertHeadingRespectContent');
 
             // Invoke while standing on 'Header 2'
-            move(e, 1, 0);
+            move(editor, 1, 0);
             await vscode.commands.executeCommand('org.insertHeadingRespectContent');
 
             // Invoke while standing on content of 'Header 2' section
-            move(e, 2, 0);
+            move(editor, 2, 0);
             await vscode.commands.executeCommand('org.insertHeadingRespectContent');
 
-            assert.equal(d.getText(), expected);
+            assert.equal(document.getText(), expected);
         });
     });
 });
