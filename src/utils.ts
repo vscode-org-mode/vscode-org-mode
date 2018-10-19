@@ -24,6 +24,15 @@ export function getHeaderPrefix(line: string) {
     }
 }
 
+/**
+ * Extract title name from a header line
+ * @param line the content of the header line
+ * @return the title name
+ */
+export function getHeaderTitle(line: string) : string {
+    return line.substr(line.indexOf(' ') + 1);
+}
+
 export function getPrefix(line: string) {
     const prefix = line.match(/^\*+|^-\s|^\d+\./);
     if(prefix) {
@@ -241,7 +250,7 @@ export function getUniq(arr: string[]): string[] {
  * @return true if the specified line is a block end, false otherwise.
  */
 export function isBlockEndLine(line: string) : boolean {
-    return /^ *#\+END(_|:)/i.test(line);
+    return /^\s*#\+END(_|:)/i.test(line);
 }
 
 /**
@@ -250,7 +259,7 @@ export function isBlockEndLine(line: string) : boolean {
  * @return true if the specified line is a block, false otherwise.
  */
 export function isBlockStartLine(line: string) : boolean  {
-    return /^ *#\+BEGIN(_|:)/i.test(line);
+    return /^\s*#\+BEGIN(_|:)/i.test(line);
 }
 
 /**

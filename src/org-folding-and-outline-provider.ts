@@ -10,12 +10,7 @@ import {
     Range,
     Position
 } from 'vscode';
-import {
-    isBlockEndLine,
-    isBlockStartLine,
-    isHeaderLine,
-    getStarPrefixCount
-} from './utils';
+import * as utils from './utils';
 
 // ChunkType value is used as SymbolKind for outline
 enum ChunkType {
@@ -33,12 +28,12 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
     }
 
     provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
-        let state = this.getOrCreateDocumentState(document);
+        const state = this.getOrCreateDocumentState(document);
         return state.getRanges(document);
     }
 
     provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
-        let state = this.getOrCreateDocumentState(document);
+        const state = this.getOrCreateDocumentState(document);
         return state.getSymbols(document);
     }
 
@@ -76,7 +71,7 @@ class OrgFoldingAndOutlineDocumentState {
         this.symbols = [];
 
         const count = document.lineCount;
-        let stack: Chunk[] = [];
+        const stack: Chunk[] = [];
         let inBlock = false;
 
         for (let lineNumber = 0; lineNumber < count; lineNumber++) {
@@ -84,19 +79,19 @@ class OrgFoldingAndOutlineDocumentState {
             const text = element.text;
 
             if (inBlock) {
-                if (isBlockEndLine(text)) {
+                if (utils.isBlockEndLine(text)) {
                     inBlock = false;
                     if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
                         const top = stack.pop();
                         this.createSection(top, lineNumber);
                     }
                 }
-            } else if (isBlockStartLine(text)) {
+            } else if (utils.isBlockStartLine(text)) {
                 inBlock = true;
-                let title = this.extractBlockTitle(text);
+                const title = this.extractBlockTitle(text);
                 stack.push({ type: ChunkType.BLOCK, title, level: Number.MAX_SAFE_INTEGER, startLine: lineNumber });
-            } else if (isHeaderLine(text)) {
-                let currentLevel = getStarPrefixCount(text);
+            } else if (utils.isHeaderLine(text)) {
+                const currentLevel = utils.getStarPrefixCount(text);
 
                 // close previous sections
                 while (stack.length > 0 && stack[stack.length - 1].level >= currentLevel) {
@@ -104,7 +99,7 @@ class OrgFoldingAndOutlineDocumentState {
                     this.createSection(top, lineNumber - 1);
                 }
 
-                let title = text.substr(text.indexOf(' ') + 1);
+                const title = utils.getHeaderTitle(text);
                 stack.push({ type: ChunkType.SECTION, title, level: currentLevel, startLine: lineNumber });
             }
         }

@@ -57,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
 
-    let provider = new OrgFoldingAndOutlineProvider();
+    const provider = new OrgFoldingAndOutlineProvider();
     vscode.languages.registerFoldingRangeProvider('org', provider);
     vscode.languages.registerDocumentSymbolProvider('org', provider);
 }
