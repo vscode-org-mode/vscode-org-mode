@@ -97,6 +97,16 @@
             {
                 "command": "org.butterfly",
                 "title": "Org: Butterfly"
+            },
+            {
+                "command": "org.updateSummary",
+                "title": "Org: Update Summary",
+                "description": "Update ratio or percentage summary cookie based on number of ticked checkboxes."
+            },
+            {
+                "command": "org.toggleCheckbox",
+                "title": "Org: ToggleCheckbox",
+                "description": "Toggle checkbox status cascading the change up and down levels and update relevant summaries."
             }
         ],
         "languages": [
@@ -248,7 +258,7 @@
             },
             {
                 "command": "org.updateSummary",
-                "key": "ctrl+alt+o #",
+                "key": "ctrl+alt+o /",
                 "when": "editorLangId == 'org'"
             },
             {
