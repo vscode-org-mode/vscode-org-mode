@@ -2,7 +2,7 @@
     "name": "org-mode",
     "displayName": "Org Mode",
     "description": "Emacs Org mode support for VSCode",
-    "version": "0.1.3",
+    "version": "0.5.1",
     "publisher": "tootone",
     "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
@@ -14,7 +14,7 @@
         "vscode": "^1.23.0"
     },
     "categories": [
-        "Languages"
+        "Programming Languages"
     ],
     "activationEvents": [
         "onLanguage:org"
@@ -136,6 +136,19 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Add left zero to single-digit dates and months."
+                },
+                "org.timestampBracketFormat": {
+                    "type": "string",
+                    "enum": [
+                        "<>",
+                        "[]"
+                    ],
+                    "enumDescriptions": [
+                        "<2019-01-20 Sun>",
+                        "[2019-01-20 Sun]"
+                    ],
+                    "default": "<>",
+                    "description": "Surrounding bracket format of timestamps."
                 },
                 "org.clockInOutSeparator": {
                     "type": "string",
