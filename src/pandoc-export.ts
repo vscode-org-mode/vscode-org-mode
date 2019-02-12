@@ -37,15 +37,16 @@ export function pandocExportAsPdf(context: vscode.ExtensionContext) {
             ' '
         )} --template="${templateFilename}" ${pandocStr} "${documentBaseName}.org" -o "${tempDir + documentName}.tex"`;
 
+        console.log(pandocCommand);
         return pandocCommand;
     }
     function modifyTexFile() {
         let data = fs.readFileSync(`${tempDir + documentName}.tex`).toString();
 
-        data = data.replace(/(TODO|DONE|WAIT|PRGS)/g, '\\textcolor{color$1}{$1}');
-        data = data.replace(/definecolor{color\\textcolor{color(TODO|DONE|WAIT|PRGS)}{(TODO|DONE|WAIT|PRGS)}}/g, 'definecolor{color$1}');
-        data = data.replace(/({\[}\d\d\d\d-\d?\d-\d?\d\\?\s+\w\w\w{\]})/g, '\\textcolor{colorTimeStamp}{$1}');
-        data = data.replace(/\\section{/g, '\\clearpage\\section{');
+        data = data.replace(/(TODO|DONE|WAIT|PRGS)/g, '\\statusBadge{$1}');
+        data = data.replace(/definecolor{color\\statusBadge{(TODO|PRGS|WAIT|DONE)}}/g, 'definecolor{color$1}');
+        data = data.replace(/{\[}(\d\d\d\d-\d?\d-\d?\d\\?\s+\w\w\w){\]}/g, '\\timeStamp{$1}');
+        // data = data.replace(/\\section{/g, '\\clearpage\\section{');
 
         fs.writeFileSync(`${tempDir + documentName}.tex`, data, 'utf8');
         return;
@@ -67,7 +68,7 @@ export function pandocExportAsPdf(context: vscode.ExtensionContext) {
 
     modifyTexFile();
 
-    execSync(`latexmk -cd -pdf "${tempDir + documentName}.tex"`);
+    execSync(`latexmk -cd -pdf -interaction=nonstopmode "${tempDir + documentName}.tex"`);
 
     execSync(`latexmk "${tempDir + documentName}.tex" -cd -c`);
 

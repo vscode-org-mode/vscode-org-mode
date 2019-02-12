@@ -169,12 +169,30 @@ $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
 \usepackage{xcolor}
-\definecolor{emerald}{HTML}{019875}
+\definecolor{colorLink}{HTML}{019875}
 \definecolor{colorTODO}{HTML}{BD3E4C}
 \definecolor{colorPRGS}{HTML}{C6B53C}
 \definecolor{colorWAIT}{HTML}{C47238}
 \definecolor{colorDONE}{HTML}{1CBE77}
 \definecolor{colorTimeStamp}{HTML}{064F75}
+
+\usepackage{tikz}
+\DeclareRobustCommand{\statusBadge}[1]{%
+  \texorpdfstring{%
+    \begin{tikzpicture}[remember picture,baseline=(ctr.base)]
+      \node (ctr) [fill=color#1!80!white,text=white,inner sep=0.4ex,outer sep=0] at (0,0) {\scriptsize \textbf{\textsf{#1}}};
+    \end{tikzpicture}
+  }{#1}
+}
+
+\DeclareRobustCommand{\timeStamp}[1]{%
+  \texorpdfstring{%
+    \begin{tikzpicture}[remember picture,baseline=(ctr.base)]
+      \node (ctr) [fill=colorTimeStamp!20!white,text=white,inner sep=0.4ex,outer sep=0] at (0,0) {\footnotesize \color{colorTimeStamp} \textbf{\textsf{#1}}};
+    \end{tikzpicture}
+  }{#1}
+}
+
 \usepackage{hyperref}
 \hypersetup{
 $if(title-meta)$
@@ -188,10 +206,10 @@ $if(keywords)$
 $endif$
 $if(colorlinks)$
             colorlinks=true,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$emerald$endif$,
-            filecolor=$if(filecolor)$$filecolor$$else$emerald$endif$,
-            citecolor=$if(citecolor)$$citecolor$$else$emerald$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$emerald$endif$,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$colorLink$endif$,
+            filecolor=$if(filecolor)$$filecolor$$else$colorLink$endif$,
+            citecolor=$if(citecolor)$$citecolor$$else$colorLink$endif$,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$colorLink$endif$,
 $else$
             pdfborder={0 0 0},
 $endif$
@@ -347,8 +365,7 @@ $if(logo)$
 $endif$
 $endif$
 
-\usepackage{mathpazo}
-% \usepackage[utopia]{mathdesign}
+\usepackage[default,defaultsans]{lato}
 
 \begin{document}
 $if(title)$
@@ -433,3 +450,4 @@ $include-after$
 
 $endfor$
 \end{document}
+
