@@ -98,6 +98,15 @@
             {
                 "command": "org.butterfly",
                 "title": "Org: Butterfly"
+            },
+            {
+                "command": "org.pandocPdfExport",
+                "title": "Org: Export as PDF with Pandoc"
+            }
+            ,
+            {
+                "command": "org.pandocEditTemplate",
+                "title": "Org: Edit the Pandoc template used for exporting"
             }
         ],
         "languages": [

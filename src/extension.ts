@@ -10,6 +10,7 @@ import {
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
+import { pandocExportAsPdf, editPandocTemplate } from "./pandoc-export";
 
 export function activate(context: vscode.ExtensionContext) {
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
@@ -36,6 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
     const butterflyCmd = vscode.commands.registerTextEditorCommand('org.butterfly', PascuaneseFunctions.butterfly);
 
+    const pandocExportCommand = vscode.commands.registerTextEditorCommand('org.pandocPdfExport', () => pandocExportAsPdf(context))
+    const pandocEditTemplateCommand = vscode.commands.registerTextEditorCommand('org.pandocEditTemplate', () => editPandocTemplate(context))
+
     context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);
 
@@ -56,6 +60,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(verboseCmd);
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
+
+    context.subscriptions.push(pandocExportCommand)
+    context.subscriptions.push(pandocEditTemplateCommand)
 
     const provider = new OrgFoldingAndOutlineProvider();
     vscode.languages.registerFoldingRangeProvider('org', provider);
