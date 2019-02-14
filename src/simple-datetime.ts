@@ -51,7 +51,7 @@ export function buildDateString(datetime: ISimpleDate): string {
         dateString = `${dateString} ${weekday}`;
     }
 
-    return `[${dateString}]`
+    return `${Utils.getTimestampBracketCharacters()[0]}${dateString}${Utils.getTimestampBracketCharacters()[1]}`
 };
 
 export function buildDateTimeString(datetime: ISimpleDateTime): string {
@@ -68,7 +68,7 @@ export function buildDateTimeString(datetime: ISimpleDateTime): string {
     }
 
 
-    return `[${dateString} ${timeString}]`
+    return `${Utils.getTimestampBracketCharacters()[0]}${dateString} ${timeString}${Utils.getTimestampBracketCharacters()[1]}`
 };
 
 function padDate(str: string): string {

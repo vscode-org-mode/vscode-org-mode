@@ -217,6 +217,13 @@ export function getLeftZero() {
     return addLeftZero;
 }
 
+export function getTimestampBracketCharacters() {
+    const settings = vscode.workspace.getConfiguration("org");
+    let timestampBracketFormat = settings.get<string>("timestampBracketFormat");
+    let timestampBracketCharacters = [timestampBracketFormat.slice(0, 1), timestampBracketFormat.slice(-1)];
+    return timestampBracketCharacters;
+}
+
 export function getClockInOutSeparator() {
     const settings = vscode.workspace.getConfiguration("org");
     let clockInOutSeparator = settings.get<string>("clockInOutSeparator");

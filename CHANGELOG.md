@@ -5,6 +5,10 @@ All notable changes to VS Code Org Mode will be documented in this file.
 ### Added
 ### Changed
 
+## [0.5.1]
+### Added
+- Add eligible timestamp bracket format to settings
+
 ## [0.5.0]
 ### Added
 - clock in/clock out function courtesy of @BoredMai
