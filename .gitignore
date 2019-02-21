@@ -4,3 +4,5 @@ src/*.js
 
 coverage/
 .vscode-test/
+
+*.orig

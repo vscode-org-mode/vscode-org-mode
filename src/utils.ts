@@ -24,6 +24,15 @@ export function getHeaderPrefix(line: string) {
     }
 }
 
+/**
+ * Extract title name from a header line
+ * @param line the content of the header line
+ * @return the title name
+ */
+export function getHeaderTitle(line: string) : string {
+    return line.substr(line.indexOf(' ') + 1);
+}
+
 export function getPrefix(line: string) {
     const prefix = line.match(/^\*+|^-\s|^\d+\./);
     if(prefix) {
@@ -153,13 +162,19 @@ export function getSectionRegex(prefix: string) {
     return regex;
 }
 
+/**
+ * Computes and returns the star number at the beginning of the line.
+ * Examples: <br>
+ * "*** Header" returns 3, <br>
+ * "** * Header" returns 2, <br>
+ * " *** Header" returns 0. <br>
+ * @param prefix a string
+ * @return the number of stars reached at the beginning of the specified string before encountering any other character.
+ */
 export function getStarPrefixCount(prefix: string) {
-    if(!prefix.startsWith("*")) {
-        return 0;
-    }
-
-    let starMatch = prefix.match(/\*+/);
-    return starMatch[0].length;
+    let currentLevel = -1;
+    while (prefix[++currentLevel] === '*');
+    return currentLevel;
 }
 
 export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, surroundingText: string, errorMessage: string) {
@@ -227,4 +242,31 @@ export function getUniq(arr: string[]): string[] {
     });
 
     return uniq;
+}
+
+/**
+ * Check if the line is a block end.
+ * @param line The textual representation of the line.
+ * @return true if the specified line is a block end, false otherwise.
+ */
+export function isBlockEndLine(line: string) : boolean {
+    return /^\s*#\+END(_|:)/i.test(line);
+}
+
+/**
+ * Check if the line is a block start.
+ * @param line The textual representation of the line.
+ * @return true if the specified line is a block, false otherwise.
+ */
+export function isBlockStartLine(line: string) : boolean  {
+    return /^\s*#\+BEGIN(_|:)/i.test(line);
+}
+
+/**
+ * Check if the line is a header.
+ * @param line The textual representation of the line.
+ * @return true if the specified line is a header, false otherwise.
+ */
+export function isHeaderLine(line: string) : boolean  {
+    return /^\*+ /.test(line);
 }
