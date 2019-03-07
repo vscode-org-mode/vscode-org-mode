@@ -27,7 +27,7 @@
     <section class="page-header">
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-      <a href="https://marketplace.visualstudio.com/items?itemName=tootone.org-mode" class="btn">View on Marketplace</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=vscode-org-mode.org-mode" class="btn">View on Marketplace</a>
       {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
       {% endif %}
@@ -42,7 +42,11 @@
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
-          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">VS Code Org Mode</a> is maintained by <a href="https://github.com/jsonreeder">Jason Reeder</a>, <a href="https://github.com/PGilbertSchmitt">P. Gilbert Schmitt</a>, and <a href="https://github.com/ajtoo">Amos Too</a>.</span>
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">VS Code Org Mode</a> is
+          maintained by <a href="https://github.com/vscode-org-mode">vscode-org-mode organisation</a>. <br/>
+          Originally written by <a href="https://github.com/jsonreeder">Jason Reeder</a>, 
+          <a href="https://github.com/PGilbertSchmitt">P. Gilbert Schmitt</a>, and 
+          <a href="https://github.com/ajtoo">Amos Too</a>.</span>
         {% endif %}
       </footer>
     </section>
