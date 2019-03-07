@@ -144,13 +144,15 @@ export function modifyDate(dateString: string, action: string): string {
 export function getClockTotal(line) {
     const separator = Utils.getClockTotalSeparator();
 
-    const regex = /\d{1,2}:\d{1,2}/g;
-    const match = line.match(regex);
+    const dateRegex = /(\d{4})-(\d{1,2})-(\d{1,2})/g;
+    const timeRegex = /\d{1,2}:\d{1,2}/g;
+    const clockMatch = line.match(timeRegex);
+    const dateMatch = line.match(dateRegex)
 
-    if (match.length < 2) return '';
+    if (clockMatch.length < 2 || dateMatch.length < 2) return '';
 
-    const clockIn = new Date(`2017-01-01 ${match[0]}`);
-    const clockOut = new Date(`2017-01-01 ${match[1]}`);
+    const clockIn = new Date(`${dateMatch[0]} ${clockMatch[0]}`);
+    const clockOut = new Date(`${dateMatch[1]} ${clockMatch[1]}`);
     const clock = clockOut.getTime() - clockIn.getTime();
     const hours = Math.floor(clock/(60*60*1000));
     const minutes = clock/(60*1000) - (60*hours);
