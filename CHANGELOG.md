@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to VS Code Org Mode will be documented in this file.
 
+## [1.1.0-SNAPSHOT]
+### Added
+### Changed
+
 ## [1.0.0]
 ### Added
 - folding

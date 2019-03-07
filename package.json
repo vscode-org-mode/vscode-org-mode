@@ -3,7 +3,7 @@
     "displayName": "Org Mode",
     "description": "Emacs Org mode support for VSCode",
     "keywords": ["org", "orgmode", "org-mode", "emacs"],
-    "version": "1.0.0",
+    "version": "1.1.0-SNAPSHOT",
     "publisher": "vscode-org-mode",
     "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
