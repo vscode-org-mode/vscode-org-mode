@@ -1,9 +1,13 @@
 # Change Log
 All notable changes to VS Code Org Mode will be documented in this file.
 
-## [Unreleased]
+## [1.0.0]
 ### Added
-### Changed
+- folding
+- source block coloration (#+BEGIN_SRC)
+- outline view
+- e2e automated tests
+- code coverage
 
 ## [0.5.0]
 ### Added

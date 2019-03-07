@@ -2,8 +2,9 @@
     "name": "org-mode",
     "displayName": "Org Mode",
     "description": "Emacs Org mode support for VSCode",
-    "version": "0.1.3",
-    "publisher": "tootone",
+    "keywords": ["org", "orgmode", "org-mode", "emacs"],
+    "version": "1.0.0",
+    "publisher": "vscode-org-mode",
     "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
         "type": "git",
