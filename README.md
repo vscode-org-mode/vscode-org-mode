@@ -1,3 +1,7 @@
+[![Version](https://vsmarketplacebadge.apphb.com/version/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating/tootone.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=tootone.org-mode)
+
 # VS Code Org Mode
 [![Version](https://vsmarketplacebadge.apphb.com/version/vscode-org-mode.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=vscode-org-mode.org-mode)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/vscode-org-mode.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=vscode-org-mode.org-mode)

@@ -9,6 +9,7 @@ import {
     decrementContext
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
+import * as Checkboxes from './checkboxes';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -35,6 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
     const verboseCmd = vscode.commands.registerTextEditorCommand('org.verbose', MarkupFunctions.verbose);
     const literalCmd = vscode.commands.registerTextEditorCommand('org.literal', MarkupFunctions.literal);
     const butterflyCmd = vscode.commands.registerTextEditorCommand('org.butterfly', PascuaneseFunctions.butterfly);
+    const updateSummaryCmd = vscode.commands.registerTextEditorCommand('org.updateSummary', Checkboxes.orgUpdateSummary);
+    const toggleCheckboxCmd = vscode.commands.registerTextEditorCommand('org.toggleCheckbox', Checkboxes.orgToggleCheckbox);
 
     context.subscriptions.push(insertHeadingRespectContentCmd);
     context.subscriptions.push(insertChildCmd);
@@ -56,6 +59,8 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(verboseCmd);
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
+    context.subscriptions.push(updateSummaryCmd);
+    context.subscriptions.push(toggleCheckboxCmd);
 
     const provider = new OrgFoldingAndOutlineProvider();
     vscode.languages.registerFoldingRangeProvider('org', provider);
