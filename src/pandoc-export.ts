@@ -10,48 +10,49 @@ const execSync = child_process.execSync;
 const userTemplateFilename = getUserTemplateFilename();
 let extensionTemplateFilename;
 
+function getPandocCommand(context: vscode.ExtensionContext) {
+    // TODO: make setting for this
+    const pandocVariables = [
+        'colorlinks',
+        'linestretch=1.2',
+        'fontsize=12pt',
+        'geometry:left=3cm',
+        'geometry:right=3cm',
+        'geometry:top=2cm',
+        'geometry:bottom=3cm'
+    ];
+    const pandocArgs = ['--toc'];
+
+    const pandocStr = pandocVariables.length > 1 ? ' -V ' + pandocVariables.join(' -V ') : '';
+
+    let templateFilename;
+    if (fs.existsSync(userTemplateFilename)) {
+        templateFilename = userTemplateFilename;
+    } else {
+        extensionTemplateFilename = context.asAbsolutePath('./pandocTemplate.latex');
+        templateFilename = extensionTemplateFilename;
+    }
+    const pandocCommand = `pandoc ${pandocArgs.join(
+        ' '
+    )} --template="${templateFilename}" ${pandocStr} "${documentBaseName}.org" -o "${tempDir + documentName}.tex"`;
+
+    return pandocCommand;
+}
+
+function modifyTexFile() {
+    let data = fs.readFileSync(`${tempDir + documentName}.tex`).toString();
+
+    data = data.replace(/(TODO|DONE|WAIT|PRGS)/g, '\\statusBadge{$1}');
+    data = data.replace(/definecolor{color\\statusBadge{(TODO|PRGS|WAIT|DONE)}}/g, 'definecolor{color$1}');
+    data = data.replace(/{\[}(\d\d\d\d-\d?\d-\d?\d\\?\s+\w\w\w){\]}/g, '\\timeStamp{$1}');
+    // data = data.replace(/\\section{/g, '\\clearpage\\section{');
+
+    fs.writeFileSync(`${tempDir + documentName}.tex`, data, 'utf8');
+    return;
+}
+
+
 export function pandocExportAsPdf(context: vscode.ExtensionContext) {
-    function getPandocCommand() {
-        // TODO: make setting for this
-        const pandocVariables = [
-            'colorlinks',
-            'linestretch=1.2',
-            'fontsize=12pt',
-            'geometry:left=3cm',
-            'geometry:right=3cm',
-            'geometry:top=2cm',
-            'geometry:bottom=3cm'
-        ];
-        const pandocArgs = ['--toc'];
-
-        const pandocStr = pandocVariables.length > 1 ? ' -V ' + pandocVariables.join(' -V ') : '';
-
-        let templateFilename;
-        if (fs.existsSync(userTemplateFilename)) {
-            templateFilename = userTemplateFilename;
-        } else {
-            extensionTemplateFilename = context.asAbsolutePath('./pandocTemplate.latex');
-            templateFilename = extensionTemplateFilename;
-        }
-        const pandocCommand = `pandoc ${pandocArgs.join(
-            ' '
-        )} --template="${templateFilename}" ${pandocStr} "${documentBaseName}.org" -o "${tempDir + documentName}.tex"`;
-
-        console.log(pandocCommand);
-        return pandocCommand;
-    }
-    function modifyTexFile() {
-        let data = fs.readFileSync(`${tempDir + documentName}.tex`).toString();
-
-        data = data.replace(/(TODO|DONE|WAIT|PRGS)/g, '\\statusBadge{$1}');
-        data = data.replace(/definecolor{color\\statusBadge{(TODO|PRGS|WAIT|DONE)}}/g, 'definecolor{color$1}');
-        data = data.replace(/{\[}(\d\d\d\d-\d?\d-\d?\d\\?\s+\w\w\w){\]}/g, '\\timeStamp{$1}');
-        // data = data.replace(/\\section{/g, '\\clearpage\\section{');
-
-        fs.writeFileSync(`${tempDir + documentName}.tex`, data, 'utf8');
-        return;
-    }
-
     const documentPath = vscode.window.activeTextEditor.document.uri.fsPath;
     if (!documentPath.match(/\.org$/)) {
         vscode.window.showErrorMessage('Cannot pandoc export from non Org-Mode documents');
@@ -64,7 +65,7 @@ export function pandocExportAsPdf(context: vscode.ExtensionContext) {
 
     fs.mkdirSync(tempDir);
 
-    execSync(getPandocCommand());
+    execSync(getPandocCommand(context));
 
     modifyTexFile();
 
@@ -92,11 +93,9 @@ export function editPandocTemplate(context: vscode.ExtensionContext) {
 
 // Modified from https://github.com/bartosz-antosik/vscode-spellright/blob/master/src/spellright.js
 function getUserTemplateFilename() {
-    let codeFolder = 'Code';
+    const codeFolder = vscode.version.indexOf('insider') >= 0 ? 'Code - Insiders' : 'Code';
     const templateName = 'orgModePandocTemplate.latex';
-    if (vscode.version.indexOf('insider') >= 0) {
-        codeFolder = 'Code - Insiders';
-    }
+
     if (process.platform == 'win32') {
         return path.join(process.env.APPDATA, codeFolder, 'User', templateName);
     } else if (process.platform == 'darwin') {
