@@ -5,12 +5,18 @@ import * as child_process from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const execSync = child_process.execSync;
+const exec = util.promisify(child_process.exec);
+const mkdir = util.promisify(fs.mkdir);
+const rename = util.promisify(fs.rename);
+const rmdir = util.promisify(fs.rmdir);
+const unlink = util.promisify(fs.unlink);
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 const userTemplateFilename = getUserTemplateFilename();
 let extensionTemplateFilename;
 
-function getPandocCommand(context: vscode.ExtensionContext) {
+function getPandocCommand(context: vscode.ExtensionContext, documentBaseName: string, documentName: string, tempDir: string) {
     // TODO: make setting for this
     const pandocVariables = [
         'colorlinks',
@@ -39,20 +45,19 @@ function getPandocCommand(context: vscode.ExtensionContext) {
     return pandocCommand;
 }
 
-function modifyTexFile() {
-    let data = fs.readFileSync(`${tempDir + documentName}.tex`).toString();
+async function modifyTexFile(tempDir: string, documentName: string) {
+    let data = (await readFile(`${tempDir + documentName}.tex`)).toString();
 
     data = data.replace(/(TODO|DONE|WAIT|PRGS)/g, '\\statusBadge{$1}');
     data = data.replace(/definecolor{color\\statusBadge{(TODO|PRGS|WAIT|DONE)}}/g, 'definecolor{color$1}');
     data = data.replace(/{\[}(\d\d\d\d-\d?\d-\d?\d\\?\s+\w\w\w){\]}/g, '\\timeStamp{$1}');
     // data = data.replace(/\\section{/g, '\\clearpage\\section{');
 
-    fs.writeFileSync(`${tempDir + documentName}.tex`, data, 'utf8');
-    return;
+    await writeFile(`${tempDir + documentName}.tex`, data, 'utf8');
 }
 
 
-export function pandocExportAsPdf(context: vscode.ExtensionContext) {
+export async function pandocExportAsPdf(context: vscode.ExtensionContext) {
     const documentPath = vscode.window.activeTextEditor.document.uri.fsPath;
     if (!documentPath.match(/\.org$/)) {
         vscode.window.showErrorMessage('Cannot pandoc export from non Org-Mode documents');
@@ -62,23 +67,28 @@ export function pandocExportAsPdf(context: vscode.ExtensionContext) {
     const documentDir = documentBaseName.replace(/\/[^\/]+$/, '');
     const documentName = documentBaseName.replace(/^.*\//, '');
     const tempDir = documentDir + '/' + `_temp${+new Date() % 1000000}` + '/';
+    try {
 
-    fs.mkdirSync(tempDir);
+        await mkdir(tempDir);
 
-    execSync(getPandocCommand(context));
+        await exec(getPandocCommand(context, documentBaseName, documentName, tempDir));
 
-    modifyTexFile();
+        await modifyTexFile(tempDir, documentName);
 
-    execSync(`latexmk -cd -pdf -interaction=nonstopmode "${tempDir + documentName}.tex"`);
+        await exec(`latexmk -cd -pdf -interaction=nonstopmode "${tempDir + documentName}.tex"`);
 
-    execSync(`latexmk "${tempDir + documentName}.tex" -cd -c`);
+        await exec(`latexmk "${tempDir + documentName}.tex" -cd -c`);
 
-    fs.renameSync(`${tempDir + documentName}.pdf`, `${documentBaseName}.pdf`);
+        await rename(`${tempDir + documentName}.pdf`, `${documentBaseName}.pdf`);
 
-    vscode.window.showInformationMessage('PDF Created');
+        vscode.window.showInformationMessage('PDF Created');
 
-    fs.unlinkSync(`${tempDir + documentName}.tex`);
-    fs.rmdirSync(tempDir);
+        await unlink(`${tempDir + documentName}.tex`);
+        await rmdir(tempDir);
+    } catch(err) {
+        console.error(err);
+        vscode.window.showErrorMessage(`Some error occured: ${err.message}`)
+    }
 }
 
 export function editPandocTemplate(context: vscode.ExtensionContext) {
