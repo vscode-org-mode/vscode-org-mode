@@ -62,5 +62,5 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentSymbolProvider('org', provider);
 }
 
-export function deactivate() {
-}
+// tslint:disable-next-line:no-empty
+export function deactivate() {}
