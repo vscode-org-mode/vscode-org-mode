@@ -10,7 +10,7 @@ import {
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
-import { pandocExportAsPdf, editPandocTemplate } from "./pandoc-export";
+import { pandocExportAsPdf, editPandocTemplate } from './pandoc-export';
 
 export function activate(context: vscode.ExtensionContext) {
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
