@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import * as Utils from './utils';
 import * as Datetime from './simple-datetime';
+import * as Utils from './utils';
 
 export function insertTimestamp(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const document = Utils.getActiveTextEditorEdit();

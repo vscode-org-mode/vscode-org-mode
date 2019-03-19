@@ -1,9 +1,9 @@
 // import * as vscode from 'vscode';
 import {
-    TextEditor,
-    TextEditorEdit,
     Position,
     Range,
+    TextEditor,
+    TextEditorEdit,
     workspace
 } from "vscode";
 import * as Datetime from './simple-datetime';
@@ -59,8 +59,8 @@ function getTimestampContext(match: RegExpExecArray, cursorPos: Position): ICont
         return {
             dataLabel: DATE,
             data: match[0],
-            line: line,
-            range: range
+            line,
+            range
         }
     }
 
@@ -82,7 +82,7 @@ function getTodoContext(match: RegExpExecArray, cursorPos: Position): IContextDa
     return {
         dataLabel: TODO,
         data: todoWord,
-        line: line,
-        range: range
+        line,
+        range
     }
 }

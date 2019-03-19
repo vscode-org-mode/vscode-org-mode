@@ -1,5 +1,5 @@
-import * as vscode from 'vscode';
 import * as datefns from 'date-fns';
+import * as vscode from 'vscode';
 import * as Utils from './utils';
 
 const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -72,7 +72,7 @@ export function buildDateTimeString(datetime: ISimpleDateTime): string {
 };
 
 function padDate(str: string): string {
-    let regex = /-(\d)(-|$)/;
+    const regex = /-(\d)(-|$)/;
     while (regex.exec(str) !== null) {
         str = str.replace(regex, '-0$1$2');
     }
@@ -80,7 +80,7 @@ function padDate(str: string): string {
 }
 
 function padTime(str: string): string {
-    let regex = /(^|:)(\d)(:|$)/;
+    const regex = /(^|:)(\d)(:|$)/;
     while (regex.exec(str) !== null) {
         str = str.replace(regex, '$10$2$3');
     }
@@ -103,7 +103,7 @@ export function dateToSimpleDate(dateObject: Date): ISimpleDate {
 }
 
 export function dateToSimpleDateTime(dateObject: Date): ISimpleDateTime {
-    let simpleDateTime = dateToSimpleDate(dateObject) as ISimpleDateTime;
+    const simpleDateTime = dateToSimpleDate(dateObject) as ISimpleDateTime;
     simpleDateTime.hours = dateObject.getHours();
     simpleDateTime.minutes = dateObject.getMinutes();
 
@@ -147,7 +147,7 @@ export function getClockTotal(line) {
     const regex = /\d{1,2}:\d{1,2}/g;
     const match = line.match(regex);
 
-    if (match.length < 2) return '';
+    if (match.length < 2) { return ''; }
 
     const clockIn = new Date(`2017-01-01 ${match[0]}`);
     const clockOut = new Date(`2017-01-01 ${match[1]}`);

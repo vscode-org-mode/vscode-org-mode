@@ -1,14 +1,14 @@
 import {
-    FoldingRangeProvider,
-    DocumentSymbolProvider,
     CancellationToken,
-    TextDocument,
+    DocumentSymbolProvider,
     FoldingRange,
-    SymbolInformation,
+    FoldingRangeProvider,
+    Position,
     ProviderResult,
-    SymbolKind,
     Range,
-    Position
+    SymbolInformation,
+    SymbolKind,
+    TextDocument
 } from 'vscode';
 import * as utils from './utils';
 
@@ -17,7 +17,7 @@ enum ChunkType {
     SECTION = SymbolKind.Constant,
     BLOCK = SymbolKind.Number
 }
-type Chunk = { type: ChunkType, title: string, level: number, startLine: number };
+interface Chunk { type: ChunkType, title: string, level: number, startLine: number }
 
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
 
@@ -27,12 +27,12 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         this.documentStateRegistry = new WeakMap();
     }
 
-    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
+    public provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getRanges(document);
     }
 
-    provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
+    public provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getSymbols(document);
     }
@@ -52,12 +52,12 @@ class OrgFoldingAndOutlineDocumentState {
     private ranges: FoldingRange[] = [];
     private symbols: SymbolInformation[] = [];
 
-    getRanges(document: TextDocument): FoldingRange[] {
+    public getRanges(document: TextDocument): FoldingRange[] {
         this.compute(document);
         return this.ranges;
     }
 
-    getSymbols(document: TextDocument): SymbolInformation[] {
+    public getSymbols(document: TextDocument): SymbolInformation[] {
         this.compute(document);
         return this.symbols;
     }
