@@ -5,7 +5,7 @@
     "keywords": ["org", "orgmode", "org-mode", "emacs"],
     "version": "1.1.0-SNAPSHOT",
     "publisher": "vscode-org-mode",
-    "license": "SEE LICENSE IN LICENSE.txt",
+    "license": "GPL-3.0-or-later",
     "repository": {
         "type": "git",
         "url": "https://github.com/vscode-org-mode/vscode-org-mode"
