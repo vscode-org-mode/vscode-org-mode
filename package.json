@@ -19,7 +19,8 @@
     ],
     "activationEvents": [
         "onLanguage:org",
-        "onCommand:org.showWelcome"
+        "onCommand:org.showWelcome",
+        "onCommand:org.showUpgrade"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -27,6 +28,10 @@
             {
                 "command": "org.showWelcome",
                 "title": "Org: Show Extension Welcome"
+            },
+            {
+                "command": "org.showUpgrade",
+                "title": "Org: Show Upgrade Message"
             },
             {
                 "command": "org.insertHeadingRespectContent",

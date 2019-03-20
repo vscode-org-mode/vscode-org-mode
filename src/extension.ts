@@ -10,7 +10,8 @@ import {
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
-import { WelcomePanel } from './ui/welcome';
+import { WelcomePanel, UpgradePanel } from './ui/panels';
+import { Panel } from './ui/panel';
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -64,14 +65,23 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentSymbolProvider('org', provider);
 
     const welcome = vscode.commands.registerCommand('org.showWelcome', () => {
-        WelcomePanel.createOrShow(context.extensionPath);
+        Panel.createOrShow(WelcomePanel, context.extensionPath);
+    })
+    const upgrade = vscode.commands.registerCommand('org.showUpgrade', () => {
+        Panel.createOrShow(UpgradePanel, context.extensionPath);
     })
     context.subscriptions.push(welcome);
+    context.subscriptions.push(upgrade);
     if (vscode.window.registerWebviewPanelSerializer) {
         // Make sure we register a serilizer in activation event
         vscode.window.registerWebviewPanelSerializer(WelcomePanel.viewType, {
             async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-                WelcomePanel.revive(webviewPanel, context.extensionPath);
+                Panel.revive(WelcomePanel, webviewPanel, context.extensionPath);
+            }
+        });
+        vscode.window.registerWebviewPanelSerializer(UpgradePanel.viewType, {
+            async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
+                Panel.revive(UpgradePanel, webviewPanel, context.extensionPath);
             }
         });
     }
