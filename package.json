@@ -12,17 +12,22 @@
     },
     "icon": "images/logo.png",
     "engines": {
-        "vscode": "^1.23.0"
+        "vscode": "^1.25.0"
     },
     "categories": [
         "Languages"
     ],
     "activationEvents": [
-        "onLanguage:org"
+        "onLanguage:org",
+        "onCommand:org.showWelcome"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
+            {
+                "command": "org.showWelcome",
+                "title": "Org: Show Extension Welcome"
+            },
             {
                 "command": "org.insertHeadingRespectContent",
                 "title": "Org: Insert Heading Respect Content"

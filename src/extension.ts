@@ -10,6 +10,8 @@ import {
 } from './modify-context';
 import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
+import { WelcomePanel } from './ui/welcome';
+
 
 export function activate(context: vscode.ExtensionContext) {
     let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
@@ -60,6 +62,19 @@ export function activate(context: vscode.ExtensionContext) {
     const provider = new OrgFoldingAndOutlineProvider();
     vscode.languages.registerFoldingRangeProvider('org', provider);
     vscode.languages.registerDocumentSymbolProvider('org', provider);
+
+    const welcome = vscode.commands.registerCommand('org.showWelcome', () => {
+        WelcomePanel.createOrShow(context.extensionPath);
+    })
+    context.subscriptions.push(welcome);
+    if (vscode.window.registerWebviewPanelSerializer) {
+        // Make sure we register a serilizer in activation event
+        vscode.window.registerWebviewPanelSerializer(WelcomePanel.viewType, {
+            async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
+                WelcomePanel.revive(webviewPanel, context.extensionPath);
+            }
+        });
+    }
 }
 
 export function deactivate() {
