@@ -74,16 +74,8 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(upgrade);
     if (vscode.window.registerWebviewPanelSerializer) {
         // Make sure we register a serilizer in activation event
-        vscode.window.registerWebviewPanelSerializer(WelcomePanel.viewType, {
-            async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-                Panel.revive(WelcomePanel, webviewPanel, context.extensionPath);
-            }
-        });
-        vscode.window.registerWebviewPanelSerializer(UpgradePanel.viewType, {
-            async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-                Panel.revive(UpgradePanel, webviewPanel, context.extensionPath);
-            }
-        });
+        vscode.window.registerWebviewPanelSerializer(WelcomePanel.viewType, Panel.getWebviewPanelSerializer(WelcomePanel, context.extensionPath));
+        vscode.window.registerWebviewPanelSerializer(UpgradePanel.viewType, Panel.getWebviewPanelSerializer(UpgradePanel, context.extensionPath));
     }
 }
 

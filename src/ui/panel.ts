@@ -104,10 +104,18 @@ export class Panel {
             </head>
             <body>
             ${this._panelType.getBody()}
-            ${this._panelType.scriptUri ? `<script nonce="${nonce}" src="${this._panelType.scriptUri}"></script>` :''}
+            ${this._panelType.scriptUri ? `<script nonce="${nonce}" src="${this._panelType.scriptUri}"></script>` : ''}
             </body>
             </html>`;
 
+    }
+
+    public static getWebviewPanelSerializer(panelType: PanelType, extensionPath: string) {
+        return {
+            async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
+                Panel.revive(panelType, webviewPanel, extensionPath);
+            }
+        }
     }
 }
 

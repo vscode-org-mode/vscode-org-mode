@@ -15,8 +15,7 @@ export const UpgradePanel: PanelType = {
     title: 'org Mode needs to be Upgraded',
     viewType: 'org.upgrade',
     getBody() {
-        return `
-                <h1>Org Mode version is outdated</h1>
+        return `<h1>Org Mode version is outdated</h1>
                 <p>Org for the Best</p>
             `;
     }
