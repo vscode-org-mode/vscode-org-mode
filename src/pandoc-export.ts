@@ -14,24 +14,18 @@ const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 const userTemplateFilename = getUserTemplateFilename();
-let extensionTemplateFilename;
+let extensionTemplateFilename: string;
 
 function getPandocCommand(context: vscode.ExtensionContext, documentBaseName: string, documentName: string, tempDir: string) {
-    // TODO: make setting for this
-    const pandocVariables = [
-        'colorlinks',
-        'linestretch=1.2',
-        'fontsize=12pt',
-        'geometry:left=3cm',
-        'geometry:right=3cm',
-        'geometry:top=2cm',
-        'geometry:bottom=3cm'
-    ];
-    const pandocArgs = ['--toc'];
+    const pandocConfig = vscode.workspace.getConfiguration('org.pandoc');
+
+    const pandocVariables: string[] = pandocConfig.get('variables');
+
+    const pandocArgs: string[] = pandocConfig.get('args');
 
     const pandocStr = pandocVariables.length > 1 ? ' -V ' + pandocVariables.join(' -V ') : '';
 
-    let templateFilename;
+    let templateFilename: string;
     if (fs.existsSync(userTemplateFilename)) {
         templateFilename = userTemplateFilename;
     } else {
@@ -56,7 +50,6 @@ async function modifyTexFile(tempDir: string, documentName: string) {
     await writeFile(`${tempDir + documentName}.tex`, data, 'utf8');
 }
 
-
 export async function pandocExportAsPdf(context: vscode.ExtensionContext) {
     const documentPath = vscode.window.activeTextEditor.document.uri.fsPath;
     if (!documentPath.match(/\.org$/)) {
@@ -68,7 +61,6 @@ export async function pandocExportAsPdf(context: vscode.ExtensionContext) {
     const documentName = documentBaseName.replace(/^.*\//, '');
     const tempDir = documentDir + '/' + `_temp${+new Date() % 1000000}` + '/';
     try {
-
         await mkdir(tempDir);
 
         await exec(getPandocCommand(context, documentBaseName, documentName, tempDir));
@@ -85,9 +77,9 @@ export async function pandocExportAsPdf(context: vscode.ExtensionContext) {
 
         await unlink(`${tempDir + documentName}.tex`);
         await rmdir(tempDir);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
-        vscode.window.showErrorMessage(`Some error occured: ${err.message}`)
+        vscode.window.showErrorMessage(`Some error occurred: ${err.message}`);
     }
 }
 

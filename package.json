@@ -160,6 +160,26 @@
                     "type": "string",
                     "default": " =>  ",
                     "description": "Clock total separator"
+                },
+                "org.pandoc.variables": {
+                    "type": "array",
+                    "default": [
+                        "colorlinks",
+                        "linestretch=1.2",
+                        "fontsize=12pt",
+                        "geometry:left=3cm",
+                        "geometry:right=3cm",
+                        "geometry:top=2cm",
+                        "geometry:bottom=3cm"
+                    ],
+                    "description": "Set variables to be passed to pandoc"
+                },
+                "org.pandoc.args": {
+                    "type": "array",
+                    "default": [
+                        "--toc"
+                    ],
+                    "description": "Command line arguments to be passed to pandoc (other than variables)"
                 }
             }
         },
