@@ -20,7 +20,8 @@
     "activationEvents": [
         "onLanguage:org",
         "onCommand:org.showWelcome",
-        "onCommand:org.showUpgrade"
+        "onCommand:org.showUpgrade",
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {

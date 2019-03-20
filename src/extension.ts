@@ -77,6 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewPanelSerializer(WelcomePanel.viewType, Panel.getWebviewPanelSerializer(WelcomePanel, context.extensionPath));
         vscode.window.registerWebviewPanelSerializer(UpgradePanel.viewType, Panel.getWebviewPanelSerializer(UpgradePanel, context.extensionPath));
     }
+    vscode.commands.executeCommand('org.showUpgrade');
 }
 
 export function deactivate() {
