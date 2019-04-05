@@ -1,13 +1,13 @@
 {
-    "name": "org-mode",
-    "displayName": "Org Mode",
-    "description": "Emacs Org mode support for VSCode",
-    "version": "0.1.3",
-    "publisher": "tootone",
+    "name": "org-emacs-export",
+    "displayName": "Org Emacs Export",
+    "description": "Org Emacs Export functionalities for VSCode",
+    "version": "0.1.0",
+    "publisher": "vscode-org-mode",
     "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jsonreeder/vscode-org-mode"
+        "url": "https://github.com/vscode-org-mode/org-emacs-export"
     },
     "icon": "images/logo.png",
     "engines": {
@@ -22,82 +22,6 @@
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
-            {
-                "command": "org.insertHeadingRespectContent",
-                "title": "Org: Insert Heading Respect Content"
-            },
-            {
-                "command": "org.insertSubheading",
-                "title": "Org: Insert Subheading"
-            },
-            {
-                "command": "org.doDemote",
-                "title": "Org: Do Demote"
-            },
-            {
-                "command": "org.doPromote",
-                "title": "Org: Do Promote"
-            },
-            {
-                "command": "org.promoteSubtree",
-                "title": "Org: Promote Subtree"
-            },
-            {
-                "command": "org.demoteSubtree",
-                "title": "Org: Demote Subtree"
-            },
-            {
-                "command": "org.timestamp",
-                "title": "Org: Timestamp"
-            },
-            {
-                "command": "org.clockin",
-                "title": "Org: Clock In"
-            },
-            {
-                "command": "org.clockout",
-                "title": "Org: Clock Out"
-            },
-            {
-                "command": "org.updateclock",
-                "title": "Org: Update Clock Total"
-            },
-            {
-                "command": "org.incrementContext",
-                "title": "Org: Increment Context"
-            },
-            {
-                "command": "org.decrementContext",
-                "title": "Org: Decrement Context"
-            },
-            {
-                "command": "org.bold",
-                "title": "Org: Bold"
-            },
-            {
-                "command": "org.italic",
-                "title": "Org: Italic"
-            },
-            {
-                "command": "org.underline",
-                "title": "Org: Underline"
-            },
-            {
-                "command": "org.code",
-                "title": "Org: Code"
-            },
-            {
-                "command": "org.verbose",
-                "title": "Org: Verbose"
-            },
-            {
-                "command": "org.literal",
-                "title": "Org: Literal"
-            },
-            {
-                "command": "org.butterfly",
-                "title": "Org: Butterfly"
-            },
             {
                 "command": "org.asciiExportToAscii",
                 "title": "Org: export to ascii"
@@ -158,136 +82,15 @@
         ],
         "configuration": {
             "type": "object",
-            "title": "Org Mode configuration",
+            "title": "Org Emacs Export configuration",
             "properties": {
-                "org.todoKeywords": {
-                    "type": "array",
-                    "default": [
-                        "TODO",
-                        "DONE"
-                    ],
-                    "description": "Specifies the types of TODO statuses available (for switching)."
-                },
-                "org.addLeftZero": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Add left zero to single-digit dates and months."
-                },
-                "org.clockInOutSeparator": {
-                    "type": "string",
-                    "default": "--",
-                    "description": "Clock in and clock out separator"
-                },
-                "org.clockTotalSeparator": {
-                    "type": "string",
-                    "default": " =>  ",
-                    "description": "Clock total separator"
-                },
                 "org.export.showOutputChannel": {
                     "type": "boolean",
                     "default": true,
                     "description": "Display or not the Org output channel when exporting."
                 }
             }
-        },
-        "snippets": [
-            {
-                "language": "org",
-                "path": "./snippets/org.json"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "org.insertHeadingRespectContent",
-                "key": "ctrl+alt+o h",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.insertSubheading",
-                "key": "ctrl+alt+o s",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.doDemote",
-                "key": "ctrl+alt+o shift+d",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.doPromote",
-                "key": "ctrl+alt+o shift+p",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.promoteSubtree",
-                "key": "ctrl+alt+o p",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.demoteSubtree",
-                "key": "ctrl+alt+o d",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.timestamp",
-                "key": "ctrl+alt+o t",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.clockin",
-                "key": "ctrl+alt+o ctrl+i",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.clockout",
-                "key": "ctrl+alt+o ctrl+o",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.updateclock",
-                "key": "ctrl+alt+o ctrl+u",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.incrementContext",
-                "key": "alt+right",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.decrementContext",
-                "key": "alt+left",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.bold",
-                "key": "ctrl+alt+o b",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.italic",
-                "key": "ctrl+alt+o i",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.underline",
-                "key": "ctrl+alt+o u",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.code",
-                "key": "ctrl+alt+o c",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.verbose",
-                "key": "ctrl+alt+o v",
-                "when": "editorLangId == 'org'"
-            },
-            {
-                "command": "org.literal",
-                "key": "ctrl+alt+o l",
-                "when": "editorLangId == 'org'"
-            }
-        ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
