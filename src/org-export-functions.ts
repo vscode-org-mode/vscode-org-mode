@@ -2,8 +2,18 @@ import * as vscode from 'vscode';
 import * as util from 'util';
 import cp = require('child_process');
 
+/*const cmdPattern =  'emacs -Q --batch' +
+' --eval "(require \'org)"' +
+' --visit="%s"'+
+' --funcall %s;';*/
+
 const cmdPattern =  'emacs -Q --batch' +
 ' --eval "(require \'org)"' +
+' --eval \'(setq org-latex-pdf-process (quote ("lualatex --draftmode --interaction=nonstopmode    --output-directory=%%o %%f" "lualatex --draftmode --interaction=nonstopmode --output-directory=%%o %%f" "lualatex --interaction=nonstopmode -shell-escape --output-directory=%%o %%f")))\'' +
+' --eval "(setq org-latex-listings \'minted)"' +
+' --eval "(setq org-confirm-babel-evaluate nil)"' +
+' --eval "(org-babel-do-load-languages \'org-babel-load-languages \'((plantuml . t)))"' +
+' --eval "(setq org-plantuml-jar-path (expand-file-name \\"/opt/plantuml.jar\\"))"' +
 ' --visit="%s"'+
 ' --funcall %s;';
 
