@@ -18,11 +18,22 @@
         "Languages"
     ],
     "activationEvents": [
-        "onLanguage:org"
+        "onLanguage:org",
+        "onCommand:org.showWelcome",
+        "onCommand:org.showUpgrade",
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
+            {
+                "command": "org.showWelcome",
+                "title": "Org: Show Extension Welcome"
+            },
+            {
+                "command": "org.showUpgrade",
+                "title": "Org: Show Upgrade Message"
+            },
             {
                 "command": "org.insertHeadingRespectContent",
                 "title": "Org: Insert Heading Respect Content"
