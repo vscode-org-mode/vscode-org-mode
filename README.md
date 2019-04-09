@@ -4,6 +4,7 @@
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/vscode-org-mode.org-mode.svg)](https://marketplace.visualstudio.com/items?itemName=vscode-org-mode.org-mode)
 [![Travis](https://img.shields.io/travis/com/vscode-org-mode/vscode-org-mode.svg)](https://travis-ci.com/vscode-org-mode/vscode-org-mode)
 [![codecov](https://codecov.io/gh/vscode-org-mode/vscode-org-mode/branch/master/graph/badge.svg)](https://codecov.io/gh/vscode-org-mode/vscode-org-mode)
+[![License](https://img.shields.io/github/license/vscode-org-mode/vscode-org-mode.svg)](./LICENSE.txt)
 
 :warning: The publisher name was changed, **tootone/org-mode has become vscode-org-mode/org-mode** :warning:
 
@@ -17,51 +18,51 @@ We welcome issues, feature requests, and contributions to the [repo](https://git
 
 Create outlines:
 
-![outlines](img/screenshots/01_outlines.gif)
+![outlines](images/screenshots/01_outlines.gif)
 
 Promote and demote items:
 
-![promote_demote](img/screenshots/02_promote_demote.gif)
+![promote_demote](images/screenshots/02_promote_demote.gif)
 
 ### Maintain TODO Lists
 
 Create TODOs:
 
-![create todos](img/screenshots/03_create_todos.gif)
+![create todos](images/screenshots/03_create_todos.gif)
 
 Change TODO status:
 
-![cycle todo status](img/screenshots/04_cycle_todo_status.gif)
+![cycle todo status](images/screenshots/04_cycle_todo_status.gif)
 
 Customize your TODO Keywords:
 
-![custom todos](img/screenshots/05_customize_todo_keywords.gif)
+![custom todos](images/screenshots/05_customize_todo_keywords.gif)
 
 Insert timestamps:
 
-![timestamps](img/screenshots/06_insert_timestamps.gif)
+![timestamps](images/screenshots/06_insert_timestamps.gif)
 
 Modify dates:
 
-![modify dates](img/screenshots/07_modify_dates.gif)
+![modify dates](images/screenshots/07_modify_dates.gif)
 
 ### Author Documents
 
 Style your text:
 
-![style text](img/screenshots/08_style_text.gif)
+![style text](images/screenshots/08_style_text.gif)
 
 Add metadata with a snippet:
 
-![add metadata](img/screenshots/09_add_metadata.gif)
+![add metadata](images/screenshots/09_add_metadata.gif)
 
 Add links with a snippet:
 
-![add links](img/screenshots/10_add_links.gif)
+![add links](images/screenshots/10_add_links.gif)
 
 Add comments:
 
-![add comments](img/screenshots/11_add_comments.gif)
+![add comments](images/screenshots/11_add_comments.gif)
 
 ## Settings
 
@@ -87,7 +88,7 @@ Org Mode can be installed in a number of ways:
   - Launch VS Code Quick Open (Linux / Windows: <kbd>ctrl</kbd>+<kbd>P</kbd>; Mac: <kbd>cmd</kbd>+<kbd>P</kbd>) and type `ext install org-mode`.
   - Search for `org mode` in the `Extensions` view in VS Code.
 
-![install](img/screenshots/14_install.gif)
+![install](images/screenshots/14_install.gif)
 
 ## Activation
 

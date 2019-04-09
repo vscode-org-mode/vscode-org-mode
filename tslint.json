@@ -1,0 +1,9 @@
+{
+    "extends": [
+      "tslint:latest",
+      "tslint-config-prettier"
+    ],
+    "rules": {
+      "no-conditional-assignment": {"severity": "warning"}
+    }
+  }

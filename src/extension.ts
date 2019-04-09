@@ -1,32 +1,32 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as HeaderFunctions from './header-functions';
-import * as TimestampFunctions from './timestamp-functions';
 import * as MarkupFunctions from './markup-functions';
-import * as SubtreeFunctions from './subtree-functions';
 import {
-    incrementContext,
-    decrementContext
+    decrementContext,
+    incrementContext
 } from './modify-context';
-import * as PascuaneseFunctions from './pascuanese-functions';
 import { OrgFoldingAndOutlineProvider } from './org-folding-and-outline-provider';
+import * as PascuaneseFunctions from './pascuanese-functions';
+import * as SubtreeFunctions from './subtree-functions';
+import * as TimestampFunctions from './timestamp-functions';
 
 export function activate(context: vscode.ExtensionContext) {
-    let insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
-    let insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
-    let demoteLineCmd = vscode.commands.registerTextEditorCommand('org.doDemote', HeaderFunctions.demoteLine);
-    let promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
-    let promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.promoteSubtree', SubtreeFunctions.promoteSubtree);
-    let demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
+    const insertHeadingRespectContentCmd = vscode.commands.registerTextEditorCommand('org.insertHeadingRespectContent', HeaderFunctions.insertHeadingRespectContent);
+    const insertChildCmd = vscode.commands.registerTextEditorCommand('org.insertSubheading', HeaderFunctions.insertChild);
+    const demoteLineCmd = vscode.commands.registerTextEditorCommand('org.doDemote', HeaderFunctions.demoteLine);
+    const promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
+    const promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.promoteSubtree', SubtreeFunctions.promoteSubtree);
+    const demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
 
-    let insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', TimestampFunctions.insertTimestamp);
-    let clockInCmd = vscode.commands.registerTextEditorCommand('org.clockin', TimestampFunctions.clockIn);
-    let clockOutCmd = vscode.commands.registerTextEditorCommand('org.clockout', TimestampFunctions.clockOut);
-    let updateClockCmd = vscode.commands.registerTextEditorCommand('org.updateclock', TimestampFunctions.updateClock);
+    const insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', TimestampFunctions.insertTimestamp);
+    const clockInCmd = vscode.commands.registerTextEditorCommand('org.clockin', TimestampFunctions.clockIn);
+    const clockOutCmd = vscode.commands.registerTextEditorCommand('org.clockout', TimestampFunctions.clockOut);
+    const updateClockCmd = vscode.commands.registerTextEditorCommand('org.updateclock', TimestampFunctions.updateClock);
 
-    let incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
+    const incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
 
-    let decrementContextCmd = vscode.commands.registerTextEditorCommand('org.decrementContext', decrementContext);
+    const decrementContextCmd = vscode.commands.registerTextEditorCommand('org.decrementContext', decrementContext);
 
     const boldCmd = vscode.commands.registerTextEditorCommand('org.bold', MarkupFunctions.bold);
     const italicCmd = vscode.commands.registerTextEditorCommand('org.italic', MarkupFunctions.italic);
@@ -62,5 +62,5 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentSymbolProvider('org', provider);
 }
 
-export function deactivate() {
-}
+// tslint:disable-next-line:no-empty
+export function deactivate() {}

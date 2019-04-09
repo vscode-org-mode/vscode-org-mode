@@ -1,14 +1,14 @@
 import {
-    FoldingRangeProvider,
-    DocumentSymbolProvider,
     CancellationToken,
-    TextDocument,
+    DocumentSymbolProvider,
     FoldingRange,
-    SymbolInformation,
+    FoldingRangeProvider,
+    Position,
     ProviderResult,
-    SymbolKind,
     Range,
-    Position
+    SymbolInformation,
+    SymbolKind,
+    TextDocument
 } from 'vscode';
 import * as utils from './utils';
 
@@ -17,7 +17,7 @@ enum ChunkType {
     SECTION = SymbolKind.Constant,
     BLOCK = SymbolKind.Number
 }
-type Chunk = { type: ChunkType, title: string, level: number, startLine: number };
+interface IChunk { type: ChunkType, title: string, level: number, startLine: number }
 
 export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, DocumentSymbolProvider {
 
@@ -27,12 +27,12 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         this.documentStateRegistry = new WeakMap();
     }
 
-    provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
+    public provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getRanges(document);
     }
 
-    provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
+    public provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getSymbols(document);
     }
@@ -47,17 +47,18 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
     }
 }
 
+// tslint:disable-next-line:max-classes-per-file
 class OrgFoldingAndOutlineDocumentState {
     private computedForDocumentVersion: number = null;
     private ranges: FoldingRange[] = [];
     private symbols: SymbolInformation[] = [];
 
-    getRanges(document: TextDocument): FoldingRange[] {
+    public getRanges(document: TextDocument): FoldingRange[] {
         this.compute(document);
         return this.ranges;
     }
 
-    getSymbols(document: TextDocument): SymbolInformation[] {
+    public getSymbols(document: TextDocument): SymbolInformation[] {
         this.compute(document);
         return this.symbols;
     }
@@ -71,7 +72,7 @@ class OrgFoldingAndOutlineDocumentState {
         this.symbols = [];
 
         const count = document.lineCount;
-        const stack: Chunk[] = [];
+        const stack: IChunk[] = [];
         let inBlock = false;
 
         for (let lineNumber = 0; lineNumber < count; lineNumber++) {
@@ -82,8 +83,8 @@ class OrgFoldingAndOutlineDocumentState {
                 if (utils.isBlockEndLine(text)) {
                     inBlock = false;
                     if (stack.length > 0 && stack[stack.length - 1].type === ChunkType.BLOCK) {
-                        const top = stack.pop();
-                        this.createSection(top, lineNumber);
+                        const localTop = stack.pop();
+                        this.createSection(localTop, lineNumber);
                     }
                 }
             } else if (utils.isBlockStartLine(text)) {
@@ -95,8 +96,8 @@ class OrgFoldingAndOutlineDocumentState {
 
                 // close previous sections
                 while (stack.length > 0 && stack[stack.length - 1].level >= currentLevel) {
-                    const top = stack.pop();
-                    this.createSection(top, lineNumber - 1);
+                    const localTop = stack.pop();
+                    this.createSection(localTop, lineNumber - 1);
                 }
 
                 const title = utils.getHeaderTitle(text);
@@ -104,13 +105,13 @@ class OrgFoldingAndOutlineDocumentState {
             }
         }
 
-        let top: Chunk;
+        let top: IChunk;
         while ((top = stack.pop()) != null) {
             this.createSection(top, count - 1);
         }
     }
 
-    private createSection(chunk: Chunk, endLine) {
+    private createSection(chunk: IChunk, endLine) {
         this.ranges.push(new FoldingRange(chunk.startLine, endLine));
         this.symbols.push(new SymbolInformation(
             chunk.title,
@@ -124,7 +125,7 @@ class OrgFoldingAndOutlineDocumentState {
 
     private extractBlockTitle(line: string) : string {
         let titleStartAt = line.indexOf('_') + 1;
-        if(titleStartAt == 0) {
+        if(titleStartAt === 0) {
             titleStartAt = line.indexOf(':') + 2;
         }
         return line.substr(titleStartAt);

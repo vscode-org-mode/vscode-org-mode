@@ -1,9 +1,9 @@
 // import * as vscode from 'vscode';
 import {
-    TextEditor,
-    TextEditorEdit,
     Position,
     Range,
+    TextEditor,
+    TextEditorEdit,
     workspace
 } from "vscode";
 import * as Datetime from './simple-datetime';
@@ -28,6 +28,7 @@ export default function getCursorContext(textEditor: TextEditor, edit: TextEdito
     // Match for timestamp
     const timestampRegexp = /\[\d{4}-\d{1,2}-\d{1,2}(?: \w{3})?\]/g;
     let match;
+
     while ((match = timestampRegexp.exec(curLine)) != null) {
         const timestampContext = getTimestampContext(match, cursorPos);
         if (timestampContext) {
@@ -57,10 +58,10 @@ function getTimestampContext(match: RegExpExecArray, cursorPos: Position): ICont
     if (range.contains(cursorPos)) {
         // We've found our match
         return {
-            dataLabel: DATE,
             data: match[0],
-            line: line,
-            range: range
+            dataLabel: DATE,
+            line,
+            range
         }
     }
 
@@ -80,9 +81,9 @@ function getTodoContext(match: RegExpExecArray, cursorPos: Position): IContextDa
     const range = new Range(startPos, endPos);
 
     return {
-        dataLabel: TODO,
         data: todoWord,
-        line: line,
-        range: range
+        dataLabel: TODO,
+        line,
+        range
     }
 }
