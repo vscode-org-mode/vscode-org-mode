@@ -109,6 +109,8 @@ Detailed documentation is kept in the [GitHub Wiki](https://github.com/vscode-or
 
 We welcome contributions to the GitHub repo. Here are basic guidelines for conventions.
 
+Join the community [here](https://gitter.im/vscode-org-mode/Lobby).
+
 ### Naming
 
 The full name of this project is `VS Code Org Mode`. It is abbreviated `vscode-org-mode`. In the VS Code Marketplace, it is listed as `Org Mode`.
