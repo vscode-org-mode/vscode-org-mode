@@ -39,7 +39,12 @@ const programmingLanguages = [
     ['shell', 'sh', 'bash', 'zsh', 'bashrc', 'bash_profile'],
     ['cs', 'csharp', 'c#'],
     ['fs', 'fsharp', 'f#'],
-    ['dart']
+    ['dart'],
+    ['nim'],
+    ["elixir"],
+    ["erlang"],
+    ["ocaml"],
+    ["zig"],
 ];
 // List of language retrieve from https://github.com/Microsoft/vscode/blob/master/extensions/markdown-basics/syntaxes/markdown.tmLanguage.json
 // Preproced by the following jq command: jq '.repository.block.repository|to_entries[]|{block: .key, names: .value.begin, source: .value.patterns[0].patterns[0].include?}'
