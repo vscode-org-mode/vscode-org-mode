@@ -1377,7 +1377,7 @@
                 },
                 {
                     "name": "meta.block.source.erlang.org",
-                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(erlang)\\b\\s*(.*)$",
+                    "begin": "(?i)(?:^|\\G)(?:\\s*)(#\\+BEGIN_SRC)\\s+(erlang|erl|grl)\\b\\s*(.*)$",
                     "end": "(?i)(?:^|\\G)(?:\\s*)(#\\+END_SRC)\\s*$",
                     "beginCaptures": {
                         "1": {
