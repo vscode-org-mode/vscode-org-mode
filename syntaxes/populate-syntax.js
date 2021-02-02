@@ -42,7 +42,7 @@ const programmingLanguages = [
     ['dart'],
     ['nim'],
     ['elixir'],
-    ['erlang', 'erl', 'grl'],
+    ['erlang', 'erl', 'hrl'],
     ['ocaml'],
     ['zig'],
 ];
