@@ -14,8 +14,11 @@
         },
         {
             "name": "entity.name.type.org",
-            "begin": "^\\s*[*]{2}\\s+",
+            "begin": "^\\s*([*])[*]\\s+",
             "end": "$",
+            "beginCaptures": {
+                "1": {"name": "entity.name.type.org.leading"}
+            },
             "patterns": [
                 {
                     "include": "#header-matches"
@@ -24,8 +27,11 @@
         },
         {
             "name": "entity.name.function.org",
-            "begin": "^\\s*[*]{3}\\s+",
+            "begin": "^\\s*([*]{2})[*]\\s+",
             "end": "$",
+            "beginCaptures": {
+                "1": {"name": "entity.name.function.org.leading"}
+            },
             "patterns": [
                 {
                     "include": "#header-matches"
@@ -34,8 +40,11 @@
         },
         {
             "name": "entity.other.attribute-name.org",
-            "begin": "^\\s*[*]{4}\\s+",
+            "begin": "^\\s*([*]{3})[*]\\s+",
             "end": "$",
+            "beginCaptures": {
+                "1": {"name": "entity.other.attribute-name.org.leading"}
+            },
             "patterns": [
                 {
                     "include": "#header-matches"
