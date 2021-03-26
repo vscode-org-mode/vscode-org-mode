@@ -9,6 +9,8 @@ export interface ISimpleDate {
     month: number;
     day: number;
     weekday: string;
+    openBracket: string;
+    closeBracket: string;
 }
 
 export interface ISimpleDateTime extends ISimpleDate {
@@ -17,12 +19,14 @@ export interface ISimpleDateTime extends ISimpleDate {
 }
 
 export function parseDate(dateString: string): ISimpleDate {
-    const dateRegExp = /(\d{4})-(\d{1,2})-(\d{1,2})/;
+    const dateRegExp = /(\[|\<)(\d{4})-(\d{1,2})-(\d{1,2})(?: \w{3})?(\]|\>)/;
     const dateResult = dateRegExp.exec(dateString);
 
-    const year = dateResult ? parseInt(dateResult[1], 10) : undefined;
-    const month = dateResult ? parseInt(dateResult[2], 10) : undefined;
-    const day = dateResult ? parseInt(dateResult[3], 10) : undefined;
+    const openBracket = dateResult ? dateResult[1] : undefined;
+    const year = dateResult ? parseInt(dateResult[2], 10) : undefined;
+    const month = dateResult ? parseInt(dateResult[3], 10) : undefined;
+    const day = dateResult ? parseInt(dateResult[4], 10) : undefined;
+    const closeBracket = dateResult ? dateResult[5] : undefined;
 
 
     const weekdayRegExp = /[A-Za-z]{3}/;
@@ -32,7 +36,7 @@ export function parseDate(dateString: string): ISimpleDate {
         weekday = weekdayResult[0];
     }
 
-    return { year, month, day, weekday };
+    return { year, month, day, weekday, openBracket, closeBracket };
 };
 
 export function isValidSimpleDate(datetime: ISimpleDate): boolean {
@@ -40,7 +44,7 @@ export function isValidSimpleDate(datetime: ISimpleDate): boolean {
 }
 
 export function buildDateString(datetime: ISimpleDate): string {
-    const { year, month, day, weekday } = datetime;
+    const { year, month, day, weekday, openBracket, closeBracket } = datetime;
 
     let dateString = `${year}-${month}-${day}`;
     if (Utils.getLeftZero()) {
@@ -50,7 +54,7 @@ export function buildDateString(datetime: ISimpleDate): string {
         dateString = `${dateString} ${weekday}`;
     }
 
-    return `[${dateString}]`
+    return `${openBracket}${dateString}${closeBracket}`
 };
 
 export function buildDateTimeString(datetime: ISimpleDateTime): string {
@@ -92,12 +96,16 @@ export function dateToSimpleDate(dateObject: Date): ISimpleDate {
     const day = dateObject.getDate();
 
     const weekday = weekdayArray[dateObject.getDay()];
+    const openBracket = '[';
+    const closeBracket = ']';
 
     return {
         day,
         month,
         weekday,
-        year
+        year,
+        openBracket,
+        closeBracket
     }
 }
 
@@ -127,6 +135,9 @@ export function modifyDate(dateString: string, action: string): string {
     if (!oldDate.weekday) {
         newDate.weekday = undefined;
     }
+
+    newDate.openBracket = oldDate.openBracket;
+    newDate.closeBracket = oldDate.closeBracket;
 
     return buildDateString(newDate);
 }
