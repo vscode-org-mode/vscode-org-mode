@@ -7,3 +7,6 @@ src/**
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
+
+# Build Output
+*.vsix

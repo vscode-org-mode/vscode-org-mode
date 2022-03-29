@@ -6,3 +6,6 @@ coverage/
 .vscode-test/
 
 *.orig
+
+# Build Output
+*.vsix
