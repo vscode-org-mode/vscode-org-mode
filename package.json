@@ -268,13 +268,11 @@
         "@types/node": "^7.10.14",
         "@types/vscode": "^1.23.0",
         "@vscode/test-electron": "^2.1.3",
-        "codecov": "^3.1.0",
         "glob": "^7.2.0",
         "mocha": "^6.0.1",
         "tslint": "^5.14.0",
         "tslint-config-prettier": "^1.18.0",
-        "typescript": "^3.9.10",
-        "vscode-coverage-test-runner": "^1.0.0"
+        "typescript": "^3.9.10"
     },
     "dependencies": {
         "date-fns": "^1.28.3"
