@@ -259,19 +259,18 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "lint": "tslint 'src/**/*.ts'",
-        "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
         "generate-syntax": "node syntaxes/populate-syntax.js"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.48",
         "@types/node": "^6.14.3",
+        "@types/vscode": "^1.23.0",
         "codecov": "^3.1.0",
         "mocha": "^6.0.1",
         "tslint": "^5.14.0",
         "tslint-config-prettier": "^1.18.0",
         "typescript": "^2.9.2",
-        "vscode": "^1.1.30",
         "vscode-coverage-test-runner": "^1.0.0"
     },
     "dependencies": {
