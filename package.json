@@ -20,7 +20,7 @@
         "vscode": "^1.23.0"
     },
     "categories": [
-        "Languages"
+        "Programming Languages"
     ],
     "activationEvents": [
         "onLanguage:org"
