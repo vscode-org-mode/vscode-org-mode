@@ -29,6 +29,10 @@
     "contributes": {
         "commands": [
             {
+                "command": "org.openLink",
+                "title": "Org: Open Link at Cursor"
+            },
+            {
                 "command": "org.insertHeadingRespectContent",
                 "title": "Org: Insert Heading Respect Content"
             },
@@ -152,6 +156,18 @@
                     "type": "string",
                     "default": " =>  ",
                     "description": "Clock total separator"
+                },
+                "org.externalLinkSchemes": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "default": [
+                        "mailto",
+                        "tel",
+                        "sms",
+                        "news",
+                        "doi"
+                    ],
+                    "description": "Non-URL link schemes (no `://`) that should be opened externally instead of treated as in-document search text. URL-shaped links (`scheme://…`) are always external and don't need to be listed."
                 }
             }
         },
