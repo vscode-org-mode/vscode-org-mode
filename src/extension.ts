@@ -2,6 +2,7 @@
 import * as vscode from 'vscode';
 import * as HeaderFunctions from './header-functions';
 import * as MarkupFunctions from './markup-functions';
+import * as LinkFunctions from './link-functions';
 import {
     decrementContext,
     incrementContext
@@ -18,6 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     const promoteLineCmd = vscode.commands.registerTextEditorCommand('org.doPromote', HeaderFunctions.promoteLine);
     const promoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.promoteSubtree', SubtreeFunctions.promoteSubtree);
     const demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
+    const openLinkCmd = vscode.commands.registerTextEditorCommand('org.openLink', LinkFunctions.openLink);
 
     const insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', TimestampFunctions.insertTimestamp);
 
@@ -57,10 +59,18 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(verboseCmd);
     context.subscriptions.push(literalCmd);
     context.subscriptions.push(butterflyCmd);
+    context.subscriptions.push(openLinkCmd);
 
     const provider = new OrgFoldingAndOutlineProvider();
     vscode.languages.registerFoldingRangeProvider('org', provider);
     vscode.languages.registerDocumentSymbolProvider('org', provider);
+
+    context.subscriptions.push(
+        vscode.languages.registerDocumentLinkProvider(
+            { language: 'org' },
+            new LinkFunctions.OrgDocumentLinkProvider(),
+        ),
+    );
 }
 
 // tslint:disable-next-line:no-empty

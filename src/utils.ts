@@ -205,6 +205,11 @@ export function getKeywords() {
     return todoKeywords;
 }
 
+export function getExternalLinkSchemes(): string[] {
+    const settings = vscode.workspace.getConfiguration("org");
+    return settings.get<string[]>("externalLinkSchemes") ?? [];
+}
+
 export function getLeftZero() {
     const settings = vscode.workspace.getConfiguration("org");
     const addLeftZero = settings.get<boolean>("addLeftZero");
